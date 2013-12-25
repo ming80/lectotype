@@ -1,6 +1,7 @@
 package com.daCheng.lectotype.domain;
 
 public class ValveSpecification {
+	private String id;
 	private String projectName;	//项目名称
 	private String tagNo;	//位号
 	private String quantity;	//数量
@@ -92,6 +93,14 @@ public class ValveSpecification {
 	
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setID(String id) {
+		id = id;
 	}
 	
 	

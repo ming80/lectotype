@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.ValveSpecificationMapper">
+  <!-- cache / -->              
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.ValveSpecification">
+    insert into valve_specification 
+    	(id,project_name,tag_No,quantity,service,remarks,pipe_size_and_material,fluid_state,
+    	fluid_name,density,flow_unit,Qmax,Qnor,Qmin,opration_temperature,pressure_unit,
+    	upstream_pressure,downstream_pressure,differential_pressure,dynamic_viscosity,
+    	compress_factor,vapor_pressure,critical_pressure,kv_max,kv_min,selected_kv,
+    	adjustable_ratio,flow_characteristic,k_max,k_min,nominal_pressure,noise_level,
+    	close_open,selected_model_name,selected_model_model,diameter_nominal,seat_diameter,
+    	selected_model_nominal_pressure,flow_open_close,air_fail,flow_character,body_material,
+    	seat_material,plug_material,packing,bonnet_type,connection_flange,leakage_class,
+    	actuator_model,actuator_action,spring_range,actuator_air_pressure,actuator_air_connection,
+    	positioner_model,positioner_input_signal,positioner_air_pressure,positioner_signal_connection,
+    	positioner_air_connection_size,positioner_explosion_proof,solenoid_model,solenoid_supply_power,
+    	solenoid_power_connection,solenoid_air_connection,solenoid_explosion_proof,limit_switch_model,
+    	limit_switch_joint_model,limit_switch_connection_size,limit_switch_explosion_proof,conveyer_model,
+    	conveyer_output_signal,conveyer_connection_size,conveyer_explosion_proof,
+    	filter_reducing_valve_model,filter_reducing_valve_connection,hand_wheel) 
+	values
+		(#{id},#{projectName},#{tagNo},#{quantity},#{service},#{remarks},#{processPara.pipeSizeAndMaterial},
+		#{processPara.fluidState},#{processPara.fluidName},#{processPara.density},#{processPara.flowUnit},
+		#{processPara.Qmax},#{processPara.Qnor},#{processPara.Qmin},#{processPara.OperationTemperature},
+		#{processPara.pressureUnit},#{processPara.upstreamPressure},#{processPara.downstreamPressure},
+		#{processPara.differentialPressure},#{processPara.dynamicViscosity},#{processPara.compressFactor},
+		#{processPara.vaporPressure},#{processPara.criticalPressure},#{calculation.Kvmax},
+		#{calculation.Kvmin},#{calculation.selectedKv},#{calculation.adjustableRatio},
+		#{calculation.flowCharacteristic},#{calculation.Kmax},#{calculation.Kmin},
+		#{calculation.nominalPressure},#{calculation.noiseLevel},#{calculation.closeOpen},
+		#{selectedModel.name},#{selectedModel.model},#{selectedModel.diameterNominal},
+		#{selectedModel.seatDiameter},#{selectedModel.nominalPressure},#{selectedModel.flowOpenClose},
+		#{selectedModel.airFail},#{selectedModel.flowCharacter},#{selectedModel.bodyMaterial},
+		#{selectedModel.seatMaterial},#{selectedModel.plugMaterial},#{selectedModel.packing},
+		#{selectedModel.bonnetType},#{selectedModel.connectionFlange},#{selectedModel.leakageClass},
+		#{actuator.model},#{actuator.action},#{actuator.springRange},#{actuator.airPressure},
+		#{actuator.airConnection},#{accessory.positioner.model},#{accessory.positioner.inputSignal},
+		#{accessory.positioner.airPressure},#{accessory.positioner.signalConnection},
+		#{accessory.positioner.airConnectionSize},#{accessory.positioner.explosionProof},
+		#{accessory.solenoid.model},#{accessory.solenoid.supplyPower},#{accessory.solenoid.powerConnection},
+		#{accessory.solenoid.airConnection},#{accessory.solenoid.explosionProof},
+		#{accessory.limitSwitch.model},#{accessory.limitSwitch.jointModel},
+		#{accessory.limitSwitch.connectionSize},#{accessory.limitSwitch.explosionProof},
+		#{accessory.conveyer.model},#{accessory.conveyer.outputSignal},#{accessory.conveyer.connectionSize},
+		#{accessory.conveyer.explosionProof},#{accessory.filterReducingValve.model},
+		#{accessory.filterReducingValve.connection},#{accessory.hand_wheel})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.ValveSpecification">
+    update valve_specification set 
+        project_name=#{projectName},tag_No#{tagNo},quantity#{quantity},service#{service},
+        remarks#{remarks},pipe_size_and_material#{processPara.pipeSizeAndMaterial},fluid_state#{processPara.fluidState},
+    	fluid_name#{processPara.fluidName},density#{processPara.density},flow_unit#{processPara.flowUnit},
+    	Qmax#{processPara.Qmax},Qnor#{processPara.Qnor},Qmin#{processPara.Qmin},
+    	opration_temperature#{processPara.OperationTemperature},pressure_unit#{processPara.pressureUnit},
+    	upstream_pressure#{processPara.upstreamPressure},downstream_pressure#{processPara.downstreamPressure},
+    	differential_pressure#{processPara.differentialPressure},dynamic_viscosity#{processPara.dynamicViscosity},
+    	compress_factor#{processPara.compressFactor},vapor_pressure#{processPara.vaporPressure},
+    	critical_pressure#{processPara.criticalPressure},kv_max#{calculation.Kvmax},kv_min#{calculation.Kvmin},selected_kv#{calculation.selectedKv},
+    	adjustable_ratio#{calculation.adjustableRatio},flow_characteristic#{calculation.flowCharacteristic},
+    	k_max#{calculation.Kmax},k_min#{calculation.Kmin},nominal_pressure#{calculation.nominalPressure},
+    	noise_level#{calculation.noiseLevel},close_open#{calculation.closeOpen},selected_model_name#{selectedModel.name},
+    	selected_model_model#{selectedModel.model},diameter_nominal#{selectedModel.diameterNominal},seat_diameter#{selectedModel.seatDiameter},
+    	selected_model_nominal_pressure#{selectedModel.nominalPressure},flow_open_close#{selectedModel.flowOpenClose},
+    	air_fail#{selectedModel.airFail},flow_character#{selectedModel.flowCharacter},body_material#{selectedModel.bodyMaterial},
+    	seat_material#{selectedModel.seatMaterial},plug_material#{selectedModel.plugMaterial},packing#{selectedModel.packing},
+    	bonnet_type#{selectedModel.bonnetType},connection_flange#{selectedModel.connectionFlange},leakage_class#{selectedModel.leakageClass},
+    	actuator_model#{actuator.model},actuator_action#{actuator.action},spring_range#{actuator.springRange},
+    	actuator_air_pressure#{actuator.airPressure},actuator_air_connection#{actuator.airConnection},
+    	positioner_model,positioner_input_signal,positioner_air_pressure,positioner_signal_connection,
+    	positioner_air_connection_size,positioner_explosion_proof,solenoid_model,solenoid_supply_power,
+    	solenoid_power_connection,solenoid_air_connection,solenoid_explosion_proof,limit_switch_model,
+    	limit_switch_joint_model,limit_switch_connection_size,limit_switch_explosion_proof,conveyer_model,
+    	conveyer_output_signal,conveyer_connection_size,conveyer_explosion_proof,
+    	filter_reducing_valve_model,filter_reducing_valve_connection,hand_wheel
+
+		,,,
+		,,,
+		,,,,
+		#{actuator.airConnection},#{accessory.positioner.model},#{accessory.positioner.inputSignal},
+		#{accessory.positioner.airPressure},#{accessory.positioner.signalConnection},
+		#{accessory.positioner.airConnectionSize},#{accessory.positioner.explosionProof},
+		#{accessory.solenoid.model},#{accessory.solenoid.supplyPower},#{accessory.solenoid.powerConnection},
+		#{accessory.solenoid.airConnection},#{accessory.solenoid.explosionProof},
+		#{accessory.limitSwitch.model},#{accessory.limitSwitch.jointModel},
+		#{accessory.limitSwitch.connectionSize},#{accessory.limitSwitch.explosionProof},
+		#{accessory.conveyer.model},#{accessory.conveyer.outputSignal},#{accessory.conveyer.connectionSize},
+		#{accessory.conveyer.explosionProof},#{accessory.filterReducingValve.model},
+		#{accessory.filterReducingValve.connection},#{accessory.hand_wheel}
+    where id=#{id}
+  </update>
+  
+  <select id="countPolicies" resultType="int">
+    select count(*)
+    from policy where policy_no in
+    <foreach item="policy" index="index" collection="list" open="(" separator="," close=")">
+      #{policy.policyNo}
+    </foreach>
+  </select>
+
+  <select id="count" parameterType="string" resultType="int">
+    select count(*) from policy where policy_no=#{policyNo}
+  </select>
+  
+  <!-- 三表连接 -->
+  <!--  select * from (policy a left join remark b on a.policy_no = b.policy_no) left join settlement c on a.policy_no=c.policy_no -->
+
+  <select id="findPolicies" parameterType="map" resultMap="policyResult">
+	select 
+	  a.policy_no as policy_no,
+	  a.broker_no as broker_no,
+	  a.premium as premium,
+	  a.cost as cost,
+	  a.insurance_company as insurance_company, 
+	  a.insured as insured,
+	  a.factorage_rate as factorage_rage,
+	  a.factorage as factorage,
+	  a.insurance_type as insurance_type,
+	  a.invoice_no as invoice_no,
+	  a.date_m as input_date,
+	  a.import_date as import_date,
+	  b.operation_date as remark_date,
+	  b.operator as remark_operator_id,
+	  d.name as remark_operator_name,
+	  d.password as remark_operator_password,
+	  c.operation_date as settlement_date,
+	  c.operator as settlement_operator_id,
+	  e.name as settlement_operator_name,
+	  e.password as settlement_operator_password
+	FROM 
+	  policy a LEFT OUTER JOIN remark b ON a.policy_no = b.policy_no 
+	  LEFT OUTER JOIN settlement c ON a.policy_no = c.policy_no 
+	  LEFT OUTER JOIN user_info d ON b.operator = d.ID 
+	  LEFT OUTER JOIN user_info e ON c.operator = e.ID
+    where 1=1 
+    <if test="policyNo != null">
+      and a.policy_no like #{policyNo}
+    </if>
+    <if test="brokerNo != null">
+      and a.broker_no=#{brokerNo}
+    </if>
+    <if test="insured != null">
+      and a.insured like #{insured}
+    </if>
+    <if test="inputDateFrom != null">
+      and a.date_m&gt;=#{inputDateFrom,javaType=date}
+    </if>
+    <if test="inputDateTo != null"> 
+      and a.date_m&lt;#{inputDateTo,javaType=date}
+    </if>    
+    <choose>
+      <when test="remarkScope == null"></when>
+      <when test="remarkScope.name().equals('REMARKED')">
+        and b.policy_no is not null
+      </when>
+      <when test="remarkScope.name().equals('UNREMARKED')">
+        and b.policy_no is null
+      </when>
+    </choose>
+    <choose>
+      <when test="settlementScope == null"></when>
+      <when test="settlementScope.name().equals('SETTLED')">
+        and c.policy_no is not null 
+      </when>
+      <when test="settlementScope.name().equals('UNSETTLED')">
+        and c.policy_no is null 
+      </when>
+    </choose>
+  </select>
+
+  <select id="countPoliciesByCondition" parameterType="map" resultType="int">
+	select count(*)
+	FROM 
+	  policy a LEFT OUTER JOIN remark b ON a.policy_no = b.policy_no 
+	  LEFT OUTER JOIN settlement c ON a.policy_no = c.policy_no 
+	  LEFT OUTER JOIN user_info d ON b.operator = d.ID 
+	  LEFT OUTER JOIN user_info e ON c.operator = e.ID
+    where 1=1 
+    <if test="policyNo != null">
+      and a.policy_no like #{policyNo}
+    </if>
+    <if test="brokerNo != null">
+      and a.broker_no=#{brokerNo}
+    </if>
+    <if test="insured != null">
+      and a.insured like #{insured}
+    </if>
+    <if test="inputDateFrom != null">
+      and a.date_m&gt;=#{inputDateFrom,javaType=date}
+    </if>
+    <if test="inputDateTo != null"> 
+      and a.date_m&lt;#{inputDateTo,javaType=date}
+    </if>    
+    <choose>
+      <when test="remarkScope == null"></when>
+      <when test="remarkScope.name().equals('REMARKED')">
+        and b.policy_no is not null
+      </when>
+      <when test="remarkScope.name().equals('UNREMARKED')">
+        and b.policy_no is null
+      </when>
+    </choose>
+    <choose>
+      <when test="settlementScope == null"></when>
+      <when test="settlementScope.name().equals('SETTLED')">
+        and c.policy_no is not null 
+      </when>
+      <when test="settlementScope.name().equals('UNSETTLED')">
+        and c.policy_no is null 
+      </when>
+    </choose>
+  </select>
+
+  <resultMap id="policyResult" type="com.firsthuanya.financeInsu.domain.FinancePolicy">	
+    <id property="policyNo" column="policy_no"></id>
+    <result property="brokerNo" column="broker_no"></result>
+    <result property="premium" column="premium"></result>
+    <result property="cost" column="cost"></result>
+    <result property="insuranceCompany" column="insurance_company"></result>
+    <result property="insured" column="insured"></result>
+    <result property="inputDate" column="input_date"></result>
+    <result property="factorage" column="factorage"></result>
+    <result property="factorageRate" column="factorage_rate"></result>
+    <result property="insuranceType" column="insurance_type"></result>
+    <result property="invoiceNo" column="invoice_no"></result>
+    <result property="importDate" column="import_date"></result>    
+    <association property="remarkInfo" javaType="com.firsthuanya.financeInsu.domain.RemarkInfo">
+	  <result property="operationDate" column="remark_date"></result>
+	  <association property="operator" javaType="com.firsthuanya.financeInsu.domain.User">
+	    <id property="id" column="remark_operator_id"></id>
+	    <result property="name" column="remark_operator_name"></result>
+	    <result property="password" column="remark_operator_password"></result>
+	  </association>
+    </association>
+    <association property="settlementInfo" javaType="com.firsthuanya.financeInsu.domain.SettlementInfo">
+	  <result property="operationDate" column="settlement_date"></result>
+	  <association property="operator" javaType="com.firsthuanya.financeInsu.domain.User">
+	  	<id property="id" column="settlement_operator_id"></id>
+	    <result property="name" column="settlement_operator_name"></result>
+	    <result property="password" column="settlement_operator_password"></result>
+	  </association>
+    </association>
+  </resultMap>
+</mapper>
