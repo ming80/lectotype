@@ -24,7 +24,7 @@
 	</environments>
 
 	<mappers>
-		<!-- mapper resource="com/firsthuanya/financeInsu/data/UserMapper.xml" /-->
+		<mapper resource="com/daCheng/lectotype/data/ValveSpecificationMapper.xml" />
 
 	</mappers>
 </configuration>

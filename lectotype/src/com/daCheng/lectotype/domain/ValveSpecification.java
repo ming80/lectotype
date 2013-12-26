@@ -96,11 +96,11 @@ public class ValveSpecification {
 	}
 
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
-	public void setID(String id) {
-		id = id;
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

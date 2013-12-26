@@ -5,8 +5,7 @@ public class Accessory {
 	private Solenoid solenoid;
 	private LimitSwitch limitSwitch;
 	private Conveyer conveyer;
-	private FilterReducingValve filterReducingValve;
-	
+	private FilterReducingValve filterReducingValve;	
 	private boolean handWheel;
 	
 	public Positioner getPositioner() {
