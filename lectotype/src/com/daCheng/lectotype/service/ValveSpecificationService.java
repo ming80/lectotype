@@ -49,34 +49,68 @@ public class ValveSpecificationService {
 		return builder.build(reader).openSession();
 	}	
 	
-	public int addValveSpecification(ValveSpecification valveSpecification){
+	public void addValveSpecification(ValveSpecification valveSpecification){
 		SqlSession session = openSession(null,null);
 		try{
 			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
 			
-			if(mapper.count(valveSpecification.getId()) > 0)
-				return 0;
-			
 			mapper.insert(valveSpecification);
 			session.commit();
-			return 1;
+		}
+		finally{
+			if(session != null) session.close();
+		}		
+	}
+	
+	public void deleteValveSpecification(String id){
+		SqlSession session = openSession(null,null);
+		try{
+			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
+			
+			mapper.delete(id);
+			session.commit();
+		}
+		finally{
+			if(session != null) session.close();
+		}	
+	}
+	
+	public boolean hasSuchValveSpecification(String id){
+		SqlSession session = openSession(null,null);
+		try{
+			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
+			
+			return mapper.count(id) > 0;
 		}
 		finally{
 			if(session != null) session.close();
 		}
-		
 	}
 	
-	public int deleteValveSpecification(String id){
-		
+	public ValveSpecification getValveSpecification(String id){
+		SqlSession session = openSession(null,null);
+		try{
+			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
+			
+			return mapper.find(id);
+
+		}
+		finally{
+			if(session != null) session.close();
+		}
 	}
 	
-	public valveSpecification getValveSpecification(String id){
-		
-	}
-	
-	public int updateValveSpecification(ValveSpecification valveSpecification){
-		
+	public void updateValveSpecification(ValveSpecification valveSpecification){
+		SqlSession session = openSession(null,null);
+		try{
+			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
+			
+			mapper.update(valveSpecification);
+			session.commit();
+		}
+		finally{
+			if(session != null) session.close();
+		}
 	}
 	
 	public static void main(String[] args){
@@ -93,7 +127,7 @@ public class ValveSpecificationService {
 		ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
 		
 		ValveSpecification valveSpecification = new ValveSpecification();
-		valveSpecification.setId("11");
+		valveSpecification.setId("1");
 		valveSpecification.setProjectName("2");
 		valveSpecification.setTagNo("3");
 		valveSpecification.setQuantity("4");
@@ -192,7 +226,7 @@ public class ValveSpecificationService {
 		accessory.setLimitSwitch(limitSwitch);
 		accessory.setConveyer(conveyer);
 		accessory.setFilterReducingValve(filterReducingValve);
-		accessory.setHandWheel(false);		
+		accessory.setHandWheel(true);		
 		
 		valveSpecification.setProcessPara(processPara);
 		valveSpecification.setCalculation(calculation);
@@ -202,9 +236,15 @@ public class ValveSpecificationService {
 		
 //		mapper.insert(valveSpecification);
 //		mapper.delete("11");
-		ValveSpecification spec = mapper.find("1");
-		session.commit();
-		session.close();
+//		ValveSpecification spec = mapper.find("1");
+//		System.out.print(mapper.count("11"));
+//		mapper.update(valveSpecification);
+//		session.commit();
+//		session.close();
+		
+		ValveSpecificationService service = new ValveSpecificationService();
+		service.updateValveSpecification(valveSpecification);
+		return;
 	}
 	
 }
