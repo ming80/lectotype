@@ -40,9 +40,7 @@
 </head>
 
 <body onload="setLayoutHeight() ">
-
-
-  <div id="cc" class="easyui-layout" style="margin:0px 25px">
+  <div id="cc" class="easyui-layout" style="width:1020px;margin:0px auto"><!-- margin上下和body之间0px,左右自动调整,有居中效果 -->
     <div data-options="region:'north',border:false" style="height:50px;padding:5px;position:relative">
     	<!-- div style="border:0px solid black;position:absolute;left:0px;bottom:5px;">
     		<img src="images/huanya_logo.png">
@@ -71,10 +69,11 @@
     </div>   
     
     <div data-options="region:'center',border:false"  style="padding:0px 0px 0px 5px;">
-      <div id="content" class="easyui-tabs" fit="true" border="true" plain="false"></div>
+		<div id="content" class="easyui-tabs" fit="true" border="true" plain="false">
+    	</div>
     </div>
-
   </div>
+
   <script type="text/javascript">
 		$(function(){
 			$($('#mb1').menubutton('options').menu).menu({
@@ -88,7 +87,7 @@
                 	if(item.text == "添加") 
                 		openTab('addValveSpecification.jsp','添加选型表');
                 	if(item.text == "查询") 
-                		openTab('addValveSpecification.jsp','查询选型表');
+                		openTab('queryValveSpecification.jsp','查询选型表');
             	} 
         	});
 		});
