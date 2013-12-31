@@ -9,6 +9,7 @@ public class ProcessParameter {
 	private String Qmax;	//最大流量
 	private String Qnor;	//正常流量
 	private String Qmin;	//最小流量
+	               
 	private String operationTemperature;	//操作温度
 	private String pressureUnit;	//压力单位
 	private String upstreamPressure;	//阀前压力
@@ -86,9 +87,9 @@ public class ProcessParameter {
 	public String getOperationTemperature() {
 		return operationTemperature;
 	}
-	
+	                                           
 	public void setOperationTemperature(String operationTemperature) {
-		operationTemperature = operationTemperature;
+		this.operationTemperature = operationTemperature;
 	}
 	
 	public String getPressureUnit() {

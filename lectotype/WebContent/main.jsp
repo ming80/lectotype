@@ -32,7 +32,7 @@
 		//alert($(window).height());	//窗口高度
 		//alert(screen.availHeight);	//可用高度
 		
-		$('#cc').height(screen.height <= 768 ? 690 : (screen.availHeight * 0.92));	//可用高度的92%
+		$('#cc').height(screen.height <= 768 ? 710 : (screen.availHeight * 0.92));	//可用高度的92%
 		$('#cc').layout('resize');
 	}
 
