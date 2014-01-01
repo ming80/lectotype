@@ -2,6 +2,9 @@ package com.daCheng.lectotype.service;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.ExecutorType;
@@ -100,6 +103,23 @@ public class ValveSpecificationService {
 		}
 	}
 	
+	public List<ValveSpecification> getValveSpecifications(String projectName,String selectedModelName,String model){
+		SqlSession session = openSession(null,null);
+		try{
+			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
+			
+			Map<String,Object> conditions = new HashMap<String, Object>();
+			conditions.put("projectName", projectName);
+			conditions.put("selectedModelName", selectedModelName);
+			conditions.put("model", model);
+			
+			return mapper.findValveSpecifications(conditions);
+		}
+		finally{
+			if(session != null) session.close();
+		}
+	}
+	
 	public void updateValveSpecification(ValveSpecification valveSpecification){
 		SqlSession session = openSession(null,null);
 		try{
@@ -128,98 +148,98 @@ public class ValveSpecificationService {
 		
 		ValveSpecification valveSpecification = new ValveSpecification();
 		valveSpecification.setId("1");
-		valveSpecification.setProjectName("2");
-		valveSpecification.setTagNo("3");
-		valveSpecification.setQuantity("4");
-		valveSpecification.setService("5");
-		valveSpecification.setRemarks("6");
+		valveSpecification.setProjectName("22");
+		valveSpecification.setTagNo("33");
+		valveSpecification.setQuantity("44");
+		valveSpecification.setService("55");
+		valveSpecification.setRemarks("66");
 		
 		ProcessParameter processPara = new ProcessParameter();
-		processPara.setPipeSizeAndMaterial("7");
-		processPara.setFluidState("8");
-		processPara.setFluidName("9");
-		processPara.setDensity("10");
-		processPara.setFlowUnit("11");
-		processPara.setQmax("12");
-		processPara.setQnor("13");
-		processPara.setQmin("14");
-		processPara.setOperationTemperature("15");
-		processPara.setPressureUnit("16");
-		processPara.setUpstreamPressure("17");
-		processPara.setDownstreamPressure("18");
-		processPara.setDifferentialPressure("19");
-		processPara.setDynamicViscosity("20");
-		processPara.setCompressFactor("21");
-		processPara.setVaporPressure("22");
-		processPara.setCriticalPressure("23");
+		processPara.setPipeSizeAndMaterial("77");
+		processPara.setFluidState("88");
+		processPara.setFluidName("99");
+		processPara.setDensity("1010");
+		processPara.setFlowUnit("1111");
+		processPara.setQmax("1212");
+		processPara.setQnor("1313");
+		processPara.setQmin("1414");
+		processPara.setOperationTemperature("1515");
+		processPara.setPressureUnit("1616");
+		processPara.setUpstreamPressure("1717");
+		processPara.setDownstreamPressure("1818");
+		processPara.setDifferentialPressure("1919");
+		processPara.setDynamicViscosity("2020");
+		processPara.setCompressFactor("2121");
+		processPara.setVaporPressure("2222");
+		processPara.setCriticalPressure("2323");
 		
 		Calculation calculation = new Calculation();
-		calculation.setKvmax("24");
-		calculation.setKvmin("25");
-		calculation.setSelectedKv("26");
-		calculation.setAdjustableRatio("27");
-		calculation.setFlowCharacteristic("28");
-		calculation.setKmax("29");
-		calculation.setKmin("30");
-		calculation.setNominalPressure("31");
-		calculation.setNoiseLevel("32");
-		calculation.setCloseOpen("33");
+		calculation.setKvmax("2424");
+		calculation.setKvmin("2525");
+		calculation.setSelectedKv("2626");
+		calculation.setAdjustableRatio("2727");
+		calculation.setFlowCharacteristic("2828");
+		calculation.setKmax("2929");
+		calculation.setKmin("3030");
+		calculation.setNominalPressure("3131");
+		calculation.setNoiseLevel("3232");
+		calculation.setCloseOpen("3333");
 		
 		SelectedModel selectedModel = new SelectedModel();
-		selectedModel.setName("34");
-		selectedModel.setModel("35");
-		selectedModel.setDiameterNominal("36");
-		selectedModel.setSeatDiameter("37");
-		selectedModel.setNominalPressure("38");
-		selectedModel.setFlowOpenClose("39");
-		selectedModel.setAirFail("40");
-		selectedModel.setFlowCharacter("41");
-		selectedModel.setBodyMaterial("42");
-		selectedModel.setSeatMaterial("43");
-		selectedModel.setPlugMaterial("44");
-		selectedModel.setPacking("45");
-		selectedModel.setBonnetType("46");
-		selectedModel.setConnectionFlange("47");
-		selectedModel.setLeakageClass("48");
+		selectedModel.setName("3434");
+		selectedModel.setModel("3535");
+		selectedModel.setDiameterNominal("3636");
+		selectedModel.setSeatDiameter("3737");
+		selectedModel.setNominalPressure("3838");
+		selectedModel.setFlowOpenClose("3939");
+		selectedModel.setAirFail("4040");
+		selectedModel.setFlowCharacter("4141");
+		selectedModel.setBodyMaterial("4242");
+		selectedModel.setSeatMaterial("4343");
+		selectedModel.setPlugMaterial("4444");
+		selectedModel.setPacking("4545");
+		selectedModel.setBonnetType("4646");
+		selectedModel.setConnectionFlange("4747");
+		selectedModel.setLeakageClass("4848");
 
 		Actuator actuator = new Actuator();
-		actuator.setModel("49");
-		actuator.setAction("50");
-		actuator.setSpringRange("51");
-		actuator.setAirPressure("52");
-		actuator.setAirConnection("53");
+		actuator.setModel("4949");
+		actuator.setAction("5050");
+		actuator.setSpringRange("5151");
+		actuator.setAirPressure("5252");
+		actuator.setAirConnection("5353");
 
 		Accessory accessory = new Accessory();
 		Positioner positioner = new Positioner();
-		positioner.setModel("54");
-		positioner.setInputSignal("55");
-		positioner.setAirPressure("56");
-		positioner.setSignalConnection("57");
-		positioner.setAirConnectionSize("58");
-		positioner.setExplosionProof("59");
+		positioner.setModel("5454");
+		positioner.setInputSignal("5555");
+		positioner.setAirPressure("5656");
+		positioner.setSignalConnection("5757");
+		positioner.setAirConnectionSize("5858");
+		positioner.setExplosionProof("5959");
 		
 		Solenoid solenoid = new Solenoid();
-		solenoid.setModel("60");
-		solenoid.setSupplyPower("61");
-		solenoid.setPowerConnection("62");
-		solenoid.setAirConnection("63");
-		solenoid.setExplosionProof("64");
+		solenoid.setModel("6060");
+		solenoid.setSupplyPower("6161");
+		solenoid.setPowerConnection("6262");
+		solenoid.setAirConnection("6363");
+		solenoid.setExplosionProof("6464");
 
 		LimitSwitch limitSwitch = new LimitSwitch();
-		limitSwitch.setModel("65");
-		limitSwitch.setJointModel("66");
-		limitSwitch.setConnectionSize("67");
-		limitSwitch.setExplosionProof("68");
+		limitSwitch.setModel("6565");
+		limitSwitch.setJointModel("6666");
+		limitSwitch.setConnectionSize("6767");
+		limitSwitch.setExplosionProof("6868");
 
 		Conveyer conveyer = new Conveyer();
-		conveyer.setModel("69");
-		conveyer.setOutputSignal("70");
-		conveyer.setConnectionSize("71");
-		conveyer.setExplosionProof("72");
+		conveyer.setModel("6969");
+		conveyer.setOutputSignal("7070");
+		conveyer.setConnectionSize("7171");
+		conveyer.setExplosionProof("7272");
 		
 		FilterReducingValve filterReducingValve = new FilterReducingValve();
-		filterReducingValve.setModel("73");
-		filterReducingValve.setConnection("74");		
+		filterReducingValve.setModel("7373");
+		filterReducingValve.setConnection("7474");		
 		
 		accessory.setPositioner(positioner);
 		accessory.setSolenoid(solenoid);
@@ -237,13 +257,18 @@ public class ValveSpecificationService {
 //		mapper.insert(valveSpecification);
 //		mapper.delete("11");
 //		ValveSpecification spec = mapper.find("1");
-//		System.out.print(mapper.count("11"));
+//		System.out.print(mapper.count("1"));
 //		mapper.update(valveSpecification);
 //		session.commit();
 //		session.close();
 		
 		ValveSpecificationService service = new ValveSpecificationService();
-		service.updateValveSpecification(valveSpecification);
+//		service.addValveSpecification(valveSpecification);
+//		service.updateValveSpecification(valveSpecification);
+//		ValveSpecification aaa = service.getValveSpecification("1");
+		
+		
+		System.out.print(service.getValveSpecifications("%ro%",null,null).size());
 		return;
 	}
 	

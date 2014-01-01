@@ -11,12 +11,15 @@
 
 	</package>
 	
-	<package name="lectotypeJson" extends="json-default">
-																					 																															 
+	<package name="lectotypeJson" extends="json-default">																					 																															 
 		<action name="addValveSpecification" class="com.daCheng.lectotype.action.ValveSpecificationAddingAction" method="execute">
 			<result type="json"></result>
 		</action>
 		              
-
+		<action name="queryValveSpecification" class="com.daCheng.lectotype.action.ValveSpecificationQueryAction" method="queryValveSpecification">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
 	</package>
 </struts>

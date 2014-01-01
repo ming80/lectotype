@@ -8,7 +8,7 @@
   <insert id="insert" parameterType="com.daCheng.lectotype.domain.ValveSpecification">
     insert into valve_specification 
     	(id,project_name,tag_No,quantity,service,remarks,pipe_size_and_material,fluid_state,
-    	fluid_name,density,flow_unit,Qmax,Qnor,Qmin,opration_temperature,pressure_unit,
+    	fluid_name,density,flow_unit,Qmax,Qnor,Qmin,operation_temperature,pressure_unit,
     	upstream_pressure,downstream_pressure,differential_pressure,dynamic_viscosity,
     	compress_factor,vapor_pressure,critical_pressure,kv_max,kv_min,selected_kv,
     	adjustable_ratio,flow_characteristic,k_max,k_min,nominal_pressure,noise_level,
@@ -25,7 +25,7 @@
 	values
 		(#{id},#{projectName},#{tagNo},#{quantity},#{service},#{remarks},#{processPara.pipeSizeAndMaterial},
 		#{processPara.fluidState},#{processPara.fluidName},#{processPara.density},#{processPara.flowUnit},
-		#{processPara.Qmax},#{processPara.Qnor},#{processPara.Qmin},#{processPara.OperationTemperature},
+		#{processPara.Qmax},#{processPara.Qnor},#{processPara.Qmin},#{processPara.operationTemperature},
 		#{processPara.pressureUnit},#{processPara.upstreamPressure},#{processPara.downstreamPressure},
 		#{processPara.differentialPressure},#{processPara.dynamicViscosity},#{processPara.compressFactor},
 		#{processPara.vaporPressure},#{processPara.criticalPressure},#{calculation.Kvmax},
@@ -56,7 +56,7 @@
         remarks=#{remarks},pipe_size_and_material=#{processPara.pipeSizeAndMaterial},fluid_state=#{processPara.fluidState},
     	fluid_name=#{processPara.fluidName},density=#{processPara.density},flow_unit=#{processPara.flowUnit},
     	Qmax=#{processPara.Qmax},Qnor=#{processPara.Qnor},Qmin=#{processPara.Qmin},
-    	opration_temperature=#{processPara.OperationTemperature},pressure_unit=#{processPara.pressureUnit},
+    	operation_temperature=#{processPara.operationTemperature},pressure_unit=#{processPara.pressureUnit},
     	upstream_pressure=#{processPara.upstreamPressure},downstream_pressure=#{processPara.downstreamPressure},
     	differential_pressure=#{processPara.differentialPressure},dynamic_viscosity=#{processPara.dynamicViscosity},
     	compress_factor=#{processPara.compressFactor},vapor_pressure=#{processPara.vaporPressure},
@@ -97,11 +97,24 @@
     select count(*) from valve_specification where id=#{id} 
   </select>
 
-  <select id="find" parameterType="string" resultMap="policyResult">
+  <select id="find" parameterType="string" resultMap="valveSpecificationResult">
 	select * FROM valve_specification where id=#{id} 
   </select>
+  
+  <select id="findValveSpecifications" parameterType="map" resultMap="valveSpecificationResult">
+	select * FROM valve_specification where 1=1 
+	<if test="projectName != null">
+		and project_name like #{projectName} 
+	</if>
+	<if test="selectedModelName != null">
+		and selected_model_name like #{selectedModelName} 
+	</if>
+	<if test="model != null">
+		and selected_model_model like #{model} 
+	</if>	               
+  </select>
 
-  <resultMap id="policyResult" type="com.daCheng.lectotype.domain.ValveSpecification">	
+  <resultMap id="valveSpecificationResult" type="com.daCheng.lectotype.domain.ValveSpecification">	
     <id property="id" column="id"></id>
     <result property="projectName" column="project_name"></result>
     <result property="tagNo" column="tag_No"></result>
@@ -117,7 +130,7 @@
    		<result property="Qmax" column="Qmax"></result>
     	<result property="Qnor" column="Qnor"></result>
     	<result property="Qmin" column="Qmin"></result>
-    	<result property="OperationTemperature" column="opration_temperature"></result>
+    	<result property="operationTemperature" column="operation_temperature"></result>
    		<result property="pressureUnit" column="pressure_unit"></result>
    		<result property="upstreamPressure" column="upstream_pressure"></result>
     	<result property="downstreamPressure" column="downstream_pressure"></result>

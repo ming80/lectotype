@@ -310,9 +310,9 @@
       				<div class="easyui-panel" style="width:460px;height:80px;padding:5px;" data-options="title:'手轮机构'">
       					<table border="0" width="430px">
 							<tr height="30px">
-								<td>
-									<select id="valveSpecification.accessory.handWheel" class="easyui-combobox" data-options="editable:'false'" style="width:200px;">
-										<option value="false"> </option>
+								<td>                                                                           
+									<select id="valveSpecification.accessory.handWheel" class="easyui-combobox" data-options="width:200,editable:false">
+										<option value="false">不带</option>
 										<option value="true">带</option>
 									</select>
 								<!-- input type="text" id="valveSpecification.accessory.handWheel" size="15" style="height:20px;border:1px solid #9D9D9D"-->
@@ -339,7 +339,7 @@
 		});
 		
 		function save(){
-			alert($('#valveSpecification\\.accessory\\.handWheel').combobox('getValue'));
+			//alert($('#valveSpecification\\.accessory\\.handWheel').combobox('getValue'));
 			var handWheel = false;
 			if($('#valveSpecification\\.accessory\\.handWheel').combobox('getValue') == 'true')
 				handWheel = true;			
@@ -424,7 +424,7 @@
 					'valveSpecification.accessory.handWheel':handWheel
 				},
 				success:function(data){
-					alert(data);
+					//alert(data);
 				}
 			});
 		}
