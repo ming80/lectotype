@@ -50,7 +50,7 @@
 			//data:{'total':1,'rows':[],'footer':[{'policyNo':'Total','premium':18.00}]}			
 			$('#tt').datagrid({
 				//width: 830,
-				height: 670,
+				height: 580,
 				showFooter:true,
 				pagination: true,	
 				pageSize: 20,

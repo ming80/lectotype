@@ -78,8 +78,8 @@
 		$(function(){
 			$($('#mb1').menubutton('options').menu).menu({
 				onClick: function (item) { 
-                	//item 的相关属性参见API中的menu 
-                	alert(item.text == "添加"); 
+                	if(item.text == "流量计算") 
+                		openTab('caculateFlow.jsp','流量计算');
             	} 
         	});
 			$($('#mb2').menubutton('options').menu).menu({
