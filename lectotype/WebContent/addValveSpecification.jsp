@@ -49,43 +49,73 @@
 								<td>介质名称</td>
 								<td><input type="text" id="valveSpecification.processPara.fluidName" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 								<td>阀前压力</td>
-								<td><input type="text" id="valveSpecification.processPara.upstreamPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.upstreamPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span id="">MPa</span>
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>介质状态</td>
 								<td><input type="text" id="valveSpecification.processPara.fluidState" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 								<td>阀后压力</td>
-								<td><input type="text" id="valveSpecification.processPara.downstreamPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.downstreamPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span id="">MPa</span>
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>密度</td>
-								<td><input type="text" id="valveSpecification.processPara.density" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.density" size="8" style="height:20px;border:1px solid #9D9D9D">
+									<span id="">kg/m3</span>
+								</td>
 								<td>关闭时压差</td>
-								<td><input type="text" id="valveSpecification.processPara.differentialPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.differentialPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span id="">MPa</span>
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>最大流量</td>
-								<td><input type="text" id="valveSpecification.processPara.Qmax" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.Qmax" size="8" style="height:20px;border:1px solid #9D9D9D">
+									<span id="">m3/h</span>
+								</td>
 								<td>运动粘度</td>
 								<td><input type="text" id="valveSpecification.processPara.dynamicViscosity" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
 							<tr height="35px">
 								<td>正常流量</td>
-								<td><input type="text" id="valveSpecification.processPara.Qnor" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.Qnor" size="8" style="height:20px;border:1px solid #9D9D9D">
+									<span id="">m3/h</span>
+								</td>
 								<td>压缩系数</td>
 								<td><input type="text" id="valveSpecification.processPara.compressFactor" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
 							<tr height="35px">
 								<td>最小流量</td>
-								<td><input type="text" id="valveSpecification.processPara.Qmin" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.Qmin" size="8" style="height:20px;border:1px solid #9D9D9D">
+									<span id="">m3/h</span>
+								</td>
 								<td>汽化压力</td>
-								<td><input type="text" id="valveSpecification.processPara.vaporPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.vaporPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span>100KPa</span>
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>操作温度</td>
-								<td><input type="text" id="valveSpecification.processPara.operationTemperature" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.operationTemperature" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span>℃</span>
+								</td>
 								<td>临界压力</td>
-								<td><input type="text" id="valveSpecification.processPara.criticalPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.criticalPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span>100KPa</span>
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -117,7 +147,10 @@
 								<td>阀开度Kmin</td>
 								<td><input type="text" id="valveSpecification.calculation.Kmin" size="13" style="height:20px;border:1px solid #9D9D9D"></td>
 								<td>公称压力</td>
-								<td colspan="3"><input type="text" id="valveSpecification.calculation.nominalPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td colspan="3">
+									<input type="text" id="valveSpecification.calculation.nominalPressure" size="15" style="height:20px;border:1px solid #9D9D9D">
+									<span>MPa</span>
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>噪声估算</td>
@@ -159,7 +192,10 @@
 							</tr>
 							<tr height="35px">
 								<td>公称压力</td>
-								<td><input type="text" id="valveSpecification.selectedModel.nominalPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.selectedModel.nominalPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span>MPa</span>
+								</td>
 								<td>上阀盖型式</td>
 								<td><input type="text" id="valveSpecification.selectedModel.bonnetType" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -196,11 +232,17 @@
 							</tr>
 							<tr height="35px">
 								<td>弹簧范围</td>
-								<td><input type="text" id="valveSpecification.actuator.springRange" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.actuator.springRange" size="15" style="height:20px;border:1px solid #9D9D9D">
+									<span>KPa</span>
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>供气压力</td>
-								<td><input type="text" id="valveSpecification.actuator.airPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.actuator.airPressure" size="15" style="height:20px;border:1px solid #9D9D9D">
+									<span>MPa</span>	
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>气源接头</td>
@@ -221,13 +263,19 @@
 							</tr>
 							<tr height="30px">
 								<td>输入信号</td>
-								<td><input type="text" id="valveSpecification.accessory.positioner.inputSignal" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.accessory.positioner.inputSignal" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span>mA</span>
+								</td>
 								<td>气接口尺寸</td>
 								<td><input type="text" id="valveSpecification.accessory.positioner.airConnectionSize" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
 							<tr height="30px">
 								<td>供气压力</td>
-								<td><input type="text" id="valveSpecification.accessory.positioner.airPressure" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.accessory.positioner.airPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span>MPa</span>
+								</td>
 								<td>防爆等级</td>
 								<td><input type="text" id="valveSpecification.accessory.positioner.explosionProof" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -286,7 +334,10 @@
 							</tr>
 							<tr height="30px">
 								<td>输出信号</td>
-								<td><input type="text" id="valveSpecification.accessory.conveyer.outputSignal" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.accessory.conveyer.outputSignal" size="10" style="height:20px;border:1px solid #9D9D9D">
+									<span>mA</span>
+								</td>
 								<td>防爆等级</td>
 								<td><input type="text" id="valveSpecification.accessory.conveyer.explosionProof" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
