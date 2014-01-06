@@ -1,8 +1,12 @@
 package com.daCheng.lectotype.domain.excel;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -20,24 +24,50 @@ import com.daCheng.lectotype.domain.ValveSpecification;
 import com.daCheng.lectotype.service.ValveSpecificationService;
 
 public class ExcelBuilder {
+	private List<ValveSpecification> valveSpecifications;
 	
+	public ExcelBuilder(List<ValveSpecification> valveSpecifications){
+		this.valveSpecifications = valveSpecifications;
+	}
+	
+	public File execute(){
+		File xlsFile = new File(new Date().getTime() + ".xls");
+		try {			
+			OutputStream out = new FileOutputStream(xlsFile); //xlsFile.xls
+
+			Workbook wb = new HSSFWorkbook();	
+			for(ValveSpecification spe:this.valveSpecifications)
+				buildSheet(wb,spe);		
+						
+			wb.write(out);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+
+		return xlsFile;
+	}
 	
 	private void buildSheet(Workbook wb,ValveSpecification valveSpecification){
 		Sheet sheet = wb.createSheet();
-		sheet.setColumnWidth(0,10 * 256);
-		sheet.setColumnWidth(1,14 * 256);
+		sheet.setColumnWidth(0,11 * 256);
+		sheet.setColumnWidth(1,15 * 256);
 		sheet.setColumnWidth(2,5 * 256);
-		sheet.setColumnWidth(3,(int) (11.5 * 256));
-		sheet.setColumnWidth(4,(int) (8.5 * 256));
-		sheet.setColumnWidth(5,10 * 256);
-		sheet.setColumnWidth(6,(int) (8.5 * 256));
-		sheet.setColumnWidth(7,(int) (8.5 * 256));
-		sheet.setColumnWidth(8,(int) (7.5 * 256));
+		sheet.setColumnWidth(3,(int) (12 * 256));
+		sheet.setColumnWidth(4,(int) (10 * 256));
+		sheet.setColumnWidth(5,11 * 256);
+		sheet.setColumnWidth(6,(int) (9 * 256));
+		sheet.setColumnWidth(7,(int) (9 * 256));
+		sheet.setColumnWidth(8,(int) (8 * 256));
 				
 		Font font1 = wb.createFont();
 		font1.setFontHeightInPoints((short)9);
 		font1.setFontName("宋体");		
-		CellStyle cellStyle1 = wb.createCellStyle(); 
+		CellStyle cellStyle1 = wb.createCellStyle();
+		cellStyle1.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle1.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle1.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle1.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle1.setFont(font1);
 		
 		Font font9 = wb.createFont();
@@ -45,6 +75,10 @@ public class ExcelBuilder {
 		font9.setFontName("宋体");		
 		CellStyle cellStyle9 = wb.createCellStyle(); 
 		cellStyle9.setFont(font9);
+		cellStyle9.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle9.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle9.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle9.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle9.setAlignment(CellStyle.ALIGN_CENTER);
 		
 		Font font2 = wb.createFont();
@@ -53,6 +87,10 @@ public class ExcelBuilder {
 		font2.setBoldweight(Font.BOLDWEIGHT_BOLD);		
 		CellStyle cellStyle2 = wb.createCellStyle(); 
 		cellStyle2.setFont(font2);
+		cellStyle2.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle2.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle2.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle2.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle2.setAlignment(CellStyle.ALIGN_CENTER);
 		
 		Font font3 = wb.createFont();
@@ -61,6 +99,10 @@ public class ExcelBuilder {
 		font3.setBoldweight(Font.BOLDWEIGHT_BOLD);		
 		CellStyle cellStyle3 = wb.createCellStyle(); 
 		cellStyle3.setFont(font3);
+		cellStyle3.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle3.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle3.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle3.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle3.setAlignment(CellStyle.ALIGN_CENTER);
 		
 		Font font4 = wb.createFont();
@@ -69,6 +111,10 @@ public class ExcelBuilder {
 		font4.setBoldweight(Font.BOLDWEIGHT_BOLD);		
 		CellStyle cellStyle4 = wb.createCellStyle(); 
 		cellStyle4.setFont(font4);
+		cellStyle4.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle4.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle4.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle4.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle4.setAlignment(CellStyle.ALIGN_CENTER);
 		
 		Font font5 = wb.createFont();
@@ -76,6 +122,10 @@ public class ExcelBuilder {
 		font5.setFontName("Times New Roman");
 		CellStyle cellStyle5 = wb.createCellStyle(); 
 		cellStyle5.setFont(font5);
+		cellStyle5.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle5.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle5.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle5.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle5.setAlignment(CellStyle.ALIGN_CENTER);
 		
 		Font font6 = wb.createFont();
@@ -84,7 +134,11 @@ public class ExcelBuilder {
 		font6.setBoldweight(Font.BOLDWEIGHT_BOLD);		
 		CellStyle cellStyle6 = wb.createCellStyle(); 
 		cellStyle6.setFont(font6);
-		cellStyle6.setAlignment(CellStyle.ALIGN_CENTER);
+		cellStyle6.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle6.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle6.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle6.setBorderRight(CellStyle.BORDER_THIN);
+		cellStyle6.setAlignment(CellStyle.ALIGN_CENTER);		
 		cellStyle6.setWrapText(true);
 		
 		Font font7 = wb.createFont();
@@ -92,6 +146,10 @@ public class ExcelBuilder {
 		font7.setFontName("Times New Roman");
 		CellStyle cellStyle7 = wb.createCellStyle(); 
 		cellStyle7.setFont(font7);
+		cellStyle7.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle7.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle7.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle7.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle7.setAlignment(CellStyle.ALIGN_CENTER);		
 		
 		Font font8 = wb.createFont();
@@ -99,7 +157,12 @@ public class ExcelBuilder {
 		font8.setFontName("宋体");
 		CellStyle cellStyle8 = wb.createCellStyle(); 
 		cellStyle8.setFont(font8);
+		cellStyle8.setBorderTop(CellStyle.BORDER_THIN);
+		cellStyle8.setBorderBottom(CellStyle.BORDER_THIN);
+		cellStyle8.setBorderLeft(CellStyle.BORDER_THIN);
+		cellStyle8.setBorderRight(CellStyle.BORDER_THIN);
 		cellStyle8.setAlignment(CellStyle.ALIGN_CENTER);
+		cellStyle8.setVerticalAlignment(CellStyle.VERTICAL_CENTER);		
 		
 		Row row = sheet.createRow(0);
 		row.setHeightInPoints((float) 24.75);
@@ -118,15 +181,27 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle8);
 		cell.setCellValue(valveSpecification.getProjectName());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);		
 		
 		row = sheet.createRow(1);
 		row.setHeightInPoints((float) 24.75);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle4);
-		cell.setCellValue("上  海  大  成  仪 表 厂");
+		cell.setCellValue("上 海 大 成 仪 表 厂");
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("Project");
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(2);
 		row.setHeightInPoints(15);
@@ -142,6 +217,11 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue("共1页");
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(3);
 		row.setHeightInPoints(15);
@@ -154,6 +234,12 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue("of 1");
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);		
 		
 		row = sheet.createRow(4);
 		row.setHeightInPoints(15);
@@ -166,6 +252,12 @@ public class ExcelBuilder {
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle2);
 		cell.setCellValue("执行机构   Actuator");
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(5);
 		row.setHeightInPoints(15);
@@ -181,6 +273,11 @@ public class ExcelBuilder {
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getActuator().getModel());
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);		
 		
 		row = sheet.createRow(6);
 		row.setHeightInPoints(15);
@@ -196,19 +293,29 @@ public class ExcelBuilder {
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getActuator().getAction());
-
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(7);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle2);
-		cell.setCellValue("工艺参数  Process  Parameter");
+		cell.setCellValue("工艺参数  Process Parameter");
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("弹簧范围  Spring R. kPa");
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getActuator().getSpringRange());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(8);
 		row.setHeightInPoints(15);
@@ -224,6 +331,11 @@ public class ExcelBuilder {
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getActuator().getAirPressure());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(9);
 		row.setHeightInPoints(15);
@@ -239,6 +351,11 @@ public class ExcelBuilder {
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getActuator().getAirConnection());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);		
 		
 		row = sheet.createRow(10);
 		row.setHeightInPoints(15);
@@ -251,24 +368,36 @@ public class ExcelBuilder {
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle2);
 		cell.setCellValue("附  件    Accessories");
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(11);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("密度 ρ  Density  kg/m3");
+		cell.setCellValue("密度 ρ Density  kg/m3");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getDensity());
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("定位器");
+		cell.getCellStyle().setWrapText(true);
+		cell.getCellStyle().setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		cell.setCellValue("定位器\nPositioner");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("型号Model");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getPositioner().getModel());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 						
 		row = sheet.createRow(12);
 		row.setHeightInPoints(15);
@@ -277,7 +406,7 @@ public class ExcelBuilder {
 		cell.setCellValue("流量");
 		cell = row.createCell(1);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("□气体 Gas Nm3 /h");
+		cell.setCellValue("□气体 Gas Nm3/h");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("Qmax");
@@ -290,6 +419,9 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getPositioner().getInputSignal());
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(13);
 		row.setHeightInPoints(15);
@@ -311,6 +443,9 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getPositioner().getAirPressure());
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(14);
 		row.setHeightInPoints(15);
@@ -332,30 +467,37 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getPositioner().getSignalConnection());
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(15);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("操作温度    Oper. Temperature ℃");
+		cell.setCellValue("操作温度 Oper. Temperature ℃");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getOperationTemperature());
-		cell = row.createCell(4);
-		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("Positioner");
+//		cell = row.createCell(4);
+//		cell.setCellStyle(cellStyle9);
+//		cell.setCellValue("Positioner");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("气接口尺寸 Air Conn.");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getPositioner().getAirConnectionSize());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(16);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("阀前压力P1  Upstream Press. Mpa");
+		cell.setCellValue("阀前压力P1 Upstream Press. Mpa");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getUpstreamPressure());
@@ -365,30 +507,41 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getPositioner().getExplosionProof());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(17);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("阀后压力P2  Downstream Press. Mpa");
+		cell.setCellValue("阀后压力P2 Downstream Press. Mpa");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getDownstreamPressure());
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("电磁阀");
+		cell.getCellStyle().setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		cell.getCellStyle().setWrapText(true);
+		cell.setCellValue("电磁阀\nSolenoid");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("型号 Model");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getSolenoid().getModel());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(18);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("关闭时最大压差ΔP  Diff. Press. Mpa");
+		cell.setCellValue("关闭时最大压差ΔP Diff. Press. Mpa");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getDifferentialPressure());
@@ -398,12 +551,17 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getSolenoid().getSupplyPower());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(19);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("运动粘度γ  Dynamic Viscosity mm2/s");
+		cell.setCellValue("运动粘度γ Dynamic Viscosity mm2/s");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getDynamicViscosity());
@@ -413,30 +571,39 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getSolenoid().getPowerConnection());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(20);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("压缩系数 Z   Compress Factor");
+		cell.setCellValue("压缩系数Z Compress Factor");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getCompressFactor());
-		cell = row.createCell(4);
-		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("Solenoid");
+//		cell = row.createCell(4);
+//		cell.setCellStyle(cellStyle9);
+//		cell.setCellValue("Solenoid");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("气接口尺寸 Air Conn.");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getSolenoid().getAirConnection());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 				
 		row = sheet.createRow(21);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("汽化压力 Pv  Vapor Press.  100kPa");
+		cell.setCellValue("汽化压力Pv Vapor Press. 100kPa");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getVaporPressure());
@@ -446,36 +613,51 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getSolenoid().getExplosionProof());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(22);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("临界压力 Pc  Critical Press.  100kPa");
+		cell.setCellValue("临界压力Pc Critical Press.  100kPa");
 		cell = row.createCell(3);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getProcessPara().getCriticalPressure());
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("阀位开关");
+		cell.setCellValue("阀位开关\nLimit\nSwitch");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("型号 Model");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getLimitSwitch().getModel());
-				
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
+		
 		row = sheet.createRow(23);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle2);
-		cell.setCellValue("计  算     Calculation");
+		cell.setCellValue("计  算    Calculation");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("接点型式  Joint Model");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getLimitSwitch().getJointModel());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(24);
 		row.setHeightInPoints(15);
@@ -488,15 +670,18 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getCalculation().getKvmax());
-		cell = row.createCell(4);
-		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("Limit");
+//		cell = row.createCell(4);
+//		cell.setCellStyle(cellStyle9);
+//		cell.setCellValue("Limit");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("接口尺寸  Conn. Size");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getLimitSwitch().getConnectionSize());
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(25);
 		row.setHeightInPoints(15);
@@ -509,15 +694,18 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getCalculation().getKvmin());
-		cell = row.createCell(4);
-		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("Switch");
+//		cell = row.createCell(4);
+//		cell.setCellStyle(cellStyle9);
+//		cell.setCellValue("Switch");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("防爆等级  Exp. Class");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getLimitSwitch().getExplosionProof());
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);		
 		
 		row = sheet.createRow(26);
 		row.setHeightInPoints(15);
@@ -529,13 +717,17 @@ public class ExcelBuilder {
 		cell.setCellValue(valveSpecification.getCalculation().getSelectedKv());
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("阀位传送器");
+		cell.setCellValue("阀位传送器\nConveyer");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("型号 Model");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getConveyer().getModel());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(27);
 		row.setHeightInPoints(15);
@@ -554,6 +746,10 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getConveyer().getOutputSignal());
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(28);
 		row.setHeightInPoints(15);
@@ -566,16 +762,19 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getCalculation().getKmin());
-		cell = row.createCell(4);
-		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("Conveyer");
+//		cell = row.createCell(4);
+//		cell.setCellStyle(cellStyle9);
+//		cell.setCellValue("Conveyer");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("接口尺寸 Conn. Size");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getConveyer().getConnectionSize());
-				
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);		
+		
 		row = sheet.createRow(29);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
@@ -590,21 +789,31 @@ public class ExcelBuilder {
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getConveyer().getExplosionProof());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(30);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle2);
-		cell.setCellValue("调节阀选型    Selected Model");
+		cell.setCellValue("调节阀选型   Selected Model");
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("过滤减压阀");
+		cell.setCellValue("过滤减压阀\nReg.");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("型号 Model");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getFilterReducingValve().getModel());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(31);
 		row.setHeightInPoints(15);
@@ -614,16 +823,20 @@ public class ExcelBuilder {
 		cell = row.createCell(1);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getName());
-		cell = row.createCell(4);
-		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("Reg.");
+//		cell = row.createCell(4);
+//		cell.setCellStyle(cellStyle9);
+//		cell.setCellValue("Reg.");
 		cell = row.createCell(5);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("接口 Conn.");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getAccessory().getFilterReducingValve().getConnection());
-				
+		row.createCell(2).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
+		
 		row = sheet.createRow(32);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
@@ -637,7 +850,12 @@ public class ExcelBuilder {
 		cell.setCellValue("手轮机构  Hand Wheel");
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue(valveSpecification.getAccessory().isHandWheel());
+		cell.setCellValue(valveSpecification.getAccessory().isHandWheel() ? "带" : "" );
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(33);
 		row.setHeightInPoints(15);
@@ -647,18 +865,31 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getDiameterNominal() + "/" + valveSpecification.getSelectedModel().getSeatDiameter());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(34);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("公称压力PN Nominal Pressure  Mpa");
+		cell.setCellValue("公称压力PN Nominal Pressure Mpa");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getNominalPressure());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(35);
-		
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("流开/流闭  Flow Open/Close");
@@ -668,6 +899,12 @@ public class ExcelBuilder {
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle2);
 		cell.setCellValue("备  注   Remarks");
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(36);
 		row.setHeightInPoints(15);
@@ -680,6 +917,12 @@ public class ExcelBuilder {
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getRemarks());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(37);
 		row.setHeightInPoints(15);
@@ -689,6 +932,13 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getFlowCharacter());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(38);
 		row.setHeightInPoints(15);
@@ -698,6 +948,13 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getBodyMaterial());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(39);
 		row.setHeightInPoints(15);
@@ -707,6 +964,13 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getSeatMaterial());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(40);
 		row.setHeightInPoints(15);
@@ -716,15 +980,29 @@ public class ExcelBuilder {
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getPlugMaterial());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(41);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("填料      Packing");
+		cell.setCellValue("填料     Packing");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getPacking());
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(4).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(6).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(42);
 		row.setHeightInPoints(15);
@@ -740,7 +1018,12 @@ public class ExcelBuilder {
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("日期 Date");
-				
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);	
+		
 		row = sheet.createRow(43);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
@@ -755,12 +1038,17 @@ public class ExcelBuilder {
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle1);
 		cell.setCellValue("日期 Date");
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
 		row = sheet.createRow(44);
 		row.setHeightInPoints(15);
 		cell = row.createCell(0);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("泄漏等级     Leakage Class");
+		cell.setCellValue("泄漏等级    Leakage Class");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getSelectedModel().getLeakageClass());
@@ -769,9 +1057,13 @@ public class ExcelBuilder {
 		cell.setCellValue("审核 Appd.");
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle1);
-		cell.setCellValue("日期 Date");
+		cell.setCellValue("日期 Date");		
+		row.createCell(1).setCellStyle(cellStyle1);
+		row.createCell(3).setCellStyle(cellStyle1);
+		row.createCell(5).setCellStyle(cellStyle1);
+		row.createCell(7).setCellStyle(cellStyle1);
+		row.createCell(8).setCellStyle(cellStyle1);
 		
-
 		
 		sheet.addMergedRegion(new CellRangeAddress(0,0,0,2));
 		sheet.addMergedRegion(new CellRangeAddress(0,1,3,5));
@@ -807,7 +1099,7 @@ public class ExcelBuilder {
 		sheet.addMergedRegion(new CellRangeAddress(10,10,4,8));
 		sheet.addMergedRegion(new CellRangeAddress(11,11,0,1));
 		sheet.addMergedRegion(new CellRangeAddress(11,11,2,3));
-		sheet.addMergedRegion(new CellRangeAddress(11,12,4,4));
+		sheet.addMergedRegion(new CellRangeAddress(11,16,4,4));
 		sheet.addMergedRegion(new CellRangeAddress(11,11,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(11,11,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(12,12,5,6));
@@ -825,7 +1117,7 @@ public class ExcelBuilder {
 		sheet.addMergedRegion(new CellRangeAddress(16,16,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(16,16,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(17,17,0,2));
-		sheet.addMergedRegion(new CellRangeAddress(17,18,4,4));
+		sheet.addMergedRegion(new CellRangeAddress(17,21,4,4));
 		sheet.addMergedRegion(new CellRangeAddress(17,17,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(17,17,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(18,18,0,2));
@@ -842,7 +1134,7 @@ public class ExcelBuilder {
 		sheet.addMergedRegion(new CellRangeAddress(21,21,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(21,21,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(22,22,0,2));
-		sheet.addMergedRegion(new CellRangeAddress(22,23,4,4));
+		sheet.addMergedRegion(new CellRangeAddress(22,25,4,4));
 		sheet.addMergedRegion(new CellRangeAddress(22,22,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(22,22,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(23,23,0,3));
@@ -856,7 +1148,7 @@ public class ExcelBuilder {
 		sheet.addMergedRegion(new CellRangeAddress(25,25,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(26,26,0,1));
 		sheet.addMergedRegion(new CellRangeAddress(26,26,2,3));
-		sheet.addMergedRegion(new CellRangeAddress(26,27,4,4));
+		sheet.addMergedRegion(new CellRangeAddress(26,29,4,4));
 		sheet.addMergedRegion(new CellRangeAddress(26,26,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(26,26,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(27,27,2,3));
@@ -870,6 +1162,7 @@ public class ExcelBuilder {
 		sheet.addMergedRegion(new CellRangeAddress(29,29,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(29,29,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(30,30,0,3));
+		sheet.addMergedRegion(new CellRangeAddress(30,31,4,4));
 		sheet.addMergedRegion(new CellRangeAddress(30,30,5,6));
 		sheet.addMergedRegion(new CellRangeAddress(30,30,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(31,31,1,3));
@@ -912,29 +1205,23 @@ public class ExcelBuilder {
 		sheet.addMergedRegion(new CellRangeAddress(44,44,0,1));
 		sheet.addMergedRegion(new CellRangeAddress(44,44,2,3));
 		sheet.addMergedRegion(new CellRangeAddress(44,44,7,8));
+
 		
 		
 	}
 	
 	public static void main(String[] args){
-//		File xlsFile = new File("f:\\xlsFile");
-		Workbook wb = new HSSFWorkbook();			
-			
-//		wb = WorkbookFactory.create(xlsFile);
+
 		ValveSpecificationService service = new ValveSpecificationService();
-		
-		ExcelBuilder builder = new ExcelBuilder();
-		builder.buildSheet(wb,service.getValveSpecification("1388559233785"));
+		ExcelBuilder builder = new ExcelBuilder(service.getValveSpecifications(null, null, null));
 		try{
-			FileOutputStream fileOut = new FileOutputStream("f:/workbook.xls");
-			wb.write(fileOut);
-			fileOut.close();
+//			OutputStream out = new FileOutputStream("e:/workbook.xls");
+			builder.execute();
+
+//			out.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
-
-
 	}
 	
 }

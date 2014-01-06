@@ -1,7 +1,14 @@
 package com.daCheng.lectotype.action;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.util.Date;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.daCheng.lectotype.data.ValveSpecificationMapper;
 import com.daCheng.lectotype.domain.ValveSpecification;
 import com.daCheng.lectotype.service.ValveSpecificationService;
 import com.opensymphony.xwork2.Action;
@@ -23,7 +30,25 @@ public class ValveSpecificationAddingAction extends ActionSupport{
 		}
 		
 		valveSpecification.setId(id);
-		service.addValveSpecification(valveSpecification);
+		valveSpecification.getProcessPara().setPressureUnit("");
+		
+		Reader reader;
+		try {
+			reader = Resources.getResourceAsReader("com/daCheng/lectotype/data/Configuration.xml");
+			
+			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+			SqlSession session = builder.build(reader).openSession();
+			
+			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
+			mapper.insert(valveSpecification);
+			session.commit();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+//		service.addValveSpecification(valveSpecification);
 		this.isSeccessful = true;
 		return Action.SUCCESS;
 			

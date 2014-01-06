@@ -88,6 +88,29 @@
 				]],	  
 				toolbar:'#tb'				
 			});	
+			
+			var p = $('#tt').datagrid('getPager');
+			$(p).pagination({  
+				buttons: [{
+					iconCls:'icon-save',
+					handler:function(){
+						//alert(($('#tt2').datagrid('getRows').length == 10));
+						if(($('#tt').datagrid('getRows').length == 0)){
+							$('#win2').window({  
+							    modal:true,
+							    collapsible:false,
+							    minimizable:false,
+							    maximizable:false,
+							    draggable:false,
+							    resizable:false
+							});	
+							document.getElementById('win2').innerHTML='没有记录可供保存,请先查询出您要保存的记录!';
+						}
+						else
+							window.open("saveQueryResults.action"); 										
+					}
+				}]
+			});
 		});
 		
 		function query(){

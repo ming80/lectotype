@@ -44,7 +44,7 @@
 								<td><input type="text" id="valveSpecification.processPara.pipeSizeAndMaterial" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 								<td width="60px">压力单位</td>
 								<td><input type="text" id="valveSpecification.processPara.pressureUnit" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
-							</tr>
+							</tr>                                                         
 							<tr height="35px">
 								<td>介质名称</td>
 								<td><input type="text" id="valveSpecification.processPara.fluidName" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
@@ -79,7 +79,7 @@
 								<td>最大流量</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.Qmax" size="8" style="height:20px;border:1px solid #9D9D9D">
-									<span id="">m3/h</span>
+									<span id="QmaxFlowUnit">m3/h</span>
 								</td>
 								<td>运动粘度</td>
 								<td><input type="text" id="valveSpecification.processPara.dynamicViscosity" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
@@ -405,11 +405,12 @@
 					'valveSpecification.tagNo':$('#valveSpecification\\.tagNo').val(),
 					'valveSpecification.service':$('#valveSpecification\\.service').val(),
 					'valveSpecification.remarks':$('#valveSpecification\\.remarks').val(),
-					'valveSpecification.processPara.pipeSizeAndMaterial':$('#valveSpecification\\.processPara\\.pipeSizeAndMaterial').val(),
+					'valveSpecification.processPara.pipeSizeAndMaterial':$('#valveSpecification\\.processPara\\.pipeSizeAndMaterial').val(),					                                                                                     
 					'valveSpecification.processPara.pressureUnit':$('#valveSpecification\\.processPara\\.pressureUnit').val(),
 					'valveSpecification.processPara.fluidName':$('#valveSpecification\\.processPara\\.fluidName').val(),
 					'valveSpecification.processPara.upstreamPressure':$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
 					'valveSpecification.processPara.fluidState':$('#valveSpecification\\.processPara\\.fluidState').val(),
+					'valveSpecification.processPara.flowUnit':$('#QmaxFlowUnit').html(),					
 					'valveSpecification.processPara.downstreamPressure':$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
 					'valveSpecification.processPara.density':$('#valveSpecification\\.processPara\\.density').val(),
 					'valveSpecification.processPara.differentialPressure':$('#valveSpecification\\.processPara\\.differentialPressure').val(),
@@ -475,7 +476,7 @@
 					'valveSpecification.accessory.handWheel':handWheel
 				},
 				success:function(data){
-					//alert(data);
+					alert('保存成功,生成id:' + data.valveSpecification.id);
 				}
 			});
 		}

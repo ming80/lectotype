@@ -7,7 +7,14 @@
 	<constant name="struts.devMode" value="false" />
 		
 	<package name="lectotype" extends="struts-default">		
-
+		<action name="saveQueryResults" class="com.daCheng.lectotype.action.ValveSpecificationSavingAction" method="saveQueryResults">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="book1.xls"</param>
+				<param name="inputName">queryResultsExcelIn</param>
+			</result>
+			<result name="tooBigResults">/tooBigResults.html</result>
+		</action>	
 
 	</package>
 	
