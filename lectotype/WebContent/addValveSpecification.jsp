@@ -41,9 +41,15 @@
 						<table border="0" width="430px">
 							<tr height="35px">
 								<td width="80px">管道尺寸/材质</td>
-								<td><input type="text" id="valveSpecification.processPara.pipeSizeAndMaterial" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td width="70px"><input type="text" id="valveSpecification.processPara.pipeSizeAndMaterial" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 								<td width="60px">压力单位</td>
-								<td><input type="text" id="valveSpecification.processPara.pressureUnit" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<select id="valveSpecification.processPara.pressureUnit" class="easyui-combobox" data-options="width:122,panelHeight:80,editable:false">
+										<option value="Kgf/cm2">Kgf/cm2</option>
+										<option value="MPa">MPa</option>
+										<option value="KPa">KPa</option>
+									</select>
+								</td>
 							</tr>                                                         
 							<tr height="35px">
 								<td>介质名称</td>
@@ -51,28 +57,34 @@
 								<td>阀前压力</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.upstreamPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
-									<span id="">MPa</span>
+									<span id="P1Unit">MPa</span>
 								</td>
 							</tr>
 							<tr height="35px">
 								<td>介质状态</td>
-								<td><input type="text" id="valveSpecification.processPara.fluidState" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<select id="valveSpecification.processPara.fluidState" class="easyui-combobox" data-options="width:122,panelHeight:80,editable:false">
+										<option value="liquid">液体</option>
+										<option value="gas">气体</option>
+										<option value="vaper">水蒸汽</option>
+									</select>									
+								</td>
 								<td>阀后压力</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.downstreamPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
-									<span id="">MPa</span>
+									<span id="P2Unit">MPa</span>
 								</td>
 							</tr>
 							<tr height="35px">
 								<td>密度</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.density" size="8" style="height:20px;border:1px solid #9D9D9D">
-									<span id="">kg/m3</span>
+									<span id="densityUnit">kg/m3</div>
 								</td>
 								<td>关闭时压差</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.differentialPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
-									<span id="">MPa</span>
+									<span id="diffPUnit">MPa</span>
 								</td>
 							</tr>
 							<tr height="35px">
@@ -88,7 +100,7 @@
 								<td>正常流量</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.Qnor" size="8" style="height:20px;border:1px solid #9D9D9D">
-									<span id="">m3/h</span>
+									<span id="QnorFlowUnit">m3/h</span>
 								</td>
 								<td>压缩系数</td>
 								<td><input type="text" id="valveSpecification.processPara.compressFactor" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
@@ -97,7 +109,7 @@
 								<td>最小流量</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.Qmin" size="8" style="height:20px;border:1px solid #9D9D9D">
-									<span id="">m3/h</span>
+									<span id="QminFlowUnit">m3/h</span>
 								</td>
 								<td>汽化压力</td>
 								<td>
@@ -386,7 +398,39 @@
 	
 	<script type="text/javascript">
 		$(function(){			
-			$('#valveSpecification\\.accessory\\.handWheel').combobox
+			$('#valveSpecification\\.processPara\\.pressureUnit').combobox({
+				onSelect:function(record){
+					$('#P1Unit').html(record.text);
+					$('#P2Unit').html(record.text);
+					$('#diffPUnit').html(record.text);
+				}
+			});
+			
+			$('#valveSpecification\\.processPara\\.fluidState').combobox({
+				onSelect:function(record){
+					if(record.text == '液体'){
+						$('#QmaxFlowUnit').html('m3/h');
+						$('#QnorFlowUnit').html('m3/h');
+						$('#QminFlowUnit').html('m3/h');
+					}
+						
+					else if(record.text == '气体'){
+						$('#QmaxFlowUnit').html('m3/h');
+						$('#QnorFlowUnit').html('m3/h');
+						$('#QminFlowUnit').html('m3/h');
+					}
+					else if(record.text == '水蒸汽'){
+						$('#QmaxFlowUnit').html('kg/h');
+						$('#QnorFlowUnit').html('kg/h');
+						$('#QminFlowUnit').html('kg/h');
+					}
+				}
+			});
+			
+			$('#valveSpecification\\.processPara\\.pressureUnit').combobox('select','MPa');
+			//$('#valveSpecification\\.accessory\\.handWheel').combobox
+			
+			
 		});
 		
 		function save(){
@@ -406,10 +450,10 @@
 					'valveSpecification.service':$('#valveSpecification\\.service').val(),
 					'valveSpecification.remarks':$('#valveSpecification\\.remarks').val(),
 					'valveSpecification.processPara.pipeSizeAndMaterial':$('#valveSpecification\\.processPara\\.pipeSizeAndMaterial').val(),					                                                                                     
-					'valveSpecification.processPara.pressureUnit':$('#valveSpecification\\.processPara\\.pressureUnit').val(),
+					'valveSpecification.processPara.pressureUnit':$('#valveSpecification\\.processPara\\.pressureUnit').combobox('getValue'),
 					'valveSpecification.processPara.fluidName':$('#valveSpecification\\.processPara\\.fluidName').val(),
 					'valveSpecification.processPara.upstreamPressure':$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
-					'valveSpecification.processPara.fluidState':$('#valveSpecification\\.processPara\\.fluidState').val(),
+					'valveSpecification.processPara.fluidState':$('#valveSpecification\\.processPara\\.fluidState').combobox('getValue'),
 					'valveSpecification.processPara.flowUnit':$('#QmaxFlowUnit').html(),					
 					'valveSpecification.processPara.downstreamPressure':$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
 					'valveSpecification.processPara.density':$('#valveSpecification\\.processPara\\.density').val(),

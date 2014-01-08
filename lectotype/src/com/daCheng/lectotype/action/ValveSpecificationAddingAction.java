@@ -30,25 +30,24 @@ public class ValveSpecificationAddingAction extends ActionSupport{
 		}
 		
 		valveSpecification.setId(id);
-		valveSpecification.getProcessPara().setPressureUnit("");
-		
-		Reader reader;
-		try {
-			reader = Resources.getResourceAsReader("com/daCheng/lectotype/data/Configuration.xml");
-			
-			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-			SqlSession session = builder.build(reader).openSession();
-			
-			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
-			mapper.insert(valveSpecification);
-			session.commit();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				
+//		Reader reader;
+//		try {
+//			reader = Resources.getResourceAsReader("com/daCheng/lectotype/data/Configuration.xml");
+//			
+//			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+//			SqlSession session = builder.build(reader).openSession();
+//			
+//			ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
+//			mapper.insert(valveSpecification);
+//			session.commit();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		
-//		service.addValveSpecification(valveSpecification);
+		service.addValveSpecification(valveSpecification);
 		this.isSeccessful = true;
 		return Action.SUCCESS;
 			

@@ -148,7 +148,7 @@ public class ValveSpecificationService {
 		ValveSpecificationMapper mapper = session.getMapper(ValveSpecificationMapper.class);
 		
 		ValveSpecification valveSpecification = new ValveSpecification();
-		valveSpecification.setId("" + new Date().getTime());
+		valveSpecification.setId("aaaaaaaaaaaaaaaaaaaaaaaa" + new Date().getTime());
 		valveSpecification.setProjectName("");
 		valveSpecification.setTagNo("");
 		valveSpecification.setQuantity("");
@@ -165,7 +165,7 @@ public class ValveSpecificationService {
 		processPara.setQnor("");
 		processPara.setQmin("");
 		processPara.setOperationTemperature("");
-		processPara.setPressureUnit("");
+		processPara.setPressureUnit("KPa");
 		processPara.setUpstreamPressure("");
 		processPara.setDownstreamPressure("");
 		processPara.setDifferentialPressure("");
