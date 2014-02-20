@@ -13,7 +13,7 @@
 <script type="text/javascript" src="js/easyui/jquery-1.8.0.min.js"></script>  
 <script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script> 
 <script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js"></script>
-
+<script type="text/javascript" src="js/flowCaculation_20140214-1.js" charset="GBK"></script>
 </head>
 
 <body>
@@ -37,11 +37,11 @@
 		<div id="" class="easyui-tabs" style="height:240px;" fit="true" border="true" plain="true">
       		<div title="工艺参数&计算" style="padding:10px;">
       			<div style="float:left">
-      				<div class="easyui-panel" style="width:460px;height:350px;padding:10px;" data-options="title:'工艺参数'">
-						<table border="0" width="430px">
+      				<div class="easyui-panel" style="width:480px;height:350px;padding:10px;" data-options="title:'工艺参数'">
+						<table border="0" width="450px">
 							<tr height="35px">
 								<td width="80px">管道尺寸/材质</td>
-								<td width="70px"><input type="text" id="valveSpecification.processPara.pipeSizeAndMaterial" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td width="138px"><input type="text" id="valveSpecification.processPara.pipeSizeAndMaterial" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 								<td width="60px">压力单位</td>
 								<td>
 									<select id="valveSpecification.processPara.pressureUnit" class="easyui-combobox" data-options="width:122,panelHeight:80,editable:false">
@@ -53,7 +53,10 @@
 							</tr>                                                         
 							<tr height="35px">
 								<td>介质名称</td>
-								<td><input type="text" id="valveSpecification.processPara.fluidName" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification.processPara.fluidName" size="8" style="height:20px;border:1px solid #9D9D9D">
+								 	<input type="button" value="..." onclick="showSelectFluidWin()">
+								</td>
 								<td>阀前压力</td>
 								<td>
 									<input type="text" id="valveSpecification.processPara.upstreamPressure" size="10" style="height:20px;border:1px solid #9D9D9D">
@@ -133,42 +136,67 @@
 					</div>
       			</div>
       			<div style="float:right">
-      				<div class="easyui-panel" style="width:480px;height:350px;padding:10px;" data-options="title:'计算'">
+      				<div class="easyui-panel" style="width:460px;height:350px;padding:10px;" data-options="title:'计算'">
       					<table border="0" width="440px">
 							<tr height="35px">
 								<td>计算Kvmax</td>
-								<td colspan="5"><input type="text" id="valveSpecification.calculation.Kvmax" size="13" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td colspan="5"><input type="text" id="valveSpecification.calculation.Kvmax" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKvmax()"></td>
 							</tr>
 							<tr height="35px">
 								<td>计算Kvmin</td>
-								<td colspan="5"><input type="text" id="valveSpecification.calculation.Kvmin" size="13" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td colspan="5"><input type="text" id="valveSpecification.calculation.Kvmin" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKvmin()"></td>
 							</tr>
 							<tr height="35px">
 								<td>选用Kv</td>
-								<td colspan="5"><input type="text" id="valveSpecification.calculation.selectedKv" size="13" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td colspan="5"><input type="text" id="valveSpecification.calculation.selectedKv" size="11" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
 							<tr height="35px">
 								<td width="70px">阀开度Kmax</td>
-								<td><input type="text" id="valveSpecification.calculation.Kmax" size="13" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td><input type="text" id="valveSpecification.calculation.Kmax" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKmax()"></td>
 								<td width="55px">流量特性</td>
-								<td><input type="text" id="valveSpecification.calculation.flowCharacteristic" size="5" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<select id="valveSpecification.calculation.flowCharacteristic" class="easyui-combobox" data-options="width:75,panelHeight:100,editable:false">
+										<option value="equalPercentage">等百分比</option>
+										<option value="linear">直线</option>							
+										<option value="squareRoot">平方根</option>
+										<option value="modifiedParabolic">抛物线</option>
+									</select>
+								</td>
 								<td width="40px">可调比</td>
-								<td><input type="text" id="valveSpecification.calculation.adjustableRatio" size="3" style="height:20px;border:1px solid #9D9D9D"></td>				
+								<td>
+									<select id="valveSpecification.calculation.adjustableRatio" class="easyui-combobox" data-options="width:50,panelHeight:100,editable:true">
+										<option value="50">50</option>
+										<option value="30">30</option>							
+										<option value="20">20</option>
+										<option value="100">100</option>
+									</select>
+								</td>				
 							</tr>
 							<tr height="35px">
 								<td>阀开度Kmin</td>
-								<td><input type="text" id="valveSpecification.calculation.Kmin" size="13" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td><input type="text" id="valveSpecification.calculation.Kmin" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKmin()"></td>
 								<td>公称压力</td>
 								<td colspan="3">
-									<input type="text" id="valveSpecification.calculation.nominalPressure" size="15" style="height:20px;border:1px solid #9D9D9D">
+									<select id="valveSpecification.calculation.nominalPressure" class="easyui-combobox" data-options="width:75,panelHeight:100,editable:true">
+										<option>&ensp;</option>
+										<option value="1.6">1.6</option>
+										<option value="4.0">4.0</option>							
+										<option value="6.4">6.4</option>
+									</select>
 									<span>MPa</span>
 								</td>
 							</tr>
 							<tr height="35px">
 								<td>噪声估算</td>
-								<td><input type="text" id="valveSpecification.calculation.noiseLevel" size="13" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td><input type="text" id="valveSpecification.calculation.noiseLevel" size="11" style="height:20px;border:1px solid #9D9D9D"></td>
 								<td>气开/气关</td>
-								<td colspan="3"><input type="text" id="valveSpecification.calculation.closeOpen" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td colspan="3">
+									<select id="valveSpecification.calculation.closeOpen" class="easyui-combobox" data-options="width:75,panelHeight:100,editable:false">
+										<option>&ensp;</option>
+										<option>气开</option>										
+										<option>气关</option>							
+									</select>
+								</td>
 							</tr>
 						</table>
       				</div>
@@ -394,7 +422,12 @@
 			<a href="#" class="easyui-linkbutton" >清空选型表</a>
 		</div>
 	</div>	
-	<div id="win2"></div>
+	<div id="selectFluid" style="padding:10px;">
+		<table id="allFluids"></table>
+		<div style="text-align:center;padding:10px">
+			<a href="#" class="easyui-linkbutton" onclick="selectFluid()">确定</a>
+		</div>
+	</div>
 	
 	<script type="text/javascript">
 		$(function(){			
@@ -427,17 +460,30 @@
 				}
 			});
 			
+			$('#valveSpecification\\.calculation\\.flowCharacteristic').combobox({
+				onSelect:function(record){
+					caculateKmax();
+					caculateKmin();
+				}
+			});
+			
+			$('#valveSpecification\\.calculation\\.adjustableRatio').combobox({
+				onSelect:function(record){
+					//alert(record);
+					caculateKmax();
+					caculateKmin();
+				}
+			});
+			
 			$('#valveSpecification\\.processPara\\.pressureUnit').combobox('select','MPa');
-			//$('#valveSpecification\\.accessory\\.handWheel').combobox
-			
-			
+			//$('#valveSpecification\\.accessory\\.handWheel').combobox			
 		});
 		
 		function save(){
 			//alert($('#valveSpecification\\.accessory\\.handWheel').combobox('getValue'));
 			var handWheel = false;
 			if($('#valveSpecification\\.accessory\\.handWheel').combobox('getValue') == 'true')
-				handWheel = true;			
+				handWheel = true;
 			
 			$.ajax({
 				type:'POST',				     
@@ -471,7 +517,7 @@
 					'valveSpecification.calculation.selectedKv':$('#valveSpecification\\.calculation\\.selectedKv').val(),
 					'valveSpecification.calculation.Kmax':$('#valveSpecification\\.calculation\\.Kmax').val(),
 					'valveSpecification.calculation.flowCharacteristic':$('#valveSpecification\\.calculation\\.flowCharacteristic').val(),
-					'valveSpecification.calculation.adjustableRatio':$('#valveSpecification\\.calculation\\.adjustableRatio').val(),
+					'valveSpecification.calculation.adjustableRatio':$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
 					'valveSpecification.calculation.Kmin':$('#valveSpecification\\.calculation\\.Kmin').val(),
 					'valveSpecification.calculation.nominalPressure':$('#valveSpecification\\.calculation\\.nominalPressure').val(),
 					'valveSpecification.calculation.noiseLevel':$('#valveSpecification\\.calculation\\.noiseLevel').val(),
@@ -523,6 +569,190 @@
 					alert('保存成功,生成id:' + data.valveSpecification.id);
 				}
 			});
+		}
+		
+		function showSelectFluidWin(){
+			
+			$('#selectFluid').window({
+				title:'请选择介质',
+			    width:600,
+			    height:400,
+			    modal:true
+			    //content:'<table id="allFluids"></table><a href="#" class="easyui-linkbutton" onclick="save()">确定</a>'
+			});
+			
+			$('#allFluids').datagrid({
+			    url:'queryAllFluid.action',
+			    height:300,
+			    rownumbers:true,
+			    singleSelect:true,
+			    columns:[[
+					{field:'ck',checkbox:true},	
+			        {field:'name',title:'介质名称',width:100},
+			        {field:'state',title:'介质状态',width:100},
+			        {field:'density',title:'密度',width:100},
+			        {field:'sg',title:'比重',width:100}
+			    ]]
+			});
+		}
+		
+		function selectFluid(){
+			var selectedRow = $('#allFluids').datagrid('getSelected');
+			
+			if(selectedRow){
+				$('#valveSpecification\\.processPara\\.fluidName').val(selectedRow.name);
+				
+				if(selectedRow.state == '液体')
+					$('#valveSpecification\\.processPara\\.fluidState').combobox('select','liquid');
+				if(selectedRow.state == '气体')
+					$('#valveSpecification\\.processPara\\.fluidState').combobox('select','gas');
+				
+				$('#valveSpecification\\.processPara\\.density').val(selectedRow.density);
+			}
+			
+			$('#selectFluid').window('close');
+		}
+		         
+		function caculateKvmax(){
+			//alert('1');
+			var fluidState = $('#valveSpecification\\.processPara\\.fluidState').combobox('getValue');
+			var Kv,Cv;
+			if(fluidState == "liquid"){
+				//alert('液体');
+				Kv = calculateLiquidKv($('#valveSpecification\\.processPara\\.Qmax').val(),
+						$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
+						($('#valveSpecification\\.processPara\\.density').val() / 1000),
+						$('#valveSpecification\\.processPara\\.pressureUnit').combobox('getValue'),
+						'maxKv');
+			}
+			else if(fluidState == "gas"){
+				//alert('气体');
+				Cv = calculateGasCv($('#valveSpecification\\.processPara\\.Qmax').val(),
+						$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
+						($('#valveSpecification\\.processPara\\.density').val() / 1.29),
+						$('#valveSpecification\\.processPara\\.operationTemperature').val(),
+						$('#valveSpecification\\.processPara\\.pressureUnit').combobox('getValue'),
+						'maxKv');
+				Kv = Cv / 1.17;
+				//alert(Kv);
+			}				
+			else if(fluidState == "vaper"){
+				//alert('水蒸汽');
+				Cv = calculateVaperCv($('#valveSpecification\\.processPara\\.Qmax').val(),
+						$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.operationTemperature').val(),
+						$('#valveSpecification\\.processPara\\.pressureUnit').combobox('getValue'),
+						'maxKv');
+				Kv = Cv / 1.17;
+			}				
+
+			if($.isNumeric(Kv))
+				$('#valveSpecification\\.calculation\\.Kvmax').val(Math.round(Kv * 10000) / 10000);			
+		}
+		
+		function caculateKvmin(){	
+			//alert('1');
+			var fluidState = $('#valveSpecification\\.processPara\\.fluidState').combobox('getValue');
+			var Kv,Cv;
+			if(fluidState == "liquid"){
+				//alert('液体');
+				Kv = calculateLiquidKv($('#valveSpecification\\.processPara\\.Qmin').val(),
+						$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
+						($('#valveSpecification\\.processPara\\.density').val() / 1000),
+						$('#valveSpecification\\.processPara\\.pressureUnit').combobox('getValue'),
+						'minKv');
+			}
+			else if(fluidState == "gas"){
+				//alert('气体');
+				Cv = calculateGasCv($('#valveSpecification\\.processPara\\.Qmin').val(),
+						$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
+						($('#valveSpecification\\.processPara\\.density').val() / 1.29),
+						$('#valveSpecification\\.processPara\\.operationTemperature').val(),
+						$('#valveSpecification\\.processPara\\.pressureUnit').combobox('getValue'),
+						'minKv');
+				Kv = Cv / 1.17;
+				//alert(Kv);
+			}				
+			else if(fluidState == "vaper"){
+				//alert('水蒸汽');
+				Cv = calculateVaperCv($('#valveSpecification\\.processPara\\.Qmin').val(),
+						$('#valveSpecification\\.processPara\\.upstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.downstreamPressure').val(),
+						$('#valveSpecification\\.processPara\\.operationTemperature').val(),
+						$('#valveSpecification\\.processPara\\.pressureUnit').combobox('getValue'),
+						'minKv');
+				Kv = Cv / 1.17;
+			}				
+
+			if($.isNumeric(Kv))
+				$('#valveSpecification\\.calculation\\.Kvmin').val(Math.round(Kv * 10000) / 10000);	
+		}
+		
+		function caculateKmax(){
+			var flowCharacteristic = $('#valveSpecification\\.calculation\\.flowCharacteristic').combobox('getValue');
+			var K;
+			
+			if(flowCharacteristic == "equalPercentage")
+				K = calculateKByEqualPercentage($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmax').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
+						'maxKv');
+			else if(flowCharacteristic == "linear")
+				K = calculateKByLinear($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmax').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
+						'maxKv');
+			else if(flowCharacteristic == "modifiedParabolic")
+				K = calculateKByModifiedParabolic($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmax').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
+						'maxKv');
+			else if(flowCharacteristic == "squareRoot")
+				K = calculateKBySquareRoot($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmax').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
+						'maxKv');
+			
+			//alert(K);
+			if($.isNumeric(K))		
+				$('#valveSpecification\\.calculation\\.Kmax').val((Math.round(K * 100) / 100) + '%');
+
+		}
+		
+		function caculateKmin(){
+			var flowCharacteristic = $('#valveSpecification\\.calculation\\.flowCharacteristic').combobox('getValue');
+			var K;
+			
+			//alert(flowCharacteristic);
+			if(flowCharacteristic == "equalPercentage")
+				K = calculateKByEqualPercentage($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmin').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
+						'minKv');
+			else if(flowCharacteristic == "linear")
+				K = calculateKByLinear($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmin').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
+						'minKv');
+			else if(flowCharacteristic == "modifiedParabolic")
+				K = calculateKByModifiedParabolic($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmin').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').val(),
+						'minKv');
+			else if(flowCharacteristic == "squareRoot")
+				K = calculateKBySquareRoot($('#valveSpecification\\.calculation\\.selectedKv').val(),
+						$('#valveSpecification\\.calculation\\.Kvmin').val(),
+						$('#valveSpecification\\.calculation\\.adjustableRatio').combobox('getValue'),
+						'minKv');
+			
+			//alert(K);
+			if($.isNumeric(K))		
+				$('#valveSpecification\\.calculation\\.Kmin').val((Math.round(K * 100) / 100) + '%');
 		}
 	</script>
 </body>

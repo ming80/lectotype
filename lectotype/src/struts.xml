@@ -28,5 +28,11 @@
 				<param name="root">results</param>
 			</result>		
 		</action>
+		
+		<action name="queryAllFluid" class="com.daCheng.lectotype.action.FluidQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
 	</package>
 </struts>

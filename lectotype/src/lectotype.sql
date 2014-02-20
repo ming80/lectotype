@@ -79,6 +79,22 @@ CREATE TABLE [valve_specification] (
 ) ON [PRIMARY]
 GO
 
+CREATE TABLE [fluid] (
+	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[name] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[state] [varchar] (20) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[density] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[sg] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	CONSTRAINT [PK_fluid] PRIMARY KEY  CLUSTERED 
+	(
+		[id]
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
+GO
+
+
+
+
 --insert into valve_specification       (id,project_name,tag_No,quantity,service,remarks,pipe_size_and_material,fluid_state,      fluid_name,density,flow_unit,Qmax,Qnor,Qmin,opration_temperature,pressure_unit,      upstream_pressure,downstream_pressure,differential_pressure,dynamic_viscosity,      compress_factor,vapor_pressure,critical_pressure,kv_max,kv_min,selected_kv,      adjustable_ratio,flow_characteristic,k_max,k_min,nominal_pressure,noise_level,      close_open,selected_model_name,selected_model_model,diameter_nominal,seat_diameter,      selected_model_nominal_pressure,flow_open_close,air_fail,flow_character,body_material,      seat_material,plug_material,packing,bonnet_type,connection_flange,leakage_class,      actuator_model,actuator_action,spring_range,actuator_air_pressure,actuator_air_connection,      positioner_model,positioner_input_signal,positioner_air_pressure,positioner_signal_connection,      positioner_air_connection_size,positioner_explosion_proof,solenoid_model,solenoid_supply_power,      solenoid_power_connection,solenoid_air_connection,solenoid_explosion_proof,limit_switch_model,      limit_switch_joint_model,limit_switch_connection_size,limit_switch_explosion_proof,conveyer_model,      conveyer_output_signal,conveyer_connection_size,conveyer_explosion_proof,      filter_reducing_valve_model,filter_reducing_valve_connection,hand_wheel)   
 --values('1','2','3','4','5','6','7','8','9','10','11',   '12','13','14','15',   '16','17','18',   '19','20','21',   '22','23','24',   '25','26','27',   '28','29','30',   '31','32','33',   '34','35','36',   '37','38','39',   '40','41','42',   '43','44','45',   '46','47','48',   '49','50','51','52',   '53','54','55',   '56','57',   '58','59',   '60','61','62',   '63','64',   '65','66',   '67','68',   '69','70','71',   '72','73',   '74','75')
 

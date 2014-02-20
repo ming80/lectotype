@@ -10,7 +10,7 @@
 <script type="text/javascript" src="js/easyui/jquery-1.8.0.min.js"></script>  
 <script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script> 
 <script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="js/flowCaculation.js" charset="GBK"></script>
+<script type="text/javascript" src="js/flowCaculation_20140214-1.js" charset="GBK"></script>
 </head>
 
 <body>
@@ -58,7 +58,7 @@
 					<td><input type="text" id="P2" size="12" style="height:20px;border:1px solid #9D9D9D"></td>
 					<td style="text-align:left"><div id="P2Unit">Kgf/cm2</div></td>
 					<td style="text-align:right"><label id="overtemperatureLabel" for="overtemperature">过热温度</label></td>
-					<td><input type="text" id="overtemperature" size="12" style="height:20px;border:1px solid #9D9D9D"></td>
+					<td><input type="text" id="overtemperature" size="12" style="height:20px;border:1px solid #9D9D9D" onclick="showOvertemperature()"></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -157,11 +157,13 @@
 					else if(record.text == '水蒸汽'){
 						$('#QUnit').html('kg/h');
 						$('#G').attr("disabled","disabled");		
-						$('#T').attr("disabled","disabled");		
+						//$('#T').attr("disabled","disabled");		
+						$('#T').removeAttr("disabled");
 						$('#overtemperature').removeAttr("disabled");
 						
 						$('#GLabel').css({'color':'gray'});
-						$('#TLabel').css({'color':'gray'});
+						//$('#TLabel').css({'color':'gray'});
+						$('#TLabel').css({'color':'black'});
 						$('#overtemperatureLabel').css({'color':'black'});
 					}
 					clearKvCvCalculationInput();
@@ -210,18 +212,22 @@
 			var fluidState = $('#fluidState').combobox('getValue');
 			var Kv,Cv;
 			if(fluidState == "liquid"){
+				//alert('1');
 				Kv = calculateLiquidKv($('#Q').val(),$('#P1').val(),$('#P2').val(),$('#G').val(),$('#pressureUnit').combobox('getValue'));
 				Cv = 1.17 * Kv;
 			}				
 			else if(fluidState == "gas"){
+				
 				Cv = calculateGasCv($('#Q').val(),$('#P1').val(),$('#P2').val(),$('#G').val(),$('#T').val(),$('#pressureUnit').combobox('getValue'));
+				//alert(Cv);
 				Kv = Cv / 1.17;
 			}				
 			else if(fluidState == "vaper"){
 				Cv = calculateVaperCv($('#Q').val(),$('#P1').val(),$('#P2').val(),$('#overtemperature').val(),$('#pressureUnit').combobox('getValue'));
-				Kv = Cv/ 1.17;
+				Kv = Cv / 1.17;
 			}				
 
+			//alert(Kv);
 			if($.isNumeric(Kv)){				
 				$('#Kv').html(Math.round(Kv * 10000) / 10000);
 				$('#Cv').html(Math.round(Cv * 10000) / 10000);
@@ -280,7 +286,13 @@
 			$('#K').html('---');
 		}
 
-			
+		function showOvertemperature(){
+			//alert($('#P1').val());
+			//alert($('#T').val());
+			var overtemperature = calculateOvertemperature($('#P1').val(),$('#T').val(),$('#pressureUnit').combobox('getValue'));
+			if($.isNumeric(overtemperature))
+				$('#overtemperature').val(Math.round(overtemperature * 100) / 100 );
+		}
 	</script>
 </body>
 </html>

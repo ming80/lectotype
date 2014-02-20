@@ -52,6 +52,7 @@
         <div style="padding:5px;border:1px solid #ddd"> 
         	<a href="#" id="mb1" class="easyui-menubutton" data-options="menu:'#mm1'">计算</a>
     		<a href="#" id="mb2" class="easyui-menubutton" data-options="menu:'#mm2'">选型表</a>
+    		<a href="#" id="mb3" class="easyui-menubutton" data-options="menu:'#mm3'">基础资料维护</a>
     	</div>	
     	<div id="mm1" style="width:150px">
     		<div>流量计算</div>
@@ -65,7 +66,11 @@
     			</div>
     		</div>
     	</div>
-
+    	<div id="mm3" style="width:150px">
+    		<div>介质</div>
+    		<div>调节阀</div>
+    	</div>
+    	
     </div>   
     
     <div data-options="region:'center',border:false"  style="padding:0px 0px 0px 5px;">
@@ -88,6 +93,15 @@
                 		openTab('addValveSpecification.jsp','添加选型表');
                 	if(item.text == "查询") 
                 		openTab('queryValveSpecification.jsp','查询选型表');
+            	} 
+        	});
+			
+			$($('#mb3').menubutton('options').menu).menu({
+				onClick: function (item) {                 	
+                	if(item.text == "介质") 
+                		openTab('maintainFluid.jsp','介质');
+                	else
+                		alert("正在开发中...");
             	} 
         	});
 		});
