@@ -26,6 +26,10 @@
     select count(*) from fluid where id=#{id} 
   </select>
 
+  <select id="countByName" resultType="int">
+    select count(*) from fluid where name=#{name} 
+  </select>
+
   <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.Fluid">
 	select * FROM fluid where id=#{id} 
   </select>

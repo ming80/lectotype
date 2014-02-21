@@ -10,6 +10,7 @@ public interface FluidMapper {
 	public Fluid find(String id);
 	public List<Fluid> findFluids(Map<String,Object> conditions);
 	public int count(String id);
+	public int countByName(String name);
 	public void update(Fluid fluid);
 	public void delete(String id);
 }

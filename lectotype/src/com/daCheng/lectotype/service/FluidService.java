@@ -94,6 +94,18 @@ public class FluidService {
 		}
 	}
 	
+	public boolean hasSuchFluidName(String name){
+		SqlSession session = openSession(null,null);
+		try{
+			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			
+			return mapper.countByName(name) > 0;
+		}
+		finally{
+			if(session != null) session.close();
+		}
+	}
+	
 	public Fluid getFluid(String id){
 		SqlSession session = openSession(null,null);
 		try{

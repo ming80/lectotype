@@ -15,7 +15,6 @@
 			</result>
 			<result name="tooBigResults">/tooBigResults.html</result>
 		</action>	
-
 	</package>
 	
 	<package name="lectotypeJson" extends="json-default">																					 																															 
@@ -33,6 +32,14 @@
 			<result type="json">
 				<param name="root">results</param>
 			</result>		
+		</action>
+		
+		<action name="saveFluid" class="com.daCheng.lectotype.action.FluidSavingAction" method="execute">
+			<result type="json">
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
 		</action>
 	</package>
 </struts>
