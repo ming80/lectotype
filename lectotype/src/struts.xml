@@ -34,7 +34,7 @@
 			</result>		
 		</action>
 		
-		<action name="saveFluid" class="com.daCheng.lectotype.action.FluidSavingAction" method="execute">
+		<action name="addFluid" class="com.daCheng.lectotype.action.FluidSavingAction" method="addFluid">
 			<result type="json">
 				<param name="includeProperties">
 					actionErrors.*,actionMessages.*,fieldErrors.*

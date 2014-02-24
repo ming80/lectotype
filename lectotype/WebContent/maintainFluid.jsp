@@ -20,7 +20,10 @@
 			<table style="margin:0 auto;width:300px;height:200px;border:0px solid red">						  
 				<tr>
 					<td><label>介质名称</label></td>
-					<td><input id="name" type="text" style="height:20px;border:1px solid #9D9D9D" /></td>
+					<td>
+						<input id="id" type="hidden" />
+						<input id="name" type="text" style="height:20px;border:1px solid #9D9D9D" />						
+					</td>
 				</tr>
 				<tr>
 					<td><label>介质状态</label></td>
@@ -36,7 +39,8 @@
 				</tr>
 				<tr style="height:50px">
 					<td colspan="2" style="text-align:center">
-						<a href="#" class="easyui-linkbutton" onclick="">保  存</a>&nbsp&nbsp&nbsp   
+						<input id="operationType" type="hidden" /> <!-- [add|update] 新建或者更新  -->
+						<a href="#" class="easyui-linkbutton" onclick="save()">保  存</a>&nbsp&nbsp&nbsp   
 						<a href="#" class="easyui-linkbutton" onclick="$('#editFluid').window('close');">关  闭</a>
 					</td>
 				</tr>
@@ -71,7 +75,8 @@
 			    	iconCls:'icon-add',
 			    	handler:function(){
 			    		$('#editFluid').window('setTitle','添加介质');
-			    		clearWindow();
+			    		clearWindow();	
+			    		$('#operationType').val('add'); //表示是添加操作
 			    		$('#editFluid').window('open');
 			    	}
 			    }]	
@@ -83,19 +88,37 @@
     		clearWindow();
     		var row = $('#fluids').datagrid('getRows')[index];
     		
+    		$('#id').val(row.id);
     		$('#name').val(row.name);
     		$('#state').val(row.state);
     		$('#density').val(row.density);
     		$('#sg').val(row.sg);
     		
+    		$('#operationType').val('update');	//表示是更新操作
     		$('#editFluid').window('open');
 		}
 		
 		function clearWindow(){
+			$('#id').val('');
     		$('#name').val('');
     		$('#state').val('');
     		$('#density').val('');
     		$('#sg').val('');
+		}
+		
+		function save(){
+			//alert($('#editFluid').window('options').title);
+			//alert($('#operationType').val());
+			if($('#operationType').val() == 'add')
+				$.ajax({
+					type:'POST',
+					url:'addFluid',
+					dataType:'json',
+					data:{
+						
+					}
+				});
+			//else if($('#operationType').val() == 'update')
 		}
 	</script>
 

@@ -8,6 +8,7 @@ import com.daCheng.lectotype.domain.Fluid;
 public interface FluidMapper {
 	public void insert(Fluid fluid);
 	public Fluid find(String id);
+	public Fluid findByName(String name);
 	public List<Fluid> findFluids(Map<String,Object> conditions);
 	public int count(String id);
 	public int countByName(String name);

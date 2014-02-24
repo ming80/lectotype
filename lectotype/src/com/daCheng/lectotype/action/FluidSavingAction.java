@@ -1,23 +1,14 @@
 package com.daCheng.lectotype.action;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Date;
 import java.util.UUID;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-import com.daCheng.lectotype.data.ValveSpecificationMapper;
 import com.daCheng.lectotype.domain.Fluid;
-import com.daCheng.lectotype.domain.ValveSpecification;
 import com.daCheng.lectotype.service.FluidService;
-import com.daCheng.lectotype.service.ValveSpecificationService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FluidSavingAction extends ActionSupport{
+	private String id;
 	private String name;
 	private String state;
 	private String density;
@@ -25,23 +16,21 @@ public class FluidSavingAction extends ActionSupport{
 	
 	private boolean isSeccessful;
 	
-	public String execute(){
+	public String addFluid(){
 		FluidService service = new FluidService();
 		
 		Fluid fluid = new Fluid(UUID.randomUUID().toString(),
-				this.name,
+				this.name.trim().replace(" ", ""),
 				this.state,
 				this.density,
 				this.sg);
 		
-		if(service.hasSuchFluidName(this.name.trim().replace(" ", "")))
-			//service.updateFluid(fluid);
 		service.addFluid(fluid);
 		
-		return Action.SUCCESS;			
+		return Action.SUCCESS;
 	}
 	
-	public void validate(){
+	public void validateAddFluid(){
 		//4个不能为空
 		//此介质已存在
 		//状态只能是'气体'或'水蒸汽'
@@ -50,8 +39,8 @@ public class FluidSavingAction extends ActionSupport{
 		FluidService service = new FluidService();		
 		
 		if(isEmptyString(this.name))
-			this.addFieldError("name","用户名不能为空!");
-		else if(service.hasSuchFluidName(this.name.trim().replace(" ", "")))
+			this.addFieldError("name","介质名称不能为空!");
+		else if(service.hasSuchFluid(this.name.trim().replace(" ", "")))
 			this.addFieldError("name", "此介质已存在!");
 			
 		if(isEmptyString(this.state))

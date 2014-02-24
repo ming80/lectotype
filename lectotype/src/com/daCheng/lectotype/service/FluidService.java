@@ -82,24 +82,30 @@ public class FluidService {
 		}	
 	}
 	
-	public boolean hasSuchFluid(String id){
+	public boolean hasSuchFluid(String name){
 		SqlSession session = openSession(null,null);
 		try{
 			FluidMapper mapper = session.getMapper(FluidMapper.class);
 			
-			return mapper.count(id) > 0;
+			return mapper.countByName(name) > 0;
 		}
 		finally{
 			if(session != null) session.close();
 		}
 	}
 	
-	public boolean hasSuchFluidName(String name){
+	public boolean hasSuchFluid(String id,String name){
 		SqlSession session = openSession(null,null);
 		try{
 			FluidMapper mapper = session.getMapper(FluidMapper.class);
 			
-			return mapper.countByName(name) > 0;
+			if(mapper.countByName(name) > 1)
+				throw new IllegalStateException("数据异常,介质名称:" + name);
+			
+			Fluid existingFluid = mapper.findByName(name);			
+			
+			//id不同,则说明已存在其他的同名介质
+			return !id.equals(existingFluid.getId());
 		}
 		finally{
 			if(session != null) session.close();
