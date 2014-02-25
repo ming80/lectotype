@@ -112,10 +112,20 @@
 			if($('#operationType').val() == 'add')
 				$.ajax({
 					type:'POST',
-					url:'addFluid',
+					url:'addFluid.action',
 					dataType:'json',
 					data:{
-						
+						name:$('#name').val(),
+						state:$('#state').val(),
+						density:$('#density').val(),
+						sg:$('#sg').val()
+					},
+					success:function(data){
+						alert('1');
+						alert(JSON.stringify(data));
+					},
+					error:function(jqXHR, textStatus,errorThrown){
+						alert('jqXHR:' + jqXHR + ',textStatus:' + textStatus + ',errorThrown:' + errorThrown);
 					}
 				});
 			//else if($('#operationType').val() == 'update')

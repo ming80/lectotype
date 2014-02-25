@@ -14,9 +14,10 @@ public class FluidSavingAction extends ActionSupport{
 	private String density;
 	private String sg;
 	
-	private boolean isSeccessful;
+//	private boolean successful;
 	
-	public String addFluid(){
+	//addFluid
+	public String execute(){
 		FluidService service = new FluidService();
 		
 		Fluid fluid = new Fluid(UUID.randomUUID().toString(),
@@ -30,7 +31,8 @@ public class FluidSavingAction extends ActionSupport{
 		return Action.SUCCESS;
 	}
 	
-	public void validateAddFluid(){
+	//validateAddFluid
+	public void validate(){
 		//4个不能为空
 		//此介质已存在
 		//状态只能是'气体'或'水蒸汽'
@@ -45,19 +47,20 @@ public class FluidSavingAction extends ActionSupport{
 			
 		if(isEmptyString(this.state))
 			addFieldError("state","介质状态不能为空!");
-		else if(isLegalState())
+		else if(!isLegalState())
 			addFieldError("state","状态只能是'气体'或'水蒸汽'!");
 			
 		if(isEmptyString(this.density))
 			addFieldError("density","密度不能为空!");
-		if(this.density.trim().matches("^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$"))
+		else if(!this.density.trim().matches("^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$"))
 			addFieldError("density","密度必须是大于0的数字!");
 			
 		if(isEmptyString(this.sg))
 			addFieldError("sg","比重不能为空!");
-		if(this.sg.trim().matches("^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$"))
+		else if(!this.sg.trim().matches("^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$"))
 			addFieldError("sg","比重必须是大于0的数字!");
 		
+				
 	}
 
 	public void setName(String name) {
@@ -76,13 +79,13 @@ public class FluidSavingAction extends ActionSupport{
 		this.sg = sg;
 	}
 
-	public boolean isSeccessful() {
-		return isSeccessful;
-	}
-
-	public void setSeccessful(boolean isSeccessful) {
-		this.isSeccessful = isSeccessful;
-	}
+//	public boolean isSeccessful() {
+//		return isSeccessful;
+//	}
+//
+//	public void setSeccessful(boolean isSeccessful) {
+//		this.isSeccessful = isSeccessful;
+//	}
 	
 	private boolean isLegalState(){
 		if(this.state.trim().equals("气体"))

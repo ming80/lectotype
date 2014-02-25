@@ -34,8 +34,11 @@
 			</result>		
 		</action>
 		
-		<action name="addFluid" class="com.daCheng.lectotype.action.FluidSavingAction" method="addFluid">
-			<result type="json">
+		<action name="addFluid" class="com.daCheng.lectotype.action.FluidSavingAction" method="execute">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
 				<param name="includeProperties">
 					actionErrors.*,actionMessages.*,fieldErrors.*
 				</param>
