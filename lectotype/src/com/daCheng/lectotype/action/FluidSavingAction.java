@@ -48,7 +48,7 @@ public class FluidSavingAction extends ActionSupport{
 		if(isEmptyString(this.state))
 			addFieldError("state","介质状态不能为空!");
 		else if(!isLegalState())
-			addFieldError("state","状态只能是'气体'或'水蒸汽'!");
+			addFieldError("state","状态只能是'气体'或'液体'!");
 			
 		if(isEmptyString(this.density))
 			addFieldError("density","密度不能为空!");
@@ -88,9 +88,9 @@ public class FluidSavingAction extends ActionSupport{
 //	}
 	
 	private boolean isLegalState(){
-		if(this.state.trim().equals("气体"))
+		if(this.state.trim().equals("gas"))
 			return true;
-		if(this.state.trim().equals("水蒸汽"))
+		if(this.state.trim().equals("liquid"))
 			return true;
 		return false;	
 	}

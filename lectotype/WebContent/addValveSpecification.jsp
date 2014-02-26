@@ -589,7 +589,17 @@
 			    columns:[[
 					{field:'ck',checkbox:true},	
 			        {field:'name',title:'介质名称',width:100},
-			        {field:'state',title:'介质状态',width:100},
+			        {field:'state',title:'介质状态',width:100,
+			        	formatter:function(value){
+							if(!value)
+								return '';
+							
+							if(value == 'gas')
+								return '气体';
+							else if(value == 'liquid')
+								return '液体';
+		                }	
+			        },
 			        {field:'density',title:'密度',width:100},
 			        {field:'sg',title:'比重',width:100}
 			    ]]
@@ -602,9 +612,9 @@
 			if(selectedRow){
 				$('#valveSpecification\\.processPara\\.fluidName').val(selectedRow.name);
 				
-				if(selectedRow.state == '液体')
+				if(selectedRow.state == 'liquid')
 					$('#valveSpecification\\.processPara\\.fluidState').combobox('select','liquid');
-				if(selectedRow.state == '气体')
+				if(selectedRow.state == 'gas')
 					$('#valveSpecification\\.processPara\\.fluidState').combobox('select','gas');
 				
 				$('#valveSpecification\\.processPara\\.density').val(selectedRow.density);

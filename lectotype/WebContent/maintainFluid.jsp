@@ -17,28 +17,39 @@
 		<table id="fluids"></table>
 		<div id="editFluid" class="easyui-window" style="width:500px;height:300px;padding:20px" 
 				data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true">
-			<table style="margin:0 auto;width:300px;height:200px;border:0px solid red">						  
+			<table style="margin:0 auto;width:400px;height:200px;border:0px solid red">						  
 				<tr>
-					<td><label>介质名称</label></td>
-					<td>
+					<td width="60px"><label>介质名称</label></td>
+					<td width="120px">
 						<input id="id" type="hidden" />
 						<input id="name" type="text" style="height:20px;border:1px solid #9D9D9D" />						
 					</td>
+					<td id="fieldErrorsName">*</td>
 				</tr>
 				<tr>
 					<td><label>介质状态</label></td>
-					<td><input id="state" type="text" style="height:20px;border:1px solid #9D9D9D" /></td>
+					<td>
+						<select id="state" class="easyui-combobox" data-options="width:150,panelHeight:80,editable:false">
+							<option value="default">--请选择--</option>
+							<option value="liquid">液体</option>
+							<option value="gas">气体</option>							
+						</select>
+						<!-- input id="state" type="text" style="height:20px;border:1px solid #9D9D9D" /-->
+					</td>
+					<td id="fieldErrorsState">*</td>
 				</tr>
 				<tr>
 					<td><label>密度</label></td>
 					<td><input id="density" type="text" style="height:20px;border:1px solid #9D9D9D" /></td>
+					<td id="fieldErrorsDensity">*</td>
 				</tr>
 				<tr>
 					<td><label>比重</label></td>
 					<td><input id="sg" type="text" style="height:20px;border:1px solid #9D9D9D" /></td>
+					<td id="fieldErrorsSg">*</td>
 				</tr>
 				<tr style="height:50px">
-					<td colspan="2" style="text-align:center">
+					<td colspan="3" style="text-align:center">
 						<input id="operationType" type="hidden" /> <!-- [add|update] 新建或者更新  -->
 						<a href="#" class="easyui-linkbutton" onclick="save()">保  存</a>&nbsp&nbsp&nbsp   
 						<a href="#" class="easyui-linkbutton" onclick="$('#editFluid').window('close');">关  闭</a>
@@ -60,7 +71,17 @@
 			    columns:[[
 					//{field:'ck',checkbox:true},	
 			        {field:'name',title:'介质名称',width:100},
-			        {field:'state',title:'介质状态',width:100},
+			        {field:'state',title:'介质状态',width:100,
+			        	formatter:function(value){
+							if(!value)
+								return '';
+							
+							if(value == 'gas')
+								return '气体';
+							else if(value == 'liquid')
+								return '液体';
+		                }	
+			        },
 			        {field:'density',title:'密度',width:100},
 			        {field:'sg',title:'比重',width:100},
 			        {field:'opration',title:'操作',width:100,			        	
@@ -90,7 +111,10 @@
     		
     		$('#id').val(row.id);
     		$('#name').val(row.name);
-    		$('#state').val(row.state);
+    		if(row.state == 'gas')
+    			$('#state').combobox('select','gas');
+    		else if(row.state == 'liquid')
+    			$('#state').combobox('select','liquid');    		
     		$('#density').val(row.density);
     		$('#sg').val(row.sg);
     		
@@ -98,12 +122,17 @@
     		$('#editFluid').window('open');
 		}
 		
-		function clearWindow(){
+		function clearWindow(){			
 			$('#id').val('');
     		$('#name').val('');
-    		$('#state').val('');
+    		$('#state').combobox('select','default');
     		$('#density').val('');
     		$('#sg').val('');
+    		
+			$('#fieldErrorsName').html('');
+			$('#fieldErrorsState').html('');
+			$('#fieldErrorsDensity').html('');
+			$('#fieldErrorsSg').html('');
 		}
 		
 		function save(){
@@ -116,13 +145,38 @@
 					dataType:'json',
 					data:{
 						name:$('#name').val(),
-						state:$('#state').val(),
+						state:$('#state').combobox('getValue'),
 						density:$('#density').val(),
 						sg:$('#sg').val()
 					},
 					success:function(data){
-						alert('1');
-						alert(JSON.stringify(data));
+						//alert(data.fieldErrors ? true : false);
+						//alert(JSON.stringify(data));
+						
+						$('#fieldErrorsName').html('');
+						$('#fieldErrorsState').html('');
+						$('#fieldErrorsDensity').html('');
+						$('#fieldErrorsSg').html('');
+						
+						if($.isEmptyObject(data)){
+							alert('保存成功!');
+							$('#fluids').datagrid('reload');
+						}
+						else{
+							var fieldErrorsName = data.fieldErrors.name;
+							var fieldErrorsState = data.fieldErrors.state;
+							var fieldErrorsDensity = data.fieldErrors.density;
+							var fieldErrorsSg = data.fieldErrors.sg;
+							
+							if(fieldErrorsName)
+								$('#fieldErrorsName').html('<font size=-1 color=red>' + fieldErrorsName + '</font>');
+							if(fieldErrorsState)
+								$('#fieldErrorsState').html('<font size=-1 color=red>' + fieldErrorsState + '</font>');
+							if(fieldErrorsDensity)
+								$('#fieldErrorsDensity').html('<font size=-1 color=red>' + fieldErrorsDensity + '</font>');
+							if(fieldErrorsSg)
+								$('#fieldErrorsSg').html('<font size=-1 color=red>' + fieldErrorsSg + '</font>');
+						}
 					},
 					error:function(jqXHR, textStatus,errorThrown){
 						alert('jqXHR:' + jqXHR + ',textStatus:' + textStatus + ',errorThrown:' + errorThrown);
