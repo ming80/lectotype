@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.PositionerMapper">
+  <!-- cache / -->              
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.Positioner">
+    insert into positioner 
+    	(id,model,input_signal,air_pressure,signal_connection,air_connection_size,explosion_proof) 
+	values
+		(#{id},#{model},#{inputSignal},#{airPressure},#{signalConnection},#{airConnectionSize},#{explosionProof})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.Positioner">
+    update positioner set 
+    	model=#{model},input_signal=#{inputSignal},air_pressure=#{airPressure},
+    	signal_connection=#{signalConnection},air_connection_size=#{airConnectionSize},
+    	explosion_proof=#{explosionProof}
+    where id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+  	delete from positioner where id=#{id}
+  </delete>
+  
+  <select id="count" resultType="int">
+    select count(*) from positioner where id=#{id} 
+  </select>
+
+  <select id="countByModel" resultType="int">
+    select count(*) from positioner where model=#{model} 
+  </select>
+
+  <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.Positioner">
+	select 
+		id,
+		model,
+		input_signal as inputSignal,
+		air_pressure as airPressure,
+		signal_connection as signalConnection,
+		air_connection_size as airConnectionSize,
+		explosion_proof as explosionProof
+	FROM positioner where id=#{id} 
+  </select>
+  
+  <select id="findByModel" parameterType="string" resultType="com.daCheng.lectotype.domain.Positioner">
+	select
+		id,
+		model,
+		input_signal as inputSignal,
+		air_pressure as airPressure,
+		signal_connection as signalConnection,
+		air_connection_size as airConnectionSize,
+		explosion_proof as explosionProof
+	FROM positioner where model=#{model} 
+  </select>
+  
+  <select id="findPositioners" parameterType="map" resultType="com.daCheng.lectotype.domain.Positioner">
+	select
+		id,
+		model,
+		input_signal as inputSignal,
+		air_pressure as airPressure,
+		signal_connection as signalConnection,
+		air_connection_size as airConnectionSize,
+		explosion_proof as explosionProof
+	FROM positioner where 1=1
+  </select>
+</mapper>

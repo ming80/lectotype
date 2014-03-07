@@ -13,7 +13,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.TransactionIsolationLevel;
 
+import com.daCheng.lectotype.data.ActuatorMapper;
 import com.daCheng.lectotype.data.FluidMapper;
+import com.daCheng.lectotype.data.PositionerMapper;
 import com.daCheng.lectotype.data.ValveSpecificationMapper;
 import com.daCheng.lectotype.domain.Accessory;
 import com.daCheng.lectotype.domain.Actuator;
@@ -30,7 +32,7 @@ import com.daCheng.lectotype.domain.ValveSpecification;
 import com.daCheng.lectotype.exception.ValveSpecificationServiceException;
 
 
-public class FluidService {
+public class PositionerService {
 	private final static String RESOURCE = "com/daCheng/lectotype/data/Configuration.xml";
 	
 	private SqlSession openSession(ExecutorType type,TransactionIsolationLevel level){
@@ -55,13 +57,13 @@ public class FluidService {
 		return builder.build(reader).openSession();
 	}	
 	
-	public void addFluid(Fluid fluid){
+	public void addPositioner(Positioner positioner){
 		SqlSession session = openSession(null,null);
 		try{
 //			ValveSpecificationMapper mapper2 = session.getMapper(ValveSpecificationMapper.class);
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			PositionerMapper mapper = session.getMapper(PositionerMapper.class);
 			
-			mapper.insert(fluid);
+			mapper.insert(positioner);
 			session.commit();
 		}
 		finally{
@@ -69,10 +71,10 @@ public class FluidService {
 		}		
 	}
 	
-	public void deleteFluid(String id){
+	public void deletePositioner(String id){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			PositionerMapper mapper = session.getMapper(PositionerMapper.class);
 			
 			mapper.delete(id);
 			session.commit();
@@ -82,43 +84,43 @@ public class FluidService {
 		}	
 	}
 	
-	public boolean hasSuchFluid(String name){
+	public boolean hasSuchPositioner(String model){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			PositionerMapper mapper = session.getMapper(PositionerMapper.class);
 			
-			return mapper.countByName(name) > 0;
+			return mapper.countByModel(model) > 0;
 		}
 		finally{
 			if(session != null) session.close();
 		}
 	}
 	
-	public boolean hasSuchFluid(String id,String name){
+	public boolean hasSuchPositioner(String id,String model){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			PositionerMapper mapper = session.getMapper(PositionerMapper.class);
 			
-			if(mapper.countByName(name) > 1)
-				throw new IllegalStateException("数据异常,介质名称:" + name);
+			if(mapper.countByModel(model) > 1)
+				throw new IllegalStateException("数据异常,型号名称:" + model);
 			
-			Fluid existingFluid = mapper.findByName(name);
+			Positioner existingPositioner = mapper.findByModel(model);
 			
-			if(existingFluid == null)
+			if(existingPositioner == null)
 				return false;
 			
 			//id不同,则说明已存在其他的同名介质
-			return !id.equals(existingFluid.getId());
+			return !id.equals(existingPositioner.getId());
 		}
 		finally{
 			if(session != null) session.close();
 		}
 	}
 	
-	public Fluid getFluid(String id){
+	public Positioner getPositioner(String id){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			PositionerMapper mapper = session.getMapper(PositionerMapper.class);
 			
 			return mapper.find(id);
 		}
@@ -127,27 +129,27 @@ public class FluidService {
 		}
 	}
 	
-	public List<Fluid> getFluids(){
+	public List<Positioner> getPositioners(){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			PositionerMapper mapper = session.getMapper(PositionerMapper.class);
 			
 			Map<String,Object> conditions = new HashMap<String, Object>();
 //			conditions.put("name", name);
 			
-			return mapper.findFluids(conditions);
+			return mapper.findPositioners(conditions);
 		}
 		finally{
 			if(session != null) session.close();
 		}
 	}
 	
-	public void updateFluid(Fluid fluid){
+	public void updatePositioner(Positioner positioner){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			PositionerMapper mapper = session.getMapper(PositionerMapper.class);
 			
-			mapper.update(fluid);
+			mapper.update(positioner);
 			session.commit();
 		}
 		finally{
@@ -156,26 +158,34 @@ public class FluidService {
 	}
 	
 	public static void main(String[] args){
-		FluidService service = new FluidService();		
+		//7个方法
+		PositionerService service = new PositionerService();
 		
-//		Fluid fluid = new Fluid("id1","name11","state11","111","211");
-//		Fluid fluid2 = new Fluid("id2","name2","state2","3","4");
-//		Fluid fluid3 = new Fluid("id3","name3","state3","5","6");
-//		service.deleteFluid("id1");
+//		Positioner positioner2 = new Positioner("id9",
+//				"model5",
+//				"inputSignal5",
+//				"airPressure5",
+//				"signalConnection5",
+//				"airConnectionSize5",
+//				"explosionProof5");
 		
-//		Fluid fluid = service.getFluid("id2");
+//		service.addPositioner(positioner);
+//		service.updatePositioner(positioner2);
+//		service.deletePositioner("id9");
 		
-		System.out.println(service.hasSuchFluid("id1"));
+//		System.out.println(service.hasSuchPositioner("id","model2"));
 		
-		for(Fluid fluid:service.getFluids())
-			System.out.println(fluid.getId() + "," +
-					fluid.getName() + "," +
-					fluid.getState() + "," +
-					fluid.getDensity() + "," +
-					fluid.getSg());
+//		Positioner positioner = service.getPositioner("id2");
+//		for(Positioner positioner:service.getPositioners())
+//			System.out.println(
+//					positioner.getId() + "," +
+//					positioner.getModel() + "," +
+//					positioner.getInputSignal() + "," +
+//					positioner.getAirPressure() + "," +
+//					positioner.getSignalConnection() + "," +
+//					positioner.getAirConnectionSize() + "," +
+//					positioner.getExplosionProof());
 		
-		
-		return;
 	}
 	
 }

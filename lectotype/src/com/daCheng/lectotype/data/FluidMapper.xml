@@ -34,6 +34,10 @@
 	select * FROM fluid where id=#{id} 
   </select>
   
+  <select id="findByName" parameterType="string" resultType="com.daCheng.lectotype.domain.Fluid">
+	select * FROM fluid where name=#{name} 
+  </select>
+  
   <select id="findFluids" parameterType="map" resultType="com.daCheng.lectotype.domain.Fluid">
 	select * FROM fluid where 1=1                
   </select>

@@ -27,5 +27,8 @@
 		<!-- 根据xml中的namespace元素进行连接,所以namespace别写错了 -->
 		<mapper resource="com/daCheng/lectotype/data/ValveSpecificationMapper.xml" />
 		<mapper resource="com/daCheng/lectotype/data/FluidMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/SelectedModelMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/ActuatorMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/PositionerMapper.xml" /> 
 	</mappers>
 </configuration>

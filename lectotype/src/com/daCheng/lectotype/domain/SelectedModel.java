@@ -1,6 +1,7 @@
 package com.daCheng.lectotype.domain;
 
 public class SelectedModel {
+	private String id;
 	private String name;	//名称
 	private String model;	//型号
 	private String diameterNominal;	//公称通径
@@ -17,123 +18,109 @@ public class SelectedModel {
 	private String connectionFlange;	//连接法兰
 	private String leakageClass;	//泄露等级
 	
+	private SelectedModel(){}
+	
+	public SelectedModel(String id,
+			String name,
+			String model,
+			String diameterNominal,
+			String seatDiameter,
+			String nominalPressure,
+			String flowOpenClose,
+			String airFail,
+			String flowCharacter,
+			String bodyMaterial,
+			String seatMaterial,
+			String plugMaterial,
+			String packing,
+			String bonnetType,
+			String connectionFlange,
+			String leakageClass){
+		
+		if(id == null || id.trim().equals(""))
+			throw new IllegalArgumentException("id is empty!");
+		if(name == null || name.trim().equals(""))
+			throw new IllegalArgumentException("name is empty!");
+		
+		this.id = id;
+		this.name = name;
+		this.model = model;
+		this.diameterNominal = diameterNominal;
+		this.seatDiameter = seatDiameter;
+		this.nominalPressure = nominalPressure;
+		this.flowOpenClose = flowOpenClose;
+		this.airFail = airFail;
+		this.flowCharacter = flowCharacter;
+		this.bodyMaterial = bodyMaterial;
+		this.seatMaterial = seatMaterial;
+		this.plugMaterial = plugMaterial;
+		this.packing = packing;
+		this.bonnetType = bonnetType;
+		this.connectionFlange = connectionFlange;
+		this.leakageClass = leakageClass;
+	}
+	
 	public String getName() {
 		return name;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+		
 	public String getModel() {
 		return model;
 	}
-	
-	public void setModel(String model) {
-		this.model = model;
-	}
-	
+		
 	public String getDiameterNominal() {
 		return diameterNominal;
 	}
-	
-	public void setDiameterNominal(String diameterNominal) {
-		this.diameterNominal = diameterNominal;
-	}
-	
+		
 	public String getSeatDiameter() {
 		return seatDiameter;
-	}
-	
-	public void setSeatDiameter(String seatDiameter) {
-		this.seatDiameter = seatDiameter;
 	}
 	
 	public String getNominalPressure() {
 		return nominalPressure;
 	}
 	
-	public void setNominalPressure(String nominalPressure) {
-		this.nominalPressure = nominalPressure;
-	}
-	
 	public String getFlowOpenClose() {
 		return flowOpenClose;
-	}
-	
-	public void setFlowOpenClose(String flowOpenClose) {
-		this.flowOpenClose = flowOpenClose;
 	}
 	
 	public String getAirFail() {
 		return airFail;
 	}
 	
-	public void setAirFail(String airFail) {
-		this.airFail = airFail;
-	}
-	
 	public String getFlowCharacter() {
 		return flowCharacter;
-	}
-	
-	public void setFlowCharacter(String flowCharacter) {
-		this.flowCharacter = flowCharacter;
 	}
 	
 	public String getBodyMaterial() {
 		return bodyMaterial;
 	}
 	
-	public void setBodyMaterial(String bodyMaterial) {
-		this.bodyMaterial = bodyMaterial;
-	}
-	
 	public String getSeatMaterial() {
 		return seatMaterial;
-	}
-	
-	public void setSeatMaterial(String seatMaterial) {
-		this.seatMaterial = seatMaterial;
 	}
 	
 	public String getPlugMaterial() {
 		return plugMaterial;
 	}
 	
-	public void setPlugMaterial(String plugMaterial) {
-		this.plugMaterial = plugMaterial;
-	}
-	
 	public String getPacking() {
 		return packing;
-	}
-	
-	public void setPacking(String packing) {
-		this.packing = packing;
 	}
 	
 	public String getBonnetType() {
 		return bonnetType;
 	}
 	
-	public void setBonnetType(String bonnetType) {
-		this.bonnetType = bonnetType;
-	}
-	
 	public String getConnectionFlange() {
 		return connectionFlange;
-	}
-	
-	public void setConnectionFlange(String connectionFlange) {
-		this.connectionFlange = connectionFlange;
 	}
 	
 	public String getLeakageClass() {
 		return leakageClass;
 	}
-	
-	public void setLeakageClass(String leakageClass) {
-		this.leakageClass = leakageClass;
-	}	
+
+	public String getId() {
+		return id;
+	}
 }

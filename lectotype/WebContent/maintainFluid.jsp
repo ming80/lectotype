@@ -69,7 +69,13 @@
 			    rownumbers:true,
 			    singleSelect:true,
 			    columns:[[
-					//{field:'ck',checkbox:true},	
+					//{field:'ck',checkbox:true},
+					{field:'opration',title:'操作',width:100,			        	
+			        	formatter:function(value,row,index){
+			        		//alert("[<a href=# onclick='showEditFluidWindow(row)'>修改</a>] [删除]");
+			        		return "[<a href=# onclick='showEditFluidWindow(" + index + ")'>修改</a>] [<a href=# onclick='deleteFluid(" + index + ")'>删除</a>]";
+			        	}
+			        },
 			        {field:'name',title:'介质名称',width:100},
 			        {field:'state',title:'介质状态',width:100,
 			        	formatter:function(value){
@@ -83,13 +89,7 @@
 		                }	
 			        },
 			        {field:'density',title:'密度',width:100},
-			        {field:'sg',title:'比重',width:100},
-			        {field:'opration',title:'操作',width:100,			        	
-			        	formatter:function(value,row,index){
-			        		//alert("[<a href=# onclick='showEditFluidWindow(row)'>修改</a>] [删除]");
-			        		return "[<a href=# onclick='showEditFluidWindow(" + index + ")'>修改</a>] [删除]";
-			        	}
-			        }
+			        {field:'sg',title:'比重',width:100}
 			    ]],
 			    toolbar:[{
 			    	text:'添加',
@@ -159,8 +159,8 @@
 						$('#fieldErrorsSg').html('');
 						
 						if($.isEmptyObject(data)){
-							alert('保存成功!');
 							$('#fluids').datagrid('reload');
+							$('#fieldErrorsSg').html('<font size=-1 color=green>保存成功!</font>');							
 						}
 						else{
 							var fieldErrorsName = data.fieldErrors.name;
@@ -182,7 +182,68 @@
 						alert('jqXHR:' + jqXHR + ',textStatus:' + textStatus + ',errorThrown:' + errorThrown);
 					}
 				});
-			//else if($('#operationType').val() == 'update')
+			else if($('#operationType').val() == 'update'){
+				$.ajax({
+					type:'POST',
+					url:'updateFluid.action',
+					dataType:'json',
+					data:{
+						id:$('#id').val(),
+						name:$('#name').val(),
+						state:$('#state').combobox('getValue'),
+						density:$('#density').val(),
+						sg:$('#sg').val()
+					},
+					success:function(data){
+						//alert(data.fieldErrors ? true : false);
+						//alert(JSON.stringify(data));
+						
+						$('#fieldErrorsName').html('');
+						$('#fieldErrorsState').html('');
+						$('#fieldErrorsDensity').html('');
+						$('#fieldErrorsSg').html('');
+						
+						if($.isEmptyObject(data)){
+							$('#fluids').datagrid('reload');
+							$('#fieldErrorsSg').html('<font size=-1 color=green>修改成功!</font>');								
+						}
+						else{
+							var fieldErrorsName = data.fieldErrors.name;
+							var fieldErrorsState = data.fieldErrors.state;
+							var fieldErrorsDensity = data.fieldErrors.density;
+							var fieldErrorsSg = data.fieldErrors.sg;
+							
+							if(fieldErrorsName)
+								$('#fieldErrorsName').html('<font size=-1 color=red>' + fieldErrorsName + '</font>');
+							if(fieldErrorsState)
+								$('#fieldErrorsState').html('<font size=-1 color=red>' + fieldErrorsState + '</font>');
+							if(fieldErrorsDensity)
+								$('#fieldErrorsDensity').html('<font size=-1 color=red>' + fieldErrorsDensity + '</font>');
+							if(fieldErrorsSg)
+								$('#fieldErrorsSg').html('<font size=-1 color=red>' + fieldErrorsSg + '</font>');
+						}
+					},
+					error:function(jqXHR, textStatus,errorThrown){
+						alert('jqXHR:' + jqXHR + ',textStatus:' + textStatus + ',errorThrown:' + errorThrown);
+					}
+				});
+			}
+		}
+		
+		function deleteFluid(index){
+			var row = $('#fluids').datagrid('getRows')[index];
+			if(confirm("您确定要删除名称为'" + row.name + "'的介质么?"))
+				$.ajax({
+					type:'POST',
+					url:'deleteFluid.action',
+					dataType:'json',
+					data:{
+						id:row.id
+					},
+					success:function(data){
+						$('#fluids').datagrid('reload');
+					}
+				});
 		}
 	</script>
 

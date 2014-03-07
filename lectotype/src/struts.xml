@@ -34,7 +34,12 @@
 			</result>		
 		</action>
 		
-		<action name="addFluid" class="com.daCheng.lectotype.action.FluidSavingAction" method="execute">
+		<action name="deleteFluid" class="com.daCheng.lectotype.action.FluidMaintenanceAction" method="deleteFluid">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addFluid" class="com.daCheng.lectotype.action.FluidMaintenanceAction" method="addFluid">
 			<result name="success" type="json">			
 			</result>
 			<result name="input" type="json">
@@ -44,5 +49,84 @@
 				</param>
 			</result>
 		</action>
+		
+		<action name="updateFluid" class="com.daCheng.lectotype.action.FluidMaintenanceAction" method="updateFluid">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="queryAllSelectedModel" class="com.daCheng.lectotype.action.SelectedModelQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
+		
+		<action name="deleteSelectedModel" class="com.daCheng.lectotype.action.SelectedModelMaintenanceAction" method="deleteSelectedModel">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addSelectedModel" class="com.daCheng.lectotype.action.SelectedModelMaintenanceAction" method="addSelectedModel">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updateSelectedModel" class="com.daCheng.lectotype.action.SelectedModelMaintenanceAction" method="updateSelectedModel">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="queryAllActuator" class="com.daCheng.lectotype.action.ActuatorQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
+		
+		<action name="deleteActuator" class="com.daCheng.lectotype.action.ActuatorMaintenanceAction" method="deleteActuator">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addActuator" class="com.daCheng.lectotype.action.ActuatorMaintenanceAction" method="addActuator">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updateActuator" class="com.daCheng.lectotype.action.ActuatorMaintenanceAction" method="updateActuator">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		
 	</package>
 </struts>

@@ -7,24 +7,25 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import net.sf.json.JSONObject;
-import com.daCheng.lectotype.domain.Fluid;
-import com.daCheng.lectotype.service.FluidService;
+
+import com.daCheng.lectotype.domain.Actuator;
+import com.daCheng.lectotype.service.ActuatorService;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class FluidQueryAction  extends ActionSupport{
+public class ActuatorQueryAction  extends ActionSupport{
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(FluidQueryAction.class);
+	private static Logger logger = Logger.getLogger(ActuatorQueryAction.class);
 	
 	private JSONObject results;
     
 	public String queryAll(){
-		FluidService service = new FluidService();
-		List<Fluid> fluids = service.getFluids();
+		ActuatorService service = new ActuatorService();
+		List<Actuator> actuators = service.getActuators();
 		
 		Map<String,Object> jsonMap = new HashMap<String,Object>();		
 		
-		jsonMap.put("rows", fluids);	//rows为datagrid的属性,表示要显示的记录		
-		jsonMap.put("total", fluids.size());	//total为datagrid的属性,表示共有多少记录	
+		jsonMap.put("rows", actuators);	//rows为datagrid的属性,表示要显示的记录		
+		jsonMap.put("total", actuators.size());	//total为datagrid的属性,表示共有多少记录	
 		this.setResults(JSONObject.fromObject(jsonMap));
 
 		return SUCCESS;

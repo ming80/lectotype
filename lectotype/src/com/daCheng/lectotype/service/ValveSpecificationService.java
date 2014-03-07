@@ -186,38 +186,38 @@ public class ValveSpecificationService {
 		calculation.setNoiseLevel("");
 		calculation.setCloseOpen("");
 		
-		SelectedModel selectedModel = new SelectedModel();
-		selectedModel.setName("");
-		selectedModel.setModel("");
-		selectedModel.setDiameterNominal("");
-		selectedModel.setSeatDiameter("");
-		selectedModel.setNominalPressure("");
-		selectedModel.setFlowOpenClose("");
-		selectedModel.setAirFail("");
-		selectedModel.setFlowCharacter("");
-		selectedModel.setBodyMaterial("");
-		selectedModel.setSeatMaterial("");
-		selectedModel.setPlugMaterial("");
-		selectedModel.setPacking("");
-		selectedModel.setBonnetType("");
-		selectedModel.setConnectionFlange("");
-		selectedModel.setLeakageClass("");
+//		SelectedModel selectedModel = new SelectedModel();
+//		selectedModel.setName("");
+//		selectedModel.setModel("");
+//		selectedModel.setDiameterNominal("");
+//		selectedModel.setSeatDiameter("");
+//		selectedModel.setNominalPressure("");
+//		selectedModel.setFlowOpenClose("");
+//		selectedModel.setAirFail("");
+//		selectedModel.setFlowCharacter("");
+//		selectedModel.setBodyMaterial("");
+//		selectedModel.setSeatMaterial("");
+//		selectedModel.setPlugMaterial("");
+//		selectedModel.setPacking("");
+//		selectedModel.setBonnetType("");
+//		selectedModel.setConnectionFlange("");
+//		selectedModel.setLeakageClass("");
 
-		Actuator actuator = new Actuator();
-		actuator.setModel("");
-		actuator.setAction("");
-		actuator.setSpringRange("");
-		actuator.setAirPressure("");
-		actuator.setAirConnection("");
+//		Actuator actuator = new Actuator();
+//		actuator.setModel("");
+//		actuator.setAction("");
+//		actuator.setSpringRange("");
+//		actuator.setAirPressure("");
+//		actuator.setAirConnection("");
 
-		Accessory accessory = new Accessory();
-		Positioner positioner = new Positioner();
-		positioner.setModel("");
-		positioner.setInputSignal("");
-		positioner.setAirPressure("");
-		positioner.setSignalConnection("");
-		positioner.setAirConnectionSize("");
-		positioner.setExplosionProof("");
+//		Accessory accessory = new Accessory();
+//		Positioner positioner = new Positioner();
+//		positioner.setModel("");
+//		positioner.setInputSignal("");
+//		positioner.setAirPressure("");
+//		positioner.setSignalConnection("");
+//		positioner.setAirConnectionSize("");
+//		positioner.setExplosionProof("");
 		
 		Solenoid solenoid = new Solenoid();
 		solenoid.setModel("");
@@ -242,18 +242,18 @@ public class ValveSpecificationService {
 		filterReducingValve.setModel("");
 		filterReducingValve.setConnection("");		
 		
-		accessory.setPositioner(positioner);
-		accessory.setSolenoid(solenoid);
-		accessory.setLimitSwitch(limitSwitch);
-		accessory.setConveyer(conveyer);
-		accessory.setFilterReducingValve(filterReducingValve);
-		accessory.setHandWheel(true);		
+//		accessory.setPositioner(positioner);
+//		accessory.setSolenoid(solenoid);
+//		accessory.setLimitSwitch(limitSwitch);
+//		accessory.setConveyer(conveyer);
+//		accessory.setFilterReducingValve(filterReducingValve);
+//		accessory.setHandWheel(true);		
 		
 		valveSpecification.setProcessPara(processPara);
 		valveSpecification.setCalculation(calculation);
-		valveSpecification.setSelectedModel(selectedModel);
-		valveSpecification.setActuator(actuator);
-		valveSpecification.setAccessory(accessory);
+//		valveSpecification.setSelectedModel(selectedModel);
+//		valveSpecification.setActuator(actuator);
+//		valveSpecification.setAccessory(accessory);
 		
 		mapper.insert(valveSpecification);
 //		mapper.delete("11");

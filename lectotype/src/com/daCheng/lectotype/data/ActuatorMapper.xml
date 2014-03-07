@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.ActuatorMapper">
+  <!-- cache / -->              
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.Actuator">
+    insert into actuator 
+    	(id,model,_action,spring_range,air_pressure,air_connection) 
+	values
+		(#{id},#{model},#{action},#{springRange},#{airPressure},#{airConnection})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.Actuator">
+    update actuator set 
+        model=#{model},_action=#{action},spring_range=#{springRange},
+        air_pressure=#{airPressure},air_connection=#{airConnection}
+    where id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+  	delete from actuator where id=#{id}
+  </delete>
+  
+  <select id="count" resultType="int">
+    select count(*) from actuator where id=#{id} 
+  </select>
+
+  <select id="countByModel" resultType="int">
+    select count(*) from actuator where model=#{model} 
+  </select>
+
+  <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.Actuator">
+	select 
+		id,
+		model,
+		_action as action,
+		spring_range as springRange,
+		air_pressure as airPressure,
+		air_connection as airConnection
+	FROM actuator where id=#{id} 
+  </select>
+  
+  <select id="findByModel" parameterType="string" resultType="com.daCheng.lectotype.domain.Actuator">
+	select
+		id,
+		model,
+		_action as action,
+		spring_range as springRange,
+		air_pressure as airPressure,
+		air_connection as airConnection
+	FROM actuator where model=#{model} 
+  </select>
+  
+  <select id="findActuators" parameterType="map" resultType="com.daCheng.lectotype.domain.Actuator">
+	select
+		id,
+		model,
+		_action as action,
+		spring_range as springRange,
+		air_pressure as airPressure,
+		air_connection as airConnection
+	FROM actuator where 1=1
+  </select>
+</mapper>

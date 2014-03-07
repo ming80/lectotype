@@ -69,6 +69,17 @@
     	<div id="mm3" style="width:150px">
     		<div>介质</div>
     		<div>调节阀</div>
+    		<div>执行机构</div>
+    		<div>
+    			<span>附件</span>
+    			<div style="width:150px">
+	    			<div>定位器</div>
+	    			<div>电磁阀</div>
+	    			<div>阀位开关</div>
+	    			<div>阀位传送器</div>
+	    			<div>过滤减压阀</div>
+    			</div>
+    		</div>
     	</div>
     	
     </div>   
@@ -100,8 +111,22 @@
 				onClick: function (item) {                 	
                 	if(item.text == "介质") 
                 		openTab('maintainFluid.jsp','介质');
-                	else
-                		alert("正在开发中...");
+                	else if(item.text == "调节阀") 
+                		openTab('maintainSelectedModel.jsp','调节阀');
+                	else if(item.text == "执行机构") 
+                		openTab('maintainActuator.jsp','执行机构');                	
+                	else if(item.text == "定位器") 
+                		openTab('.jsp','定位器');
+                	else if(item.text == "电磁阀") 
+                		openTab('.jsp','电磁阀');
+                	else if(item.text == "阀位开关") 
+                		openTab('.jsp','阀位开关');
+                	else if(item.text == "阀位传送器") 
+                		openTab('.jsp','阀位传送器');
+                	else if(item.text == "过滤减压阀") 
+                		openTab('.jsp','过滤减压阀');                	
+                	//else
+                	//	alert("正在开发中...");
             	} 
         	});
 		});

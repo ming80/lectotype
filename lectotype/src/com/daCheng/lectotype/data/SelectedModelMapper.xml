@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.SelectedModelMapper">
+  <!-- cache / -->              
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.SelectedModel">
+    insert into selected_model
+    	(id,name,model,diameter_nominal,seat_diameter,nominal_pressure,flow_open_close,
+    	air_fail,flow_character,body_material,seat_material,plug_material,packing,
+    	bonnet_type,connection_flange,leakage_class) 
+	values
+		(#{id},#{name},#{model},#{diameterNominal},#{seatDiameter},#{nominalPressure},
+		#{flowOpenClose},#{airFail},#{flowCharacter},#{bodyMaterial},#{seatMaterial},
+		#{plugMaterial},#{packing},#{bonnetType},#{connectionFlange},#{leakageClass})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.SelectedModel">
+    update selected_model set 
+        name=#{name},model=#{model},diameter_nominal=#{diameterNominal},
+        seat_diameter=#{seatDiameter},nominal_pressure=#{nominalPressure},
+        flow_open_close=#{flowOpenClose},air_fail=#{airFail},flow_character=#{flowCharacter},
+        body_material=#{bodyMaterial},seat_material=#{seatMaterial},
+        plug_material=#{plugMaterial},packing=#{packing},bonnet_type=#{bonnetType},
+        connection_flange=#{connectionFlange},leakage_class=#{leakageClass}
+    where id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+  	delete from selected_model where id=#{id}
+  </delete>
+  
+  <select id="count" resultType="int">
+    select count(*) from selected_model where id=#{id} 
+  </select>
+
+  <select id="countByName" resultType="int">
+    select count(*) from selected_model where name=#{name} 
+  </select>
+
+  <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.SelectedModel">
+	select
+		id, 
+		name,
+		model,
+		diameter_nominal as diameterNominal,
+        seat_diameter as seatDiameter,
+        nominal_pressure as nominalPressure,
+        flow_open_close as flowOpenClose,
+        air_fail as airFail,
+        flow_character as flowCharacter,
+        body_material as bodyMaterial,
+        seat_material as seatMaterial,
+        plug_material as plugMaterial,
+        packing as packing,
+        bonnet_type as bonnetType,
+        connection_flange as connectionFlange,
+        leakage_class as leakageClass
+    FROM selected_model where id=#{id} 
+  </select>
+  
+  <select id="findByName" parameterType="string" resultType="com.daCheng.lectotype.domain.SelectedModel">
+	select * FROM selected_model where name=#{name} 
+  </select>
+  
+  <select id="findSelectedModels" parameterType="map" resultType="com.daCheng.lectotype.domain.SelectedModel">
+	select 
+		id, 
+		name,
+		model,
+		diameter_nominal as diameterNominal,
+        seat_diameter as seatDiameter,
+        nominal_pressure as nominalPressure,
+        flow_open_close as flowOpenClose,
+        air_fail as airFail,
+        flow_character as flowCharacter,
+        body_material as bodyMaterial,
+        seat_material as seatMaterial,
+        plug_material as plugMaterial,
+        packing as packing,
+        bonnet_type as bonnetType,
+        connection_flange as connectionFlange,
+        leakage_class as leakageClass
+	FROM selected_model where 1=1                
+  </select>
+</mapper>

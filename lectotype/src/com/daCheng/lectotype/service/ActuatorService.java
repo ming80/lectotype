@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.TransactionIsolationLevel;
 
+import com.daCheng.lectotype.data.ActuatorMapper;
 import com.daCheng.lectotype.data.FluidMapper;
 import com.daCheng.lectotype.data.ValveSpecificationMapper;
 import com.daCheng.lectotype.domain.Accessory;
@@ -30,7 +31,7 @@ import com.daCheng.lectotype.domain.ValveSpecification;
 import com.daCheng.lectotype.exception.ValveSpecificationServiceException;
 
 
-public class FluidService {
+public class ActuatorService {
 	private final static String RESOURCE = "com/daCheng/lectotype/data/Configuration.xml";
 	
 	private SqlSession openSession(ExecutorType type,TransactionIsolationLevel level){
@@ -55,13 +56,13 @@ public class FluidService {
 		return builder.build(reader).openSession();
 	}	
 	
-	public void addFluid(Fluid fluid){
+	public void addActuator(Actuator actuator){
 		SqlSession session = openSession(null,null);
 		try{
 //			ValveSpecificationMapper mapper2 = session.getMapper(ValveSpecificationMapper.class);
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			ActuatorMapper mapper = session.getMapper(ActuatorMapper.class);
 			
-			mapper.insert(fluid);
+			mapper.insert(actuator);
 			session.commit();
 		}
 		finally{
@@ -69,10 +70,10 @@ public class FluidService {
 		}		
 	}
 	
-	public void deleteFluid(String id){
+	public void deleteActuator(String id){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			ActuatorMapper mapper = session.getMapper(ActuatorMapper.class);
 			
 			mapper.delete(id);
 			session.commit();
@@ -82,43 +83,43 @@ public class FluidService {
 		}	
 	}
 	
-	public boolean hasSuchFluid(String name){
+	public boolean hasSuchActuator(String model){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			ActuatorMapper mapper = session.getMapper(ActuatorMapper.class);
 			
-			return mapper.countByName(name) > 0;
+			return mapper.countByModel(model) > 0;
 		}
 		finally{
 			if(session != null) session.close();
 		}
 	}
 	
-	public boolean hasSuchFluid(String id,String name){
+	public boolean hasSuchActuator(String id,String model){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			ActuatorMapper mapper = session.getMapper(ActuatorMapper.class);
 			
-			if(mapper.countByName(name) > 1)
-				throw new IllegalStateException("数据异常,介质名称:" + name);
+			if(mapper.countByModel(model) > 1)
+				throw new IllegalStateException("数据异常,型号名称:" + model);
 			
-			Fluid existingFluid = mapper.findByName(name);
+			Actuator existingActuator = mapper.findByModel(model);
 			
-			if(existingFluid == null)
+			if(existingActuator == null)
 				return false;
 			
 			//id不同,则说明已存在其他的同名介质
-			return !id.equals(existingFluid.getId());
+			return !id.equals(existingActuator.getId());
 		}
 		finally{
 			if(session != null) session.close();
 		}
 	}
 	
-	public Fluid getFluid(String id){
+	public Actuator getActuator(String id){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			ActuatorMapper mapper = session.getMapper(ActuatorMapper.class);
 			
 			return mapper.find(id);
 		}
@@ -127,27 +128,27 @@ public class FluidService {
 		}
 	}
 	
-	public List<Fluid> getFluids(){
+	public List<Actuator> getActuators(){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			ActuatorMapper mapper = session.getMapper(ActuatorMapper.class);
 			
 			Map<String,Object> conditions = new HashMap<String, Object>();
 //			conditions.put("name", name);
 			
-			return mapper.findFluids(conditions);
+			return mapper.findActuators(conditions);
 		}
 		finally{
 			if(session != null) session.close();
 		}
 	}
 	
-	public void updateFluid(Fluid fluid){
+	public void updateActuator(Actuator actuator){
 		SqlSession session = openSession(null,null);
 		try{
-			FluidMapper mapper = session.getMapper(FluidMapper.class);
+			ActuatorMapper mapper = session.getMapper(ActuatorMapper.class);
 			
-			mapper.update(fluid);
+			mapper.update(actuator);
 			session.commit();
 		}
 		finally{
@@ -156,26 +157,28 @@ public class FluidService {
 	}
 	
 	public static void main(String[] args){
-		FluidService service = new FluidService();		
+		//7个方法
+		ActuatorService service = new ActuatorService();
 		
-//		Fluid fluid = new Fluid("id1","name11","state11","111","211");
-//		Fluid fluid2 = new Fluid("id2","name2","state2","3","4");
-//		Fluid fluid3 = new Fluid("id3","name3","state3","5","6");
-//		service.deleteFluid("id1");
+//		Actuator actuator = new Actuator("id3","model4","action4",
+//				"springRange4","airPressure4","airConnection4");
 		
-//		Fluid fluid = service.getFluid("id2");
+//		service.addActuator(actuator);
+//		service.updateActuator(actuator);
+//		service.deleteActuator("id3");
 		
-		System.out.println(service.hasSuchFluid("id1"));
+//		System.out.println(service.hasSuchActuator("id","model1"));
 		
-		for(Fluid fluid:service.getFluids())
-			System.out.println(fluid.getId() + "," +
-					fluid.getName() + "," +
-					fluid.getState() + "," +
-					fluid.getDensity() + "," +
-					fluid.getSg());
+//		Actuator actuator = service.getActuator("id2");
+//		for(Actuator actuator:service.getActuators())
+//			System.out.println(
+//					actuator.getId() + "," +
+//					actuator.getModel() + "," +
+//					actuator.getAction() + "," +
+//					actuator.getSpringRange() + "," +
+//					actuator.getAirPressure() + "," +
+//					actuator.getAirConnection());
 		
-		
-		return;
 	}
 	
 }
