@@ -126,7 +126,71 @@
 				</param>
 			</result>
 		</action>
+		              
+		<action name="queryAllPositioner" class="com.daCheng.lectotype.action.PositionerQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
 		
+		<action name="deletePositioner" class="com.daCheng.lectotype.action.PositionerMaintenanceAction" method="deletePositioner">
+			<result name="success" type="json">			
+			</result>
+		</action>
 		
+		<action name="addPositioner" class="com.daCheng.lectotype.action.PositionerMaintenanceAction" method="addPositioner">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updatePositioner" class="com.daCheng.lectotype.action.PositionerMaintenanceAction" method="updatePositioner">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="queryAllSolenoid" class="com.daCheng.lectotype.action.SolenoidQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
+		
+		<action name="deleteSolenoid" class="com.daCheng.lectotype.action.SolenoidMaintenanceAction" method="deleteSolenoid">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addSolenoid" class="com.daCheng.lectotype.action.SolenoidMaintenanceAction" method="addSolenoid">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updateSolenoid" class="com.daCheng.lectotype.action.SolenoidMaintenanceAction" method="updateSolenoid">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
 	</package>
 </struts>

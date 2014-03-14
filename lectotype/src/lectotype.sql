@@ -1,3 +1,30 @@
+CREATE TABLE [limit_switch] (
+	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[model] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[joint_model] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[connection_size] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[explosion_proof] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	CONSTRAINT [PK_limit_switch] PRIMARY KEY  CLUSTERED 
+	(
+		[id]
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [solenoid] (
+	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[model] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[supply_power] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[power_connection] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[air_connection] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[explosion_proof] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	CONSTRAINT [PK_solenoid] PRIMARY KEY  CLUSTERED 
+	(
+		[id]
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
+GO
+
 CREATE TABLE [actuator] (
 	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
 	[model] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,

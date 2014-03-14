@@ -116,9 +116,9 @@
                 	else if(item.text == "执行机构") 
                 		openTab('maintainActuator.jsp','执行机构');                	
                 	else if(item.text == "定位器") 
-                		openTab('.jsp','定位器');
+                		openTab('maintainPositioner.jsp','定位器');
                 	else if(item.text == "电磁阀") 
-                		openTab('.jsp','电磁阀');
+                		openTab('maintainSolenoid.jsp','电磁阀');
                 	else if(item.text == "阀位开关") 
                 		openTab('.jsp','阀位开关');
                 	else if(item.text == "阀位传送器") 

@@ -33,12 +33,12 @@
 				</tr>
 				<tr>
 					<td><label>弹簧范围</label></td>
-					<td><input id="springRange" type="text" style="height:20px;border:1px solid #9D9D9D" /></td>
+					<td><input id="springRange" type="text" size="15" style="height:20px;border:1px solid #9D9D9D" />&nbspKPa</td>
 					<td id="fieldErrorsSpringRange">*</td>
 				</tr>
 				<tr>
 					<td><label>供气压力</label></td>
-					<td><input id="airPressure" type="text" style="height:20px;border:1px solid #9D9D9D" /></td>
+					<td><input id="airPressure" type="text" size="15" style="height:20px;border:1px solid #9D9D9D" />&nbspMPa</td>
 					<td id="fieldErrorsAirPressure">*</td>
 				</tr>
 				<tr>

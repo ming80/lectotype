@@ -30,5 +30,7 @@
 		<mapper resource="com/daCheng/lectotype/data/SelectedModelMapper.xml" /> 
 		<mapper resource="com/daCheng/lectotype/data/ActuatorMapper.xml" /> 
 		<mapper resource="com/daCheng/lectotype/data/PositionerMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/SolenoidMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/LimitSwitchMapper.xml" /> 
 	</mappers>
 </configuration>

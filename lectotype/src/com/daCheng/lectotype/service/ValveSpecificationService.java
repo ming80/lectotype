@@ -219,18 +219,18 @@ public class ValveSpecificationService {
 //		positioner.setAirConnectionSize("");
 //		positioner.setExplosionProof("");
 		
-		Solenoid solenoid = new Solenoid();
-		solenoid.setModel("");
-		solenoid.setSupplyPower("");
-		solenoid.setPowerConnection("");
-		solenoid.setAirConnection("");
-		solenoid.setExplosionProof("");
+//		Solenoid solenoid = new Solenoid();
+//		solenoid.setModel("");
+//		solenoid.setSupplyPower("");
+//		solenoid.setPowerConnection("");
+//		solenoid.setAirConnection("");
+//		solenoid.setExplosionProof("");
 
-		LimitSwitch limitSwitch = new LimitSwitch();
-		limitSwitch.setModel("");
-		limitSwitch.setJointModel("");
-		limitSwitch.setConnectionSize("");
-		limitSwitch.setExplosionProof("");
+//		LimitSwitch limitSwitch = new LimitSwitch();
+//		limitSwitch.setModel("");
+//		limitSwitch.setJointModel("");
+//		limitSwitch.setConnectionSize("");
+//		limitSwitch.setExplosionProof("");
 
 		Conveyer conveyer = new Conveyer();
 		conveyer.setModel("");

@@ -14,10 +14,10 @@
 
 <body>
 	<div style="padding:10px">	
-		<table id="actuators"></table>
-		<div id="editPositioner" class="easyui-window" style="width:500px;height:320px;padding:20px" 
+		<table id="positioners"></table>
+		<div id="editPositioner" class="easyui-window" style="width:500px;height:370px;padding:20px" 
 				data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true">
-			<table style="margin:0 auto;width:400px;height:230px;border:0px solid red">						  
+			<table style="margin:0 auto;width:400px;height:270px;border:0px solid red">						  
 				<tr>
 					<td width="60px"><label>型号</label></td>
 					<td width="120px">
@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<td><label>供气压力</label></td>
-					<td><input id="airPressure" type="text" style="height:20px;border:1px solid #9D9D9D" /></td>
+					<td><input id="airPressure" type="text" size="15" style="height:20px;border:1px solid #9D9D9D" />&nbspMPa</td>
 					<td id="fieldErrorsAirPressure">*</td>
 				</tr>
 				<tr>
@@ -121,8 +121,8 @@
     		$('#model').val('');
     		$('#inputSignal').val('');
     		$('#airPressure').val('');
-    		$('#signalConnection').val('');
-    		$('#airConnectionSize').val('');
+    		$('#signalConnection').val('×');
+    		$('#airConnectionSize').val('×-φ');
     		$('#explosionProof').val('');
     		
 			$('#fieldErrorsModel').html('');
