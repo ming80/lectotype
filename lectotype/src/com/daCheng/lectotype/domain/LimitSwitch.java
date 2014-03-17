@@ -48,4 +48,24 @@ public class LimitSwitch {
 		return explosionProof;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setJointModel(String jointModel) {
+		this.jointModel = jointModel;
+	}
+
+	public void setConnectionSize(String connectionSize) {
+		this.connectionSize = connectionSize;
+	}
+
+	public void setExplosionProof(String explosionProof) {
+		this.explosionProof = explosionProof;
+	}
+
 }

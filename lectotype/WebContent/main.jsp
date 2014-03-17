@@ -120,11 +120,11 @@
                 	else if(item.text == "电磁阀") 
                 		openTab('maintainSolenoid.jsp','电磁阀');
                 	else if(item.text == "阀位开关") 
-                		openTab('.jsp','阀位开关');
+                		openTab('maintainLimitSwitch.jsp','阀位开关');
                 	else if(item.text == "阀位传送器") 
-                		openTab('.jsp','阀位传送器');
+                		openTab('maintainConveyer.jsp','阀位传送器');
                 	else if(item.text == "过滤减压阀") 
-                		openTab('.jsp','过滤减压阀');                	
+                		openTab('maintainFilterReducingValve.jsp','过滤减压阀');                	
                 	//else
                 	//	alert("正在开发中...");
             	} 

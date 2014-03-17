@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.LimitSwitchMapper">
+  <!-- cache / -->              
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.LimitSwitch">
+    insert into limit_Switch 
+    	(id,model,joint_model,connection_size,explosion_proof) 
+	values
+		(#{id},#{model},#{jointModel},#{connectionSize},#{explosionProof})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.LimitSwitch">
+    update limit_Switch set 
+    	model=#{model},joint_model=#{jointModel},
+    	connection_size=#{connectionSize},    	
+    	explosion_proof=#{explosionProof}
+    where id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+  	delete from limit_Switch where id=#{id}
+  </delete>
+  
+  <select id="count" resultType="int">
+    select count(*) from limit_Switch where id=#{id} 
+  </select>
+
+  <select id="countByModel" resultType="int">
+    select count(*) from limit_Switch where model=#{model} 
+  </select>
+
+  <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.LimitSwitch">
+	select 
+		id,
+		model,
+		joint_model as jointModel,
+		connection_size as connectionSize,
+		explosion_proof as explosionProof
+	FROM limit_Switch where id=#{id} 
+  </select>
+  
+  <select id="findByModel" parameterType="string" resultType="com.daCheng.lectotype.domain.LimitSwitch">
+	select
+		id,
+		model,
+		joint_model as jointModel,
+		connection_size as connectionSize,
+		explosion_proof as explosionProof
+	FROM limit_Switch where model=#{model} 
+  </select>
+  
+  <select id="findLimitSwitchs" parameterType="map" resultType="com.daCheng.lectotype.domain.LimitSwitch">
+	select
+		id,
+		model,
+		joint_model as jointModel,
+		connection_size as connectionSize,
+		explosion_proof as explosionProof
+	FROM limit_Switch where 1=1
+  </select>
+</mapper>

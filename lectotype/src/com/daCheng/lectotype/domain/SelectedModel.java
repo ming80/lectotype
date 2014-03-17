@@ -123,4 +123,68 @@ public class SelectedModel {
 	public String getId() {
 		return id;
 	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setDiameterNominal(String diameterNominal) {
+		this.diameterNominal = diameterNominal;
+	}
+
+	public void setSeatDiameter(String seatDiameter) {
+		this.seatDiameter = seatDiameter;
+	}
+
+	public void setNominalPressure(String nominalPressure) {
+		this.nominalPressure = nominalPressure;
+	}
+
+	public void setFlowOpenClose(String flowOpenClose) {
+		this.flowOpenClose = flowOpenClose;
+	}
+
+	public void setAirFail(String airFail) {
+		this.airFail = airFail;
+	}
+
+	public void setFlowCharacter(String flowCharacter) {
+		this.flowCharacter = flowCharacter;
+	}
+
+	public void setBodyMaterial(String bodyMaterial) {
+		this.bodyMaterial = bodyMaterial;
+	}
+
+	public void setSeatMaterial(String seatMaterial) {
+		this.seatMaterial = seatMaterial;
+	}
+
+	public void setPlugMaterial(String plugMaterial) {
+		this.plugMaterial = plugMaterial;
+	}
+
+	public void setPacking(String packing) {
+		this.packing = packing;
+	}
+
+	public void setBonnetType(String bonnetType) {
+		this.bonnetType = bonnetType;
+	}
+
+	public void setConnectionFlange(String connectionFlange) {
+		this.connectionFlange = connectionFlange;
+	}
+
+	public void setLeakageClass(String leakageClass) {
+		this.leakageClass = leakageClass;
+	}
 }

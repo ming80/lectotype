@@ -32,5 +32,7 @@
 		<mapper resource="com/daCheng/lectotype/data/PositionerMapper.xml" /> 
 		<mapper resource="com/daCheng/lectotype/data/SolenoidMapper.xml" /> 
 		<mapper resource="com/daCheng/lectotype/data/LimitSwitchMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/ConveyerMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/FilterReducingValveMapper.xml" /> 
 	</mappers>
 </configuration>

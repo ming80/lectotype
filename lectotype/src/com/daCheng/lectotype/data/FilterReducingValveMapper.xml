@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.FilterReducingValveMapper">
+  <!-- cache / -->              
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.FilterReducingValve">
+    insert into filter_reducing_valve 
+    	(id,model,_connection) 
+	values
+		(#{id},#{model},#{connection})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.FilterReducingValve">
+    update filter_reducing_valve set 
+    	model=#{model},_connection=#{connection}
+    where id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+  	delete from filter_reducing_valve where id=#{id}
+  </delete>
+  
+  <select id="count" resultType="int">
+    select count(*) from filter_reducing_valve where id=#{id} 
+  </select>
+
+  <select id="countByModel" resultType="int">
+    select count(*) from filter_reducing_valve where model=#{model} 
+  </select>
+
+  <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.FilterReducingValve">
+	select 
+		id,
+		model,
+		_connection as connection
+	FROM filter_reducing_valve where id=#{id} 
+  </select>
+  
+  <select id="findByModel" parameterType="string" resultType="com.daCheng.lectotype.domain.FilterReducingValve">
+	select
+		id,
+		model,
+		_connection as connection
+	FROM filter_reducing_valve where model=#{model} 
+  </select>
+  
+  <select id="findFilterReducingValves" parameterType="map" resultType="com.daCheng.lectotype.domain.FilterReducingValve">
+	select
+		id,
+		model,
+		_connection as connection
+	FROM filter_reducing_valve where 1=1
+  </select>
+</mapper>

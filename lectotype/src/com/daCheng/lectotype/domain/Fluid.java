@@ -48,4 +48,24 @@ public class Fluid {
 	public String getSg() {
 		return sg;
 	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public void setDensity(String density) {
+		this.density = density;
+	}
+
+	public void setSg(String sg) {
+		this.sg = sg;
+	}
 }

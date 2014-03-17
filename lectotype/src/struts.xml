@@ -192,5 +192,104 @@
 				</param>
 			</result>
 		</action>
+		
+		<action name="queryAllLimitSwitch" class="com.daCheng.lectotype.action.LimitSwitchQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
+		
+		<action name="deleteLimitSwitch" class="com.daCheng.lectotype.action.LimitSwitchMaintenanceAction" method="deleteLimitSwitch">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addLimitSwitch" class="com.daCheng.lectotype.action.LimitSwitchMaintenanceAction" method="addLimitSwitch">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updateLimitSwitch" class="com.daCheng.lectotype.action.LimitSwitchMaintenanceAction" method="updateLimitSwitch">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="queryAllConveyer" class="com.daCheng.lectotype.action.ConveyerQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
+		
+		<action name="deleteConveyer" class="com.daCheng.lectotype.action.ConveyerMaintenanceAction" method="deleteConveyer">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addConveyer" class="com.daCheng.lectotype.action.ConveyerMaintenanceAction" method="addConveyer">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updateConveyer" class="com.daCheng.lectotype.action.ConveyerMaintenanceAction" method="updateConveyer">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="queryAllFilterReducingValve" class="com.daCheng.lectotype.action.FilterReducingValveQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
+		</action>
+		
+		<action name="deleteFilterReducingValve" class="com.daCheng.lectotype.action.FilterReducingValveMaintenanceAction" method="deleteFilterReducingValve">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addFilterReducingValve" class="com.daCheng.lectotype.action.FilterReducingValveMaintenanceAction" method="addFilterReducingValve">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updateFilterReducingValve" class="com.daCheng.lectotype.action.FilterReducingValveMaintenanceAction" method="updateFilterReducingValve">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
 	</package>
 </struts>

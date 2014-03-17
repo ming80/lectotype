@@ -241,7 +241,14 @@
 							</tr>
 							<tr height="35px">
 								<td>流开/流闭</td>
-								<td><input type="text" id="valveSpecification.selectedModel.flowOpenClose" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<select id="valveSpecification.selectedModel.flowOpenClose" class="easyui-combobox" data-options="width:125,panelHeight:70,editable:false">
+										<option>&ensp;</option>
+										<option value="open">开</option>
+										<option value="close">闭</option>							
+									</select>
+									<!-- input type="text" id="valveSpecification.selectedModel.flowOpenClose" size="15" style="height:20px;border:1px solid #9D9D9D"-->
+								</td>
 								<td>连接法兰</td>
 								<td><input type="text" id="valveSpecification.selectedModel.connectionFlange" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -532,7 +539,7 @@
 					'valveSpecification.selectedModel.packing':$('#valveSpecification\\.selectedModel\\.packing').val(),
 					'valveSpecification.selectedModel.nominalPressure':$('#valveSpecification\\.selectedModel\\.nominalPressure').val(),
 					'valveSpecification.selectedModel.bonnetType':$('#valveSpecification\\.selectedModel\\.bonnetType').val(),
-					'valveSpecification.selectedModel.flowOpenClose':$('#valveSpecification\\.selectedModel\\.flowOpenClose').val(),
+					'valveSpecification.selectedModel.flowOpenClose':$('#valveSpecification\\.selectedModel\\.flowOpenClose').combobox('getValue'),
 					'valveSpecification.selectedModel.connectionFlange':$('#valveSpecification\\.selectedModel\\.connectionFlange').val(),
 					'valveSpecification.selectedModel.airFail':$('#valveSpecification\\.selectedModel\\.airFail').val(),
 					'valveSpecification.selectedModel.leakageClass':$('#valveSpecification\\.selectedModel\\.leakageClass').val(),

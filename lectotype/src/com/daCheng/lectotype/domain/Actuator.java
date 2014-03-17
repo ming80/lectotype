@@ -49,4 +49,28 @@ public class Actuator {
 	public String getAirConnection() {
 		return airConnection;
 	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	public void setSpringRange(String springRange) {
+		this.springRange = springRange;
+	}
+
+	public void setAirPressure(String airPressure) {
+		this.airPressure = airPressure;
+	}
+
+	public void setAirConnection(String airConnection) {
+		this.airConnection = airConnection;
+	}
 }

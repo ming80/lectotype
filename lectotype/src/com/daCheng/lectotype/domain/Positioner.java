@@ -60,6 +60,34 @@ public class Positioner {
 	
 	public String getExplosionProof() {
 		return explosionProof;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setInputSignal(String inputSignal) {
+		this.inputSignal = inputSignal;
+	}
+
+	public void setAirPressure(String airPressure) {
+		this.airPressure = airPressure;
+	}
+
+	public void setSignalConnection(String signalConnection) {
+		this.signalConnection = signalConnection;
+	}
+
+	public void setAirConnectionSize(String airConnectionSize) {
+		this.airConnectionSize = airConnectionSize;
+	}
+
+	public void setExplosionProof(String explosionProof) {
+		this.explosionProof = explosionProof;
 	}	
 	
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.ConveyerMapper">
+  <!-- cache / -->              
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.Conveyer">
+    insert into conveyer 
+    	(id,model,output_signal,connection_size,explosion_proof) 
+	values
+		(#{id},#{model},#{outputSignal},#{connectionSize},#{explosionProof})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.Conveyer">
+    update conveyer set 
+    	model=#{model},output_signal=#{outputSignal},
+    	connection_size=#{connectionSize},    	
+    	explosion_proof=#{explosionProof}
+    where id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+  	delete from conveyer where id=#{id}
+  </delete>
+  
+  <select id="count" resultType="int">
+    select count(*) from conveyer where id=#{id} 
+  </select>
+
+  <select id="countByModel" resultType="int">
+    select count(*) from conveyer where model=#{model} 
+  </select>
+
+  <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.Conveyer">
+	select 
+		id,
+		model,
+		output_signal as outputSignal,
+		connection_size as connectionSize,
+		explosion_proof as explosionProof
+	FROM conveyer where id=#{id} 
+  </select>
+  
+  <select id="findByModel" parameterType="string" resultType="com.daCheng.lectotype.domain.Conveyer">
+	select
+		id,
+		model,
+		output_signal as outputSignal,
+		connection_size as connectionSize,
+		explosion_proof as explosionProof
+	FROM conveyer where model=#{model} 
+  </select>
+  
+  <select id="findConveyers" parameterType="map" resultType="com.daCheng.lectotype.domain.Conveyer">
+	select
+		id,
+		model,
+		output_signal as outputSignal,
+		connection_size as connectionSize,
+		explosion_proof as explosionProof
+	FROM conveyer where 1=1
+  </select>
+</mapper>

@@ -53,4 +53,28 @@ public class Solenoid {
 	public String getExplosionProof() {
 		return explosionProof;
 	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public void setSupplyPower(String supplyPower) {
+		this.supplyPower = supplyPower;
+	}
+
+	public void setPowerConnection(String powerConnection) {
+		this.powerConnection = powerConnection;
+	}
+
+	public void setAirConnection(String airConnection) {
+		this.airConnection = airConnection;
+	}
+
+	public void setExplosionProof(String explosionProof) {
+		this.explosionProof = explosionProof;
+	}
 }

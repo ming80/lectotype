@@ -15,7 +15,9 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ValveSpecificationAddingAction extends ActionSupport{
-	private ValveSpecification valveSpecification;
+//	private ValveSpecification valveSpecification;
+	
+	
 	private boolean isSeccessful;
 	private String msg;
 	

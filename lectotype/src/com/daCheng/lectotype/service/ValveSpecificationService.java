@@ -232,15 +232,15 @@ public class ValveSpecificationService {
 //		limitSwitch.setConnectionSize("");
 //		limitSwitch.setExplosionProof("");
 
-		Conveyer conveyer = new Conveyer();
-		conveyer.setModel("");
-		conveyer.setOutputSignal("");
-		conveyer.setConnectionSize("");
-		conveyer.setExplosionProof("");
+//		Conveyer conveyer = new Conveyer();
+//		conveyer.setModel("");
+//		conveyer.setOutputSignal("");
+//		conveyer.setConnectionSize("");
+//		conveyer.setExplosionProof("");
 		
-		FilterReducingValve filterReducingValve = new FilterReducingValve();
-		filterReducingValve.setModel("");
-		filterReducingValve.setConnection("");		
+//		FilterReducingValve filterReducingValve = new FilterReducingValve();
+//		filterReducingValve.setModel("");
+//		filterReducingValve.setConnection("");		
 		
 //		accessory.setPositioner(positioner);
 //		accessory.setSolenoid(solenoid);

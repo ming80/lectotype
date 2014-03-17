@@ -173,3 +173,27 @@ CREATE TABLE [valve_specification] (
 	)  ON [PRIMARY] 
 ) ON [PRIMARY]
 GO
+
+CREATE TABLE [filter_reducing_valve] (
+	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[model] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[_connection] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	CONSTRAINT [PK_filter_reducing_valve] PRIMARY KEY  CLUSTERED 
+	(
+		[id]
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [conveyer] (
+	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[model] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[output_signal] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[connection_size] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[explosion_proof] [varchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	CONSTRAINT [PK_conveyer] PRIMARY KEY  CLUSTERED 
+	(
+		[id]
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
+GO
