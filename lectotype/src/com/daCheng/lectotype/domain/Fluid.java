@@ -17,10 +17,10 @@ public class Fluid {
 		
 		if(id == null || id.trim().equals(""))
 			throw new IllegalArgumentException("id is empty!");
-		if(name == null || name.trim().equals(""))
-			throw new IllegalArgumentException("name is empty!");
-		if(state == null || state.trim().equals(""))
-			throw new IllegalArgumentException("state is empty!");
+//		if(name == null || name.trim().equals(""))
+//			throw new IllegalArgumentException("name is empty!");
+//		if(state == null || state.trim().equals(""))
+//			throw new IllegalArgumentException("state is empty!");
 		
 		this.id = id;
 		this.name = name;

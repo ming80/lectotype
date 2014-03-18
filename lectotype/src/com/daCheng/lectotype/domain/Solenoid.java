@@ -19,8 +19,8 @@ public class Solenoid {
 		
 		if(id == null || id.trim().equals(""))
 			throw new IllegalArgumentException("id is empty!");
-		if(model == null || model.trim().equals(""))
-			throw new IllegalArgumentException("model is empty!");
+//		if(model == null || model.trim().equals(""))
+//			throw new IllegalArgumentException("model is empty!");
 		
 		this.id = id;
 		this.model = model;

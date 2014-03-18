@@ -39,8 +39,8 @@ public class SelectedModel {
 		
 		if(id == null || id.trim().equals(""))
 			throw new IllegalArgumentException("id is empty!");
-		if(name == null || name.trim().equals(""))
-			throw new IllegalArgumentException("name is empty!");
+//		if(name == null || name.trim().equals(""))
+//			throw new IllegalArgumentException("name is empty!");
 		
 		this.id = id;
 		this.name = name;
