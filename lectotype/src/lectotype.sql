@@ -197,3 +197,18 @@ CREATE TABLE [conveyer] (
 	)  ON [PRIMARY] 
 ) ON [PRIMARY]
 GO
+
+CREATE TABLE [user_info] (
+	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[name] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[password] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[role] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	CONSTRAINT [PK_user_info] PRIMARY KEY  CLUSTERED 
+	(
+		[id]
+	)  ON [PRIMARY] 
+) ON [PRIMARY]
+GO
+
+
+

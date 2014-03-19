@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daCheng.lectotype.data.UserMapper">
+  <!-- cache / -->   
+  <insert id="insert" parameterType="com.daCheng.lectotype.domain.User">
+    insert into user_info 
+    	(id,name,password,role) 
+	values
+		(#{id},#{name},#{password},#{role})
+  </insert>
+  
+  <update id="update" parameterType="com.daCheng.lectotype.domain.User">
+    update user_info set 
+        name=#{name},password=#{password},role=#{role}
+    where id=#{id}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+  	delete from user_info where id=#{id}
+  </delete>
+  
+  <select id="find" parameterType="string" resultType="com.daCheng.lectotype.domain.User">
+    select 
+		ID as id,
+		name as name,
+		password as password,
+		role
+	from user_info
+    where ID=#{id}
+  </select>
+
+  <select id="count" parameterType="map" resultType="int">
+    select count(*)
+    from user_info
+    where ID=#{id} and password=#{password}
+  </select>
+
+  <select id="findUsers" parameterType="map" resultType="com.daCheng.lectotype.domain.User">
+	select * FROM user_info where 1=1                
+  </select>
+
+</mapper>

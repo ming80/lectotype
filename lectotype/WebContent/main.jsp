@@ -49,10 +49,19 @@
     		欢迎您，${sessionScope.user.name }！ &nbsp&nbsp&nbsp<img src="images/logout.png" style="vertical-align:bottom;">&nbsp<a href="logout.action">安全退出</a>
     	</font></div-->  
 
-        <div style="padding:5px;border:1px solid #ddd"> 
-        	<a href="#" id="mb1" class="easyui-menubutton" data-options="menu:'#mm1'">计算</a>
-    		<a href="#" id="mb2" class="easyui-menubutton" data-options="menu:'#mm2'">选型表</a>
-    		<a href="#" id="mb3" class="easyui-menubutton" data-options="menu:'#mm3'">基础资料维护</a>
+        <div style="height:20px;padding:5px;border:1px solid #ddd;position:relative"> 
+        	<div style="border:0px solid black;position:absolute;left:0px;">
+	        	<a href="#" id="mb1" class="easyui-menubutton" data-options="menu:'#mm1'">计算</a>
+	    		<a href="#" id="mb2" class="easyui-menubutton" data-options="menu:'#mm2'">选型表</a>
+	    		<a href="#" id="mb3" class="easyui-menubutton" data-options="menu:'#mm3'">基础资料维护</a>
+	    		<a href="#" id="mb4" class="easyui-menubutton" data-options="menu:'#mm4'">系统维护</a>
+    		</div>
+    		<div id="welcome" style="border:0px solid black;position:absolute;right:10px;bottom:5px;">
+	    		<font size=-1>
+	    		欢迎您，${sessionScope.user.name}！ &nbsp<img src="images/logout.png" style="vertical-align:bottom;">&nbsp<a href="logout.action">安全退出</a>
+	    		</font>
+	    		<input id="role" type="hidden" value=${sessionScope.user.role} />	
+    		</div> 
     	</div>	
     	<div id="mm1" style="width:150px">
     		<div>流量计算</div>
@@ -81,7 +90,9 @@
     			</div>
     		</div>
     	</div>
-    	
+    	<div id="mm4" style="width:150px">
+    		<div>员工帐号</div>
+    	</div>    	
     </div>   
     
     <div data-options="region:'center',border:false"  style="padding:0px 0px 0px 5px;">
@@ -92,12 +103,15 @@
 
   <script type="text/javascript">
 		$(function(){
+			
+			
 			$($('#mb1').menubutton('options').menu).menu({
 				onClick: function (item) { 
                 	if(item.text == "流量计算") 
                 		openTab('caculateFlow.jsp','流量计算');
             	} 
         	});
+			
 			$($('#mb2').menubutton('options').menu).menu({
 				onClick: function (item) {                 	
                 	if(item.text == "添加") 
@@ -129,6 +143,20 @@
                 	//	alert("正在开发中...");
             	} 
         	});
+						
+			$($('#mb4').menubutton('options').menu).menu({
+				onClick: function (item) { 
+	               	if(item.text == "员工帐号")
+	               		openTab('maintainUser.jsp','员工帐号');
+	           	} 
+	        });
+			
+			//alert($('#role').val());
+			 //1-系统管理员,2-技术员,3-销售员	
+			if($('#role').val() != 1)	
+				$('#mb4').menubutton('disable');
+			
+
 		});
   </script>
 </body>

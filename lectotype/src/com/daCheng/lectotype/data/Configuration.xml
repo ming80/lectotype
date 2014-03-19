@@ -34,5 +34,6 @@
 		<mapper resource="com/daCheng/lectotype/data/LimitSwitchMapper.xml" /> 
 		<mapper resource="com/daCheng/lectotype/data/ConveyerMapper.xml" /> 
 		<mapper resource="com/daCheng/lectotype/data/FilterReducingValveMapper.xml" /> 
+		<mapper resource="com/daCheng/lectotype/data/UserMapper.xml" /> 
 	</mappers>
 </configuration>

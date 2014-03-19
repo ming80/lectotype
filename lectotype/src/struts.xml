@@ -7,6 +7,38 @@
 	<constant name="struts.devMode" value="false" />
 		
 	<package name="lectotype" extends="struts-default">		
+		<interceptors>
+			<interceptor name="cacheClearInterceptor" class="com.daCheng.lectotype.action.CacheClearInterceptor"></interceptor>
+			<interceptor name="authorizationInterceptor" class="com.daCheng.lectotype.action.AuthorizationInterceptor"></interceptor>
+			
+			<interceptor-stack name="financeInsuStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authorizationInterceptor">
+					<param name="excludeMethods">login,logout</param>
+				</interceptor-ref>
+				<interceptor-ref name="cacheClearInterceptor">
+					<!-- param name="includeMethods">logout</param-->
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="financeInsuStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login">/expiredLogin.html</result>
+		</global-results>				 
+				                                                               
+		<action name="login" class="com.daCheng.lectotype.action.LoginAction" method="login">
+			<exception-mapping result="exception" exception="java.lang.Exception" />			
+			<result name="input">/login.jsp</result>
+			<result name="success">/main.jsp</result>
+			<result name="exception">/exception.jsp</result>
+		</action>
+		
+		<action name="logout" class="com.daCheng.lectotype.action.LogoutAction" method="logout">
+			<result name="success">/logout.html</result>
+		</action>
+	
 		<action name="saveQueryResults" class="com.daCheng.lectotype.action.ValveSpecificationSavingAction" method="saveQueryResults">
 			<result name="success" type="stream">
 				<param name="contentType">application/vnd.ms-excel</param>
@@ -17,7 +49,28 @@
 		</action>	
 	</package>
 	
-	<package name="lectotypeJson" extends="json-default">																					 																															 
+	<package name="lectotypeJson" extends="json-default">	
+		<interceptors>
+			<interceptor name="cacheClearInterceptor" class="com.daCheng.lectotype.action.CacheClearInterceptor"></interceptor>
+			<interceptor name="authorizationInterceptor" class="com.daCheng.lectotype.action.AuthorizationInterceptor"></interceptor>
+			
+			<interceptor-stack name="financeInsuStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authorizationInterceptor">
+					<param name="excludeMethods">login,logout</param>
+				</interceptor-ref>
+				<interceptor-ref name="cacheClearInterceptor">
+					<!-- param name="includeMethods">logout</param-->
+				</interceptor-ref>
+			</interceptor-stack>		
+		</interceptors>
+
+		<default-interceptor-ref name="financeInsuStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login">/expiredLogin.html</result>
+		</global-results>
+																					 																															 
 		<action name="addValveSpecification" class="com.daCheng.lectotype.action.ValveSpecificationAddingAction" method="execute">
 			<result type="json"></result>
 		</action>
@@ -290,6 +343,40 @@
 					actionErrors.*,actionMessages.*,fieldErrors.*
 				</param>
 			</result>
+		</action>		
+		
+		<action name="queryAllUser" class="com.daCheng.lectotype.action.UserQueryAction" method="queryAll">
+			<result type="json">
+				<param name="root">results</param>
+			</result>		
 		</action>
+		
+		<action name="deleteUser" class="com.daCheng.lectotype.action.UserMaintenanceAction" method="deleteUser">
+			<result name="success" type="json">			
+			</result>
+		</action>
+		
+		<action name="addUser" class="com.daCheng.lectotype.action.UserMaintenanceAction" method="addUser">
+			<result name="success" type="json">			
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
+		<action name="updateUser" class="com.daCheng.lectotype.action.UserMaintenanceAction" method="updateUser">
+			<result name="success" type="json">
+			</result>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">
+					actionErrors.*,actionMessages.*,fieldErrors.*
+				</param>
+			</result>
+		</action>
+		
 	</package>
 </struts>
