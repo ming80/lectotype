@@ -10,8 +10,8 @@
     	(id,project_name,tag_No,quantity,service,remarks,pipe_size_and_material,fluid_state,
     	fluid_name,density,flow_unit,Qmax,Qnor,Qmin,operation_temperature,pressure_unit,
     	upstream_pressure,downstream_pressure,differential_pressure,dynamic_viscosity,
-    	compress_factor,vapor_pressure,critical_pressure,kv_max,kv_min,selected_kv,
-    	adjustable_ratio,flow_characteristic,k_max,k_min,nominal_pressure,noise_level,
+    	compress_factor,vapor_pressure,critical_pressure,kv_max,kv_nor,kv_min,selected_kv,
+    	adjustable_ratio,flow_characteristic,k_max,k_nor,k_min,nominal_pressure,noise_level,
     	close_open,selected_model_name,selected_model_model,diameter_nominal,seat_diameter,
     	selected_model_nominal_pressure,flow_open_close,air_fail,flow_character,body_material,
     	seat_material,plug_material,packing,bonnet_type,connection_flange,leakage_class,
@@ -28,9 +28,9 @@
 		#{processPara.Qmax},#{processPara.Qnor},#{processPara.Qmin},#{processPara.operationTemperature},
 		#{processPara.pressureUnit},#{processPara.upstreamPressure},#{processPara.downstreamPressure},
 		#{processPara.differentialPressure},#{processPara.dynamicViscosity},#{processPara.compressFactor},
-		#{processPara.vaporPressure},#{processPara.criticalPressure},#{calculation.Kvmax},
+		#{processPara.vaporPressure},#{processPara.criticalPressure},#{calculation.Kvmax},#{calculation.Kvnor},
 		#{calculation.Kvmin},#{calculation.selectedKv},#{calculation.adjustableRatio},
-		#{calculation.flowCharacteristic},#{calculation.Kmax},#{calculation.Kmin},
+		#{calculation.flowCharacteristic},#{calculation.Kmax},#{calculation.Knor},#{calculation.Kmin},
 		#{calculation.nominalPressure},#{calculation.noiseLevel},#{calculation.closeOpen},
 		#{selectedModel.name},#{selectedModel.model},#{selectedModel.diameterNominal},
 		#{selectedModel.seatDiameter},#{selectedModel.nominalPressure},#{selectedModel.flowOpenClose},
@@ -60,10 +60,10 @@
     	upstream_pressure=#{processPara.upstreamPressure},downstream_pressure=#{processPara.downstreamPressure},
     	differential_pressure=#{processPara.differentialPressure},dynamic_viscosity=#{processPara.dynamicViscosity},
     	compress_factor=#{processPara.compressFactor},vapor_pressure=#{processPara.vaporPressure},
-    	critical_pressure=#{processPara.criticalPressure},kv_max=#{calculation.Kvmax},kv_min=#{calculation.Kvmin},
-    	selected_kv=#{calculation.selectedKv},adjustable_ratio=#{calculation.adjustableRatio},
-    	flow_characteristic=#{calculation.flowCharacteristic},k_max=#{calculation.Kmax},k_min=#{calculation.Kmin},
-    	nominal_pressure=#{calculation.nominalPressure},noise_level=#{calculation.noiseLevel},
+    	critical_pressure=#{processPara.criticalPressure},kv_max=#{calculation.Kvmax},kv_nor=#{calculation.Kvnor},
+    	kv_min=#{calculation.Kvmin},selected_kv=#{calculation.selectedKv},adjustable_ratio=#{calculation.adjustableRatio},
+    	flow_characteristic=#{calculation.flowCharacteristic},k_max=#{calculation.Kmax},k_nor=#{calculation.Knor},
+    	k_min=#{calculation.Kmin},nominal_pressure=#{calculation.nominalPressure},noise_level=#{calculation.noiseLevel},
     	close_open=#{calculation.closeOpen},selected_model_name=#{selectedModel.name},
     	selected_model_model=#{selectedModel.model},diameter_nominal=#{selectedModel.diameterNominal},
     	seat_diameter=#{selectedModel.seatDiameter},selected_model_nominal_pressure=#{selectedModel.nominalPressure},
@@ -119,7 +119,7 @@
     <result property="projectName" column="project_name"></result>
     <result property="tagNo" column="tag_No"></result>
     <result property="quantity" column="quantity"></result>
-    <result property="service" column="service"></result>
+    <result property="service" column="service"></result>    
     <result property="remarks" column="remarks"></result>
     <association property="processPara" javaType="com.daCheng.lectotype.domain.ProcessParameter">
     	<result property="pipeSizeAndMaterial" column="pipe_size_and_material"></result>
@@ -142,11 +142,13 @@
     </association>
     <association property="calculation" javaType="com.daCheng.lectotype.domain.Calculation">
     	<result property="Kvmax" column="kv_max"></result>
+    	<result property="Kvnor" column="kv_nor"></result>
     	<result property="Kvmin" column="kv_min"></result>
     	<result property="selectedKv" column="selected_kv"></result>
     	<result property="adjustableRatio" column="adjustable_ratio"></result>
     	<result property="flowCharacteristic" column="flow_characteristic"></result>
     	<result property="Kmax" column="k_max"></result>
+    	<result property="Knor" column="k_nor"></result>
     	<result property="Kmin" column="k_min"></result>
     	<result property="nominalPressure" column="nominal_pressure"></result>
     	<result property="noiseLevel" column="noise_level"></result>
@@ -177,7 +179,7 @@
     	<result property="airConnection" column="actuator_air_connection"></result>
     </association>
     <association property="accessory" javaType="com.daCheng.lectotype.domain.Accessory">
-    	<result property="handWheel" column="handWheel"></result>
+    	<result property="handWheel" column="hand_wheel"></result>
     	<association property="positioner" javaType="com.daCheng.lectotype.domain.Positioner">
     		<result property="model" column="positioner_model"></result>
     		<result property="inputSignal" column="positioner_input_signal"></result>

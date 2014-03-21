@@ -65,7 +65,7 @@ public class UserMaintenanceAction extends ActionSupport{
 			addFieldError("name","姓名不能为空!");
 			
 		if(isEmptyString(this.password))
-			addFieldError("password","密度不能为空!");		
+			addFieldError("password","密码不能为空!");		
 		else if(!this.password.trim().matches("^\\w{6,20}$"))
 			this.addFieldError("password","密码只能是数字、字母、下划线,长度为6-20位!");
 
@@ -104,7 +104,7 @@ public class UserMaintenanceAction extends ActionSupport{
 			addFieldError("name","姓名不能为空!");
 			
 		if(isEmptyString(this.password))
-			addFieldError("password","密度不能为空!");
+			addFieldError("password","密码不能为空!");
 		else if(!this.password.trim().matches("^\\w{6,20}$"))
 			this.addFieldError("password","密码只能是数字、字母、下划线,长度为6-20位!");
 

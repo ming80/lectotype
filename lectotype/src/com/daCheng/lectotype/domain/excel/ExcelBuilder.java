@@ -36,8 +36,9 @@ public class ExcelBuilder {
 			OutputStream out = new FileOutputStream(xlsFile); //xlsFile.xls
 
 			Workbook wb = new HSSFWorkbook();	
+			int sheetNum = 1;
 			for(ValveSpecification spe:this.valveSpecifications)
-				buildSheet(wb,spe);		
+				buildSheet(wb,spe,this.valveSpecifications.size(),sheetNum++);		
 						
 			wb.write(out);
 		} catch (IOException e) {
@@ -48,7 +49,7 @@ public class ExcelBuilder {
 		return xlsFile;
 	}
 	
-	private void buildSheet(Workbook wb,ValveSpecification valveSpecification){
+	private void buildSheet(Workbook wb,ValveSpecification valveSpecification,int sheetCount,int sheetNum){
 		Sheet sheet = wb.createSheet();
 		sheet.setColumnWidth(0,11 * 256);
 		sheet.setColumnWidth(1,15 * 256);
@@ -213,10 +214,10 @@ public class ExcelBuilder {
 		cell.setCellValue("CALCULATION  SPECIFICATION");
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("第1页");
+		cell.setCellValue("第" + sheetNum + "页");
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("共1页");
+		cell.setCellValue("共" + sheetCount + "页");
 		row.createCell(1).setCellStyle(cellStyle1);
 		row.createCell(2).setCellStyle(cellStyle1);
 		row.createCell(4).setCellStyle(cellStyle1);
@@ -230,10 +231,10 @@ public class ExcelBuilder {
 		cell.setCellValue("Instrument      Factory");
 		cell = row.createCell(6);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("P.1");
+		cell.setCellValue("P." + sheetNum);
 		cell = row.createCell(7);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue("of 1");
+		cell.setCellValue("of " + sheetCount);
 		row.createCell(1).setCellStyle(cellStyle1);
 		row.createCell(2).setCellStyle(cellStyle1);
 		row.createCell(3).setCellStyle(cellStyle1);
@@ -364,7 +365,7 @@ public class ExcelBuilder {
 		cell.setCellValue("介质状态 Fluid State");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue(valveSpecification.getProcessPara().getFluidState());
+		cell.setCellValue(getFluidState(valveSpecification.getProcessPara().getFluidState()));
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle2);
 		cell.setCellValue("附  件    Accessories");
@@ -895,7 +896,7 @@ public class ExcelBuilder {
 		cell.setCellValue("流开/流闭  Flow Open/Close");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue(valveSpecification.getSelectedModel().getFlowOpenClose());
+		cell.setCellValue(getFlowOpenClose(valveSpecification.getSelectedModel().getFlowOpenClose()));
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle2);
 		cell.setCellValue("备  注   Remarks");
@@ -913,7 +914,7 @@ public class ExcelBuilder {
 		cell.setCellValue("失气位置  Air Fail Valve Position");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue(valveSpecification.getSelectedModel().getAirFail());
+		cell.setCellValue(getAirFail(valveSpecification.getSelectedModel().getAirFail()));
 		cell = row.createCell(4);
 		cell.setCellStyle(cellStyle9);
 		cell.setCellValue(valveSpecification.getRemarks());
@@ -931,7 +932,7 @@ public class ExcelBuilder {
 		cell.setCellValue("流量特性  Flow Character");
 		cell = row.createCell(2);
 		cell.setCellStyle(cellStyle9);
-		cell.setCellValue(valveSpecification.getSelectedModel().getFlowCharacter());
+		cell.setCellValue(getFlowCharacter(valveSpecification.getSelectedModel().getFlowCharacter()));
 		row.createCell(1).setCellStyle(cellStyle1);
 		row.createCell(3).setCellStyle(cellStyle1);
 		row.createCell(4).setCellStyle(cellStyle1);
@@ -1204,10 +1205,58 @@ public class ExcelBuilder {
 		sheet.addMergedRegion(new CellRangeAddress(43,43,7,8));
 		sheet.addMergedRegion(new CellRangeAddress(44,44,0,1));
 		sheet.addMergedRegion(new CellRangeAddress(44,44,2,3));
-		sheet.addMergedRegion(new CellRangeAddress(44,44,7,8));
+		sheet.addMergedRegion(new CellRangeAddress(44,44,7,8));		
+		
+	}
+	
+	private String getFluidState(String state){
+		if(state == null || state.trim().equals(""))
+			return "";
+		if(state.trim().equals("liquid"))
+			return "液体";
+		if(state.trim().equals("gas"))
+			return "气体";
+		if(state.trim().equals("vaper"))
+			return "水蒸汽";
+		
+		return "";		
+	}
+	
+	private String getFlowOpenClose(String flowOpenClose){
+		if(flowOpenClose == null || flowOpenClose.trim().equals(""))
+			return "";
+		if(flowOpenClose.trim().equals("open"))
+			return "开";
+		if(flowOpenClose.trim().equals("close"))
+			return "闭";
+		return "";	
+	}
+	
+	private String getAirFail(String airFail){
+		if(airFail == null || airFail.trim().equals(""))
+			return "";
+		if(airFail.trim().equals("open"))
+			return "开";
+		if(airFail.trim().equals("close"))
+			return "关";
+		return "";	
+	}
 
-		
-		
+	private String getFlowCharacter(String flowCharacter){
+		if(flowCharacter == null || flowCharacter.trim().equals(""))
+			return "";
+		if(flowCharacter.trim().equals("equalPercentage"))
+			return "等百分比";
+		if(flowCharacter.trim().equals("linear"))
+			return "直线";
+		if(flowCharacter.trim().equals("quickOpening"))
+			return "快开";
+		if(flowCharacter.trim().equals("squareRoot"))
+			return "平方根";
+		if(flowCharacter.trim().equals("modifiedParabolic"))
+			return "抛物线";
+
+		return "";
 	}
 	
 	public static void main(String[] args){

@@ -42,10 +42,12 @@ public class ValveSpecificationAddingAction extends ActionSupport{
 	private String valveSpecification_processPara_operationTemperature;
 	private String valveSpecification_processPara_criticalPressure;
 	private String valveSpecification_calculation_Kvmax;
+	private String valveSpecification_calculation_Kvnor;
 	private String valveSpecification_calculation_Kvmin;
 	private String valveSpecification_calculation_selectedKv;
 	private String valveSpecification_calculation_Kmax;
 	private String valveSpecification_calculation_flowCharacteristic;
+	private String valveSpecification_calculation_Knor;
 	private String valveSpecification_calculation_adjustableRatio;
 	private String valveSpecification_calculation_Kmin;
 	private String valveSpecification_calculation_nominalPressure;
@@ -93,7 +95,7 @@ public class ValveSpecificationAddingAction extends ActionSupport{
 	private String valveSpecification_accessory_filterReducingValve_model;
 	private String valveSpecification_accessory_filterReducingValve_connection;
 	private String valveSpecification_accessory_handWheel;
-	
+				   
 	private boolean isSeccessful;
 	private String msg;
 	
@@ -140,10 +142,12 @@ public class ValveSpecificationAddingAction extends ActionSupport{
 		//¼ÆËã
 		Calculation calculation = new Calculation();	
 		calculation.setKvmax(valveSpecification_calculation_Kvmax);
+		calculation.setKvnor(valveSpecification_calculation_Kvnor);
 		calculation.setKvmin(valveSpecification_calculation_Kvmin);
 		calculation.setSelectedKv(valveSpecification_calculation_selectedKv);
 		calculation.setKmax(valveSpecification_calculation_Kmax);
 		calculation.setFlowCharacteristic(valveSpecification_calculation_flowCharacteristic);
+		calculation.setKnor(valveSpecification_calculation_Knor);
 		calculation.setAdjustableRatio(valveSpecification_calculation_adjustableRatio);
 		calculation.setKmin(valveSpecification_calculation_Kmin);
 		calculation.setNominalPressure(valveSpecification_calculation_nominalPressure);
@@ -213,7 +217,7 @@ public class ValveSpecificationAddingAction extends ActionSupport{
 			new FilterReducingValve(id,
 				valveSpecification_accessory_filterReducingValve_model,
 				valveSpecification_accessory_filterReducingValve_connection));
-		if(valveSpecification_accessory_handWheel != null && valveSpecification_accessory_handWheel.equals("´ø"))
+		if(valveSpecification_accessory_handWheel != null && valveSpecification_accessory_handWheel.equals("true"))
 			accessory.setHandWheel(true);
 		valveSpecification.setAccessory(accessory);
 		
@@ -898,6 +902,24 @@ public class ValveSpecificationAddingAction extends ActionSupport{
 	public void setValveSpecification_accessory_conveyer_connectionSize(
 			String valveSpecification_accessory_conveyer_connectionSize) {
 		this.valveSpecification_accessory_conveyer_connectionSize = valveSpecification_accessory_conveyer_connectionSize;
+	}
+
+	public String getValveSpecification_calculation_Kvnor() {
+		return valveSpecification_calculation_Kvnor;
+	}
+
+	public void setValveSpecification_calculation_Kvnor(
+			String valveSpecification_calculation_Kvnor) {
+		this.valveSpecification_calculation_Kvnor = valveSpecification_calculation_Kvnor;
+	}
+
+	public String getValveSpecification_calculation_Knor() {
+		return valveSpecification_calculation_Knor;
+	}
+
+	public void setValveSpecification_calculation_Knor(
+			String valveSpecification_calculation_Knor) {
+		this.valveSpecification_calculation_Knor = valveSpecification_calculation_Knor;
 	}
 
 }

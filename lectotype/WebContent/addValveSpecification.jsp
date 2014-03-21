@@ -13,7 +13,7 @@
 <script type="text/javascript" src="js/easyui/jquery-1.8.0.min.js"></script>  
 <script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script> 
 <script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="js/flowCaculation_20140214-1.js" charset="GBK"></script>
+<script type="text/javascript" src="js/flowCaculation_20140321-1.js" charset="GBK"></script>
 </head>
 
 <body>
@@ -143,6 +143,10 @@
 								<td colspan="5"><input type="text" id="valveSpecification_calculation_Kvmax" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKvmax()"></td>
 							</tr>
 							<tr height="35px">
+								<td>计算Kvnor</td>
+								<td colspan="5"><input type="text" id="valveSpecification_calculation_Kvnor" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKvnor()"></td>
+							</tr>
+							<tr height="35px">
 								<td>计算Kvmin</td>
 								<td colspan="5"><input type="text" id="valveSpecification_calculation_Kvmin" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKvmin()"></td>
 							</tr>
@@ -171,6 +175,10 @@
 										<option value="100">100</option>
 									</select>
 								</td>				
+							</tr>
+							<tr height="35px">
+								<td>阀开度Knor</td>
+								<td colspan="3"><input type="text" id="valveSpecification_calculation_Knor" size="11" style="height:20px;border:1px solid #9D9D9D" onclick="caculateKnor()"></td>
 							</tr>
 							<tr height="35px">
 								<td>阀开度Kmin</td>
@@ -291,7 +299,10 @@
       				<table border="0" width="430px">
 							<tr height="35px">
 								<td width="60px">型号</td>
-								<td><input type="text" id="valveSpecification_actuator_model" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification_actuator_model" size="15" style="height:20px;border:1px solid #9D9D9D">
+									<input type="button" value="..." onclick="showSelectActuatorWin()">
+								</td>
 							</tr>
 							<tr height="35px">
 								<td>动作形式</td>
@@ -324,7 +335,10 @@
       					<table border="0" width="430px">
 							<tr height="30px">
 								<td width="60px">型号</td>
-								<td><input type="text" id="valveSpecification_accessory_positioner_model" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification_accessory_positioner_model" size="12" style="height:20px;border:1px solid #9D9D9D">
+									<input type="button" value="..." onclick="showSelectPositionerWin()">
+								</td>
 								<td width="60px">信号接口</td>
 								<td><input type="text" id="valveSpecification_accessory_positioner_signalConnection" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -354,7 +368,10 @@
       					<table border="0" width="430px">
 							<tr height="30px">
 								<td width="60px">型号</td>
-								<td><input type="text" id="valveSpecification_accessory_solenoid_model" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification_accessory_solenoid_model" size="12" style="height:20px;border:1px solid #9D9D9D">
+									<input type="button" value="..." onclick="showSelectSolenoidWin()">
+								</td>
 								<td width="60px">气接口尺寸</td>
 								<td><input type="text" id="valveSpecification_accessory_solenoid_airConnection" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -377,7 +394,10 @@
       					<table border="0" width="430px">
 							<tr height="30px">
 								<td width="60px">型号</td>
-								<td><input type="text" id="valveSpecification_accessory_limitSwitch_model" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification_accessory_limitSwitch_model" size="12" style="height:20px;border:1px solid #9D9D9D">
+									<input type="button" value="..." onclick="showSelectLimitSwitchWin()">
+								</td>
 								<td width="60px">接口尺寸</td>
 								<td><input type="text" id="valveSpecification_accessory_limitSwitch_connectionSize" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -395,7 +415,10 @@
       					<table border="0" width="430px">
 							<tr height="30px">
 								<td width="60px">型号</td>
-								<td><input type="text" id="valveSpecification_accessory_conveyer_model" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification_accessory_conveyer_model" size="12" style="height:20px;border:1px solid #9D9D9D">
+									<input type="button" value="..." onclick="showSelectConveyerWin()">
+								</td>
 								<td width="60px">接口尺寸</td>
 								<td><input type="text" id="valveSpecification_accessory_conveyer_connectionSize" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -417,7 +440,10 @@
       					<table border="0" width="430px">
 							<tr height="30px">
 								<td width="60px">型号</td>
-								<td><input type="text" id="valveSpecification_accessory_filterReducingValve_model" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
+								<td>
+									<input type="text" id="valveSpecification_accessory_filterReducingValve_model" size="12" style="height:20px;border:1px solid #9D9D9D">
+									<input type="button" value="..." onclick="showSelectFilterReducingValveWin()">
+								</td>
 								<td width="60px">接口</td>
 								<td><input type="text" id="valveSpecification_accessory_filterReducingValve_connection" size="15" style="height:20px;border:1px solid #9D9D9D"></td>
 							</tr>
@@ -429,7 +455,7 @@
       					<table border="0" width="430px">
 							<tr height="30px">
 								<td>                                                                           
-									<select id="valveSpecification_accessory_handWheel" class="easyui-combobox" data-options="width:200,editable:false">
+									<select id="valveSpecification_accessory_handWheel" class="easyui-combobox" data-options="width:200,panelHeight:50,editable:false">
 										<option value="false">不带</option>
 										<option value="true">带</option>
 									</select>
@@ -460,6 +486,48 @@
 		<table id="allSelectedModels"></table>
 		<div style="text-align:center;padding:10px">
 			<a href="#" class="easyui-linkbutton" onclick="selectSelectedModel()">确定</a>
+		</div>
+	</div>
+	
+	<div id="selectActuator" style="padding:10px;">
+		<table id="allActuators"></table>
+		<div style="text-align:center;padding:10px">
+			<a href="#" class="easyui-linkbutton" onclick="selectActuator()">确定</a>
+		</div>
+	</div>
+	
+	<div id="selectPositioner" style="padding:10px;">
+		<table id="allPositioners"></table>
+		<div style="text-align:center;padding:10px">
+			<a href="#" class="easyui-linkbutton" onclick="selectPositioner()">确定</a>
+		</div>
+	</div>
+	
+	<div id="selectSolenoid" style="padding:10px;">
+		<table id="allSolenoids"></table>
+		<div style="text-align:center;padding:10px">
+			<a href="#" class="easyui-linkbutton" onclick="selectSolenoid()">确定</a>
+		</div>
+	</div>	
+	
+	<div id="selectLimitSwitch" style="padding:10px;">
+		<table id="allLimitSwitchs"></table>
+		<div style="text-align:center;padding:10px">
+			<a href="#" class="easyui-linkbutton" onclick="selectLimitSwitch()">确定</a>
+		</div>
+	</div>
+	
+	<div id="selectConveyer" style="padding:10px;">
+		<table id="allConveyers"></table>
+		<div style="text-align:center;padding:10px">
+			<a href="#" class="easyui-linkbutton" onclick="selectConveyer()">确定</a>
+		</div>
+	</div>
+	
+	<div id="selectFilterReducingValve" style="padding:10px;">
+		<table id="allFilterReducingValves"></table>
+		<div style="text-align:center;padding:10px">
+			<a href="#" class="easyui-linkbutton" onclick="selectFilterReducingValve()">确定</a>
 		</div>
 	</div>
 	
@@ -497,6 +565,7 @@
 			$('#valveSpecification_calculation_flowCharacteristic').combobox({
 				onSelect:function(record){
 					caculateKmax();
+					caculateKnor();
 					caculateKmin();
 				}
 			});
@@ -505,6 +574,7 @@
 				onSelect:function(record){
 					//alert(record);
 					caculateKmax();
+					caculateKnor();
 					caculateKmin();
 				}
 			});
@@ -547,15 +617,17 @@
 					'valveSpecification_processPara_operationTemperature':$('#valveSpecification_processPara_operationTemperature').val(),
 					'valveSpecification_processPara_criticalPressure':$('#valveSpecification_processPara_criticalPressure').val(),
 					'valveSpecification_calculation_Kvmax':$('#valveSpecification_calculation_Kvmax').val(),
+					'valveSpecification_calculation_Kvnor':$('#valveSpecification_calculation_Kvnor').val(),
 					'valveSpecification_calculation_Kvmin':$('#valveSpecification_calculation_Kvmin').val(),
 					'valveSpecification_calculation_selectedKv':$('#valveSpecification_calculation_selectedKv').val(),
 					'valveSpecification_calculation_Kmax':$('#valveSpecification_calculation_Kmax').val(),
 					'valveSpecification_calculation_flowCharacteristic':$('#valveSpecification_calculation_flowCharacteristic').val(),
 					'valveSpecification_calculation_adjustableRatio':$('#valveSpecification_calculation_adjustableRatio').combobox('getValue'),
+					'valveSpecification_calculation_Knor':$('#valveSpecification_calculation_Knor').val(),
 					'valveSpecification_calculation_Kmin':$('#valveSpecification_calculation_Kmin').val(),
-					'valveSpecification_calculation_nominalPressure':$('#valveSpecification_calculation_nominalPressure').val(),
+					'valveSpecification_calculation_nominalPressure':$('#valveSpecification_calculation_nominalPressure').combobox('getValue'),
 					'valveSpecification_calculation_noiseLevel':$('#valveSpecification_calculation_noiseLevel').val(),
-					'valveSpecification_calculation_closeOpen':$('#valveSpecification_calculation_closeOpen').val(),
+					'valveSpecification_calculation_closeOpen':$('#valveSpecification_calculation_closeOpen').combobox('getValue'),
 					'valveSpecification_selectedModel_name':$('#valveSpecification_selectedModel_name').val(),
 					'valveSpecification_selectedModel_bodyMaterial':$('#valveSpecification_selectedModel_bodyMaterial').val(),
 					'valveSpecification_selectedModel_model':$('#valveSpecification_selectedModel_model').val(),
@@ -597,7 +669,7 @@
 					'valveSpecification_accessory_conveyer_explosionProof':$('#valveSpecification_accessory_conveyer_explosionProof').val(),
 					'valveSpecification_accessory_filterReducingValve_model':$('#valveSpecification_accessory_filterReducingValve_model').val(),
 					'valveSpecification_accessory_filterReducingValve_connection':$('#valveSpecification_accessory_filterReducingValve_connection').val(),
-					'valveSpecification_accessory_handWheel':$('#valveSpecification_accessory_handWheel').val()
+					'valveSpecification_accessory_handWheel':$('#valveSpecification_accessory_handWheel').combobox('getValue')
 				},
 				success:function(data){
 					//alert(JSON.stringify(data));
@@ -713,7 +785,7 @@
 					{field:'packing',title:'填料',width:100},
 					{field:'bonnetType',title:'上阀盖型式',width:100},
 					{field:'connectionFlange',title:'连接法兰',width:100},
-					{field:'leakageClass',title:'泄露等级',width:100},
+					{field:'leakageClass',title:'泄露等级',width:100}
 				]]
 			});
 		}
@@ -770,6 +842,232 @@
 			$('#selectSelectedModel').window('close');
 		}
 		
+		function showSelectActuatorWin(){			
+			$('#selectActuator').window({
+				title:'请选择执行机构',
+			    width:600,
+			    height:450,
+			    modal:true
+			    //content:'<table id="allFluids"></table><a href="#" class="easyui-linkbutton" onclick="save()">确定</a>'
+			});
+			
+			$('#allActuators').datagrid({
+			    url:'queryAllActuator.action',
+			    height:350,
+			    rownumbers:true,
+			    singleSelect:true,
+			    columns:[[
+					{field:'ck',checkbox:true},	
+					{field:'model',title:'型号',width:100},					
+					{field:'action',title:'动作形式',width:100},
+					{field:'springRange',title:'弹簧范围',width:100},
+					{field:'airPressure',title:'供气压力',width:100},
+					{field:'airConnection',title:'气源接头',width:100}
+				]]
+			});
+		}
+		
+		function selectActuator(){
+			var selectedRow = $('#allActuators').datagrid('getSelected');
+			
+			if(selectedRow){			
+				$('#valveSpecification_actuator_model').val(selectedRow.model);
+				$('#valveSpecification_actuator_action').val(selectedRow.action);
+				$('#valveSpecification_actuator_springRange').val(selectedRow.springRange);
+				$('#valveSpecification_actuator_airPressure').val(selectedRow.airPressure);
+				$('#valveSpecification_actuator_airConnection').val(selectedRow.airConnection)
+			}				
+
+			$('#selectActuator').window('close');
+		}
+		
+		function showSelectPositionerWin(){			
+			$('#selectPositioner').window({
+				title:'请选择定位器',
+			    width:700,
+			    height:450,
+			    modal:true
+			    //content:'<table id="allFluids"></table><a href="#" class="easyui-linkbutton" onclick="save()">确定</a>'
+			});
+			
+			$('#allPositioners').datagrid({
+			    url:'queryAllPositioner.action',
+			    height:350,
+			    rownumbers:true,
+			    singleSelect:true,
+			    columns:[[
+					{field:'ck',checkbox:true},	
+					{field:'model',title:'型号',width:100},					
+					{field:'inputSignal',title:'输入信号',width:100},
+					{field:'airPressure',title:'供气压力',width:100},
+					{field:'signalConnection',title:'信号接口',width:100},
+					{field:'airConnectionSize',title:'气接口尺寸',width:100},
+					{field:'explosionProof',title:'防爆等级',width:100}
+				]]
+			});
+		}
+		
+		function selectPositioner(){
+			var selectedRow = $('#allPositioners').datagrid('getSelected');
+			
+			if(selectedRow){	
+				$('#valveSpecification_accessory_positioner_model').val(selectedRow.model);
+				$('#valveSpecification_accessory_positioner_signalConnection').val(selectedRow.signalConnection);
+				$('#valveSpecification_accessory_positioner_inputSignal').val(selectedRow.inputSignal);
+				$('#valveSpecification_accessory_positioner_airConnectionSize').val(selectedRow.airConnectionSize);
+				$('#valveSpecification_accessory_positioner_airPressure').val(selectedRow.airPressure);
+				$('#valveSpecification_accessory_positioner_explosionProof').val(selectedRow.explosionProof);
+			}				
+
+			$('#selectPositioner').window('close');
+		}
+		
+		function showSelectSolenoidWin(){			
+			$('#selectSolenoid').window({
+				title:'请选择电池阀',
+			    width:600,
+			    height:450,
+			    modal:true
+			    //content:'<table id="allFluids"></table><a href="#" class="easyui-linkbutton" onclick="save()">确定</a>'
+			});
+			
+			$('#allSolenoids').datagrid({
+			    url:'queryAllSolenoid.action',
+			    height:350,
+			    rownumbers:true,
+			    singleSelect:true,
+			    columns:[[
+					{field:'ck',checkbox:true},	
+					{field:'model',title:'型号',width:100},					
+					{field:'supplyPower',title:'电源电压',width:100},
+					{field:'powerConnection',title:'电源接口',width:100},
+					{field:'airConnection',title:'气接口尺寸',width:100},
+					{field:'explosionProof',title:'防爆等级',width:100}
+				]]
+			});
+		}
+		
+		function selectSolenoid(){
+			var selectedRow = $('#allSolenoids').datagrid('getSelected');
+			
+			if(selectedRow){				
+				$('#valveSpecification_accessory_solenoid_model').val(selectedRow.model);
+				$('#valveSpecification_accessory_solenoid_airConnection').val(selectedRow.airConnection);
+				$('#valveSpecification_accessory_solenoid_supplyPower').val(selectedRow.supplyPower);
+				$('#valveSpecification_accessory_solenoid_explosionProof').val(selectedRow.explosionProof);
+				$('#valveSpecification_accessory_solenoid_powerConnection').val(selectedRow.powerConnection);
+			}				
+
+			$('#selectSolenoid').window('close');
+		}
+		
+		function showSelectLimitSwitchWin(){			
+			$('#selectLimitSwitch').window({
+				title:'请选择阀位开关',
+			    width:600,
+			    height:450,
+			    modal:true
+			    //content:'<table id="allFluids"></table><a href="#" class="easyui-linkbutton" onclick="save()">确定</a>'
+			});
+			
+			$('#allLimitSwitchs').datagrid({
+			    url:'queryAllLimitSwitch.action',
+			    height:350,
+			    rownumbers:true,
+			    singleSelect:true,
+			    columns:[[
+					{field:'ck',checkbox:true},	
+					{field:'model',title:'型号',width:100},					
+					{field:'jointModel',title:'接点型式',width:100},
+					{field:'connectionSize',title:'接口尺寸',width:100},
+					{field:'explosionProof',title:'防爆等级',width:100}
+				]]
+			});
+		}
+		
+		function selectLimitSwitch(){
+			var selectedRow = $('#allLimitSwitchs').datagrid('getSelected');
+			
+			if(selectedRow){
+				$('#valveSpecification_accessory_limitSwitch_model').val(selectedRow.model);
+				$('#valveSpecification_accessory_limitSwitch_connectionSize').val(selectedRow.connectionSize);
+				$('#valveSpecification_accessory_limitSwitch_jointModel').val(selectedRow.jointModel);
+				$('#valveSpecification_accessory_limitSwitch_explosionProof').val(selectedRow.explosionProof);
+			}				
+
+			$('#selectLimitSwitch').window('close');
+		}
+		
+		function showSelectConveyerWin(){			
+			$('#selectConveyer').window({
+				title:'请选择阀位传送器',
+			    width:600,
+			    height:450,
+			    modal:true
+			    //content:'<table id="allFluids"></table><a href="#" class="easyui-linkbutton" onclick="save()">确定</a>'
+			});
+			
+			$('#allConveyers').datagrid({
+			    url:'queryAllConveyer.action',
+			    height:350,
+			    rownumbers:true,
+			    singleSelect:true,
+			    columns:[[
+					{field:'ck',checkbox:true},	
+					{field:'model',title:'型号',width:100},					
+					{field:'outputSignal',title:'输出信号',width:100},
+					{field:'connectionSize',title:'接口尺寸',width:100},
+					{field:'explosionProof',title:'防爆等级',width:100}
+				]]
+			});
+		}
+		
+		function selectConveyer(){
+			var selectedRow = $('#allConveyers').datagrid('getSelected');
+			
+			if(selectedRow){				
+				$('#valveSpecification_accessory_conveyer_model').val(selectedRow.model);
+				$('#valveSpecification_accessory_conveyer_connectionSize').val(selectedRow.connectionSize);
+				$('#valveSpecification_accessory_conveyer_outputSignal').val(selectedRow.outputSignal);
+				$('#valveSpecification_accessory_conveyer_explosionProof').val(selectedRow.explosionProof);
+			}				
+
+			$('#selectConveyer').window('close');
+		}
+		
+		function showSelectFilterReducingValveWin(){			
+			$('#selectFilterReducingValve').window({
+				title:'请选择过滤减压阀',
+			    width:500,
+			    height:450,
+			    modal:true
+			    //content:'<table id="allFluids"></table><a href="#" class="easyui-linkbutton" onclick="save()">确定</a>'
+			});
+			
+			$('#allFilterReducingValves').datagrid({
+			    url:'queryAllFilterReducingValve.action',
+			    height:350,
+			    rownumbers:true,
+			    singleSelect:true,
+			    columns:[[
+					{field:'ck',checkbox:true},	
+					{field:'model',title:'型号',width:100},					
+					{field:'connection',title:'接口',width:100}
+				]]
+			});
+		}
+		
+		function selectFilterReducingValve(){
+			var selectedRow = $('#allFilterReducingValves').datagrid('getSelected');
+			
+			if(selectedRow){
+				$('#valveSpecification_accessory_filterReducingValve_model').val(selectedRow.model);
+				$('#valveSpecification_accessory_filterReducingValve_connection').val(selectedRow.connection);
+			}				
+
+			$('#selectFilterReducingValve').window('close');
+		}
+		
 		function caculateKvmax(){
 			//alert('1');
 			var fluidState = $('#valveSpecification_processPara_fluidState').combobox('getValue');
@@ -804,10 +1102,50 @@
 						$('#valveSpecification_processPara_pressureUnit').combobox('getValue'),
 						'maxKv');
 				Kv = Cv / 1.17;
-			}				
-
+			}
+			
 			if($.isNumeric(Kv))
-				$('#valveSpecification_calculation_Kvmax').val(Math.round(Kv * 10000) / 10000);			
+				$('#valveSpecification_calculation_Kvmax').val(Math.round(Kv * 10000) / 10000);	
+		}
+		
+		function caculateKvnor(){
+			//alert('1');
+			var fluidState = $('#valveSpecification_processPara_fluidState').combobox('getValue');
+			var Kv,Cv;
+			if(fluidState == "liquid"){
+				//alert('液体');
+				Kv = calculateLiquidKv($('#valveSpecification_processPara_Qnor').val(),
+						$('#valveSpecification_processPara_upstreamPressure').val(),
+						$('#valveSpecification_processPara_downstreamPressure').val(),
+						($('#valveSpecification_processPara_density').val() / 1000),
+						$('#valveSpecification_processPara_pressureUnit').combobox('getValue'),
+						'norKv');
+			}
+			else if(fluidState == "gas"){
+				//alert('气体');
+				Cv = calculateGasCv($('#valveSpecification_processPara_Qnor').val(),
+						$('#valveSpecification_processPara_upstreamPressure').val(),
+						$('#valveSpecification_processPara_downstreamPressure').val(),
+						($('#valveSpecification_processPara_density').val() / 1.29),
+						$('#valveSpecification_processPara_operationTemperature').val(),
+						$('#valveSpecification_processPara_pressureUnit').combobox('getValue'),
+						'norKv');
+				Kv = Cv / 1.17;
+				//alert(Kv);
+			}				
+			else if(fluidState == "vaper"){
+				//alert('水蒸汽');
+				Cv = calculateVaperCv($('#valveSpecification_processPara_Qnor').val(),
+						$('#valveSpecification_processPara_upstreamPressure').val(),
+						$('#valveSpecification_processPara_downstreamPressure').val(),
+						$('#valveSpecification_processPara_operationTemperature').val(),
+						$('#valveSpecification_processPara_pressureUnit').combobox('getValue'),
+						'norKv');
+				Kv = Cv / 1.17;
+			}
+			
+			if($.isNumeric(Kv))
+				$('#valveSpecification_calculation_Kvnor').val(Math.round(Kv * 10000) / 10000);	
 		}
 		
 		function caculateKvmin(){	
@@ -878,6 +1216,37 @@
 			//alert(K);
 			if($.isNumeric(K))		
 				$('#valveSpecification_calculation_Kmax').val((Math.round(K * 100) / 100) + '%');
+
+		}
+		
+		function caculateKnor(){
+			var flowCharacteristic = $('#valveSpecification_calculation_flowCharacteristic').combobox('getValue');
+			var K;
+			
+			if(flowCharacteristic == "equalPercentage")
+				K = calculateKByEqualPercentage($('#valveSpecification_calculation_selectedKv').val(),
+						$('#valveSpecification_calculation_Kvnor').val(),
+						$('#valveSpecification_calculation_adjustableRatio').combobox('getValue'),
+						'norKv');
+			else if(flowCharacteristic == "linear")
+				K = calculateKByLinear($('#valveSpecification_calculation_selectedKv').val(),
+						$('#valveSpecification_calculation_Kvnor').val(),
+						$('#valveSpecification_calculation_adjustableRatio').combobox('getValue'),
+						'norKv');
+			else if(flowCharacteristic == "modifiedParabolic")
+				K = calculateKByModifiedParabolic($('#valveSpecification_calculation_selectedKv').val(),
+						$('#valveSpecification_calculation_Kvnor').val(),
+						$('#valveSpecification_calculation_adjustableRatio').combobox('getValue'),
+						'norKv');
+			else if(flowCharacteristic == "squareRoot")
+				K = calculateKBySquareRoot($('#valveSpecification_calculation_selectedKv').val(),
+						$('#valveSpecification_calculation_Kvnor').val(),
+						$('#valveSpecification_calculation_adjustableRatio').combobox('getValue'),
+						'norKv');
+			
+			//alert(K);
+			if($.isNumeric(K))		
+				$('#valveSpecification_calculation_Knor').val((Math.round(K * 100) / 100) + '%');
 
 		}
 		

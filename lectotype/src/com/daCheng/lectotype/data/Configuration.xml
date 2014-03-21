@@ -5,10 +5,10 @@
 <configuration>
 	<properties resource="config.properties"/>
 	
-	<!--typeHandlers>
-		<typeHandler javaType="java.lang.Enum" jdbcType="VARCHAR" 
-			handler="com.firsthuanya.shdyxh.data.HuanyaEnumTypeHandler"/>
-	</typeHandlers-->	
+    <!-- typeHandlers>  
+    	<typeHandler javaType="Boolean" jdbcType="VARCHAR"  
+        	handler="com.daCheng.lectotype.data.BooleanTypeHandler" />  
+    </typeHandlers-->	
 
 	<environments default="development">
 		<environment id="development">

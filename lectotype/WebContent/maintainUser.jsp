@@ -117,6 +117,9 @@
 		function showEditUserWindow(index){
     		$('#editUser').window('setTitle','修改员工');
     		clearWindow();
+    		
+			$('#id').attr('disabled',true);
+
     		var row = $('#users').datagrid('getRows')[index];
     		
     		$('#id').val(row.id);
@@ -133,7 +136,8 @@
     		$('#editUser').window('open');
 		}
 		
-		function clearWindow(){			
+		function clearWindow(){	
+			$('#id').attr('disabled',false);
 			$('#id').val('');
     		$('#name').val('');
     		$('#password').val('');
@@ -198,10 +202,7 @@
 						alert('jqXHR:' + jqXHR + ',textStatus:' + textStatus + ',errorThrown:' + errorThrown);
 					}
 				});
-			else if($('#operationType').val() == 'update'){
-				//$('#id').attr('disabled','disabled');
-
-				
+			else if($('#operationType').val() == 'update'){				
 				$.ajax({
 					type:'POST',
 					url:'updateUser.action',

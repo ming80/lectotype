@@ -84,6 +84,11 @@
 						formatter: function(value,row,index){
 							return row.selectedModel.plugMaterial;
 						}		
+					},
+					{field:'accessory.handWheel',title:'手轮',width:100,sortable:true,
+						formatter: function(value,row,index){
+							return row.accessory.handWheel;
+						}		
 					}					
 				]],	  
 				toolbar:'#tb'				

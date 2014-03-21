@@ -116,11 +116,13 @@ CREATE TABLE [valve_specification] (
 	[vapor_pressure] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[critical_pressure] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[kv_max] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
+	[kv_nor] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[kv_min] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[selected_kv] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[adjustable_ratio] [varchar] (10) COLLATE Chinese_PRC_CI_AS NULL ,
 	[flow_characteristic] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[k_max] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
+	[k_nor] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[k_min] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[nominal_pressure] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
 	[noise_level] [varchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
@@ -173,6 +175,9 @@ CREATE TABLE [valve_specification] (
 	)  ON [PRIMARY] 
 ) ON [PRIMARY]
 GO
+
+
+
 
 CREATE TABLE [filter_reducing_valve] (
 	[id] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,

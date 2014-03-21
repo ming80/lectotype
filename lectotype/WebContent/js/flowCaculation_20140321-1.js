@@ -3,10 +3,13 @@
  */
 		//whichCalculation-[kv,maxKv,minKv]
 		function calculateLiquidKv(Q,P1,P2,G,pressureUnit,whichCalculation){
+			//alert(Q + "," + P1 + "," + P2 + "," + G + "," + pressureUnit + "," + whichCalculation);
 			var msg;
 			if(Q == ''){				
 				if(whichCalculation == 'maxKv')
 					msg = '请输入最大流量!';
+				else if(whichCalculation == 'norKv')
+					msg = '请输入正常流量!';
 				else if(whichCalculation == 'minKv')
 					msg = '请输入最小流量!';
 				else
@@ -15,7 +18,7 @@
 				return;
 			}
 			if(P1 == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入阀前压力!';
 				else
 					msg = '请输入进口压力!';
@@ -23,7 +26,7 @@
 				return;
 			}
 			if(P2 == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入阀后压力!';
 				else
 					msg = '请输入出口压力!';
@@ -31,7 +34,7 @@
 				return;
 			}
 			if(G == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入密度!';
 				else
 					msg = '请输入比重!';				
@@ -42,6 +45,8 @@
 			if(!$.isNumeric(Q)){
 				if(whichCalculation == 'maxKv')
 					msg = '最大流量必须是数字!';
+				else if(whichCalculation == 'norKv')
+					msg = '正常流量必须是数字!';
 				else if(whichCalculation == 'minKv')
 					msg = '最小流量必须是数字!';
 				else
@@ -51,7 +56,7 @@
 				return;				
 			}			
 			if(!$.isNumeric(P1)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀前压力必须是数字!';
 				else
 					msg = '进口压力必须是数字!';
@@ -60,7 +65,7 @@
 				return;
 			}				
 			if(!$.isNumeric(P2)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀后压力必须是数字!';
 				else
 					msg = '出口压力必须是数字!';
@@ -69,7 +74,7 @@
 				return;
 			}				
 			if(!$.isNumeric(G)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '密度必须是数字!';
 				else
 					msg = '比重必须是数字!';	
@@ -85,6 +90,8 @@
 			if(numQ <= 0 ){
 				if(whichCalculation == 'maxKv')
 					msg = '最大流量必须大于0!';
+				else if(whichCalculation == 'norKv')
+					msg = '正常流量必须大于0!';
 				else if(whichCalculation == 'minKv')
 					msg = '最小流量必须大于0!';
 				else
@@ -94,7 +101,7 @@
 				return;
 			}		
 			if(numP1 <= numP2){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀前压力必须大于阀后压力!';
 				else
 					msg = '进口压力必须大于出口压力!';
@@ -103,7 +110,7 @@
 				return;
 			}				
 			if(numG <= 0){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '密度必须大于0!';
 				else
 					msg = '比重必须大于0!';	
@@ -130,6 +137,8 @@
 			if(Q == ''){
 				if(whichCalculation == 'maxKv')
 					msg = '请输入最大流量!';
+				else if(whichCalculation == 'norKv')
+					msg = '请输入正常流量!';
 				else if(whichCalculation == 'minKv')
 					msg = '请输入最小流量!';
 				else
@@ -138,7 +147,7 @@
 				return;
 			}
 			if(P1 == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入阀前压力!';
 				else
 					msg = '请输入进口压力!';
@@ -147,7 +156,7 @@
 				return;
 			}
 			if(P2 == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入阀后压力!';
 				else
 					msg = '请输入出口压力!';
@@ -156,7 +165,7 @@
 				return;
 			}
 			if(G == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入密度!';
 				else
 					msg = '请输入比重!';				
@@ -164,7 +173,7 @@
 				return;
 			}	
 			if(T == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入操作温度!';
 				else
 					msg = '请输入流体温度!';
@@ -175,6 +184,8 @@
 			if(!$.isNumeric(Q)){
 				if(whichCalculation == 'maxKv')
 					msg = '最大流量必须是数字!';
+				else if(whichCalculation == 'norKv')
+					msg = '正常流量必须是数字!';
 				else if(whichCalculation == 'minKv')
 					msg = '最小流量必须是数字!';
 				else
@@ -184,7 +195,7 @@
 				return;				
 			}			
 			if(!$.isNumeric(P1)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀前压力必须是数字!';
 				else
 					msg = '进口压力必须是数字!';
@@ -193,7 +204,7 @@
 				return;
 			}				
 			if(!$.isNumeric(P2)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀后压力必须是数字!';
 				else
 					msg = '出口压力必须是数字!';
@@ -202,7 +213,7 @@
 				return;
 			}				
 			if(!$.isNumeric(G)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '密度必须是数字!';
 				else
 					msg = '比重必须是数字!';	
@@ -211,7 +222,7 @@
 				return;
 			}
 			if(!$.isNumeric(T)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '操作温度必须是数字!';
 				else
 					msg = '流体温度必须是数字!';	
@@ -229,6 +240,8 @@
 			if(numQ <= 0 ){
 				if(whichCalculation == 'maxKv')
 					msg = '最大流量必须大于0!';
+				else if(whichCalculation == 'norKv')
+					msg = '正常流量必须大于0!';
 				else if(whichCalculation == 'minKv')
 					msg = '最小流量必须大于0!';
 				else
@@ -238,7 +251,7 @@
 				return;
 			}		
 			if(numP1 <= numP2){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀前压力必须大于阀后压力!';
 				else
 					msg = '进口压力必须大于出口压力!';
@@ -247,7 +260,7 @@
 				return;
 			}				
 			if(numG <= 0){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '密度必须大于0!';
 				else
 					msg = '比重必须大于0!';	
@@ -256,7 +269,7 @@
 				return;
 			}	
 			if(numT <= -273){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '操作温度必须大于-273!';
 				else
 					msg = '流体温度必须大于-273!';
@@ -296,6 +309,8 @@
 			if(W == ''){
 				if(whichCalculation == 'maxKv')
 					msg = '请输入最大流量!';
+				else if(whichCalculation == 'norKv')
+					msg = '请输入正常流量!';
 				else if(whichCalculation == 'minKv')
 					msg = '请输入最小流量!';
 				else
@@ -304,7 +319,7 @@
 				return;
 			}
 			if(P1 == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入阀前压力!';
 				else
 					msg = '请输入进口压力!';
@@ -313,7 +328,7 @@
 				return;
 			}
 			if(P2 == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入阀后压力!';
 				else
 					msg = '请输入出口压力!';
@@ -322,7 +337,7 @@
 				return;
 			}
 			if(overT == ''){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '请输入操作温度!';
 				else
 					msg = '请输入过热温度!';
@@ -334,6 +349,8 @@
 			if(!$.isNumeric(W)){
 				if(whichCalculation == 'maxKv')
 					msg = '最大流量必须是数字!';
+				else if(whichCalculation == 'norKv')
+					msg = '正常流量必须是数字!';
 				else if(whichCalculation == 'minKv')
 					msg = '最小流量必须是数字!';
 				else
@@ -343,7 +360,7 @@
 				return;				
 			}			
 			if(!$.isNumeric(P1)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀前压力必须是数字!';
 				else
 					msg = '进口压力必须是数字!';
@@ -352,7 +369,7 @@
 				return;
 			}				
 			if(!$.isNumeric(P2)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀后压力必须是数字!';
 				else
 					msg = '出口压力必须是数字!';
@@ -361,7 +378,7 @@
 				return;
 			}
 			if(!$.isNumeric(overT)){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '操作温度必须是数字!';
 				else
 					msg = '过热温度必须是数字!';	
@@ -379,6 +396,8 @@
 			if(numW <= 0 ){
 				if(whichCalculation == 'maxKv')
 					msg = '最大流量必须大于0!';
+				else if(whichCalculation == 'norKv')
+					msg = '正常流量必须大于0!';
 				else if(whichCalculation == 'minKv')
 					msg = '最小流量必须大于0!';
 				else
@@ -388,7 +407,7 @@
 				return;
 			}		
 			if(numP1 <= numP2){
-				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+				if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 					msg = '阀前压力必须大于阀后压力!';
 				else
 					msg = '进口压力必须大于出口压力!';
@@ -397,7 +416,7 @@
 				return;
 			}
 				
-			if(whichCalculation == 'maxKv' || whichCalculation == 'minKv')
+			if(whichCalculation == 'maxKv' || whichCalculation == 'minKv' || whichCalculation == 'norKv')
 				numOverT = calculateOvertemperature(numP1,numOverT,pressureUnit);
 			
 			if(pressureUnit == 'MPa'){
@@ -427,6 +446,8 @@
 			if(Kv == ''){
 				if(whichCalculation == 'maxKv')
 					msg = '请输入计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '请输入计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '请输入计算Kvmin!';
 				else
@@ -448,6 +469,8 @@
 				alert(kv);
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须是数字!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须是数字!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须是数字!';
 				else
@@ -472,6 +495,8 @@
 			if(numKv <= 0){
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须大于0!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须大于0!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须大于0!';
 				else
@@ -483,6 +508,8 @@
 			if(numSelectedKv < numKv){
 				if(whichCalculation == 'maxKv')
 					msg = '选用Kv必须大于等于计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '选用Kv必须大于等于计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '选用Kv必须大于等于计算Kvmin!';
 				else
@@ -512,6 +539,8 @@
 			if(Kv == ''){
 				if(whichCalculation == 'maxKv')
 					msg = '请输入计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '请输入计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '请输入计算Kvmin!';
 				else
@@ -533,6 +562,8 @@
 				alert(kv);
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须是数字!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须是数字!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须是数字!';
 				else
@@ -557,6 +588,8 @@
 			if(numKv <= 0){
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须大于0!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须大于0!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须大于0!';
 				else
@@ -568,6 +601,8 @@
 			if(numSelectedKv < numKv){
 				if(whichCalculation == 'maxKv')
 					msg = '选用Kv必须大于等于计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '选用Kv必须大于等于计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '选用Kv必须大于等于计算Kvmin!';
 				else
@@ -597,6 +632,8 @@
 			if(Kv == ''){
 				if(whichCalculation == 'maxKv')
 					msg = '请输入计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '请输入计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '请输入计算Kvmin!';
 				else
@@ -617,6 +654,8 @@
 			if(!$.isNumeric(Kv)){
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须是数字!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须是数字!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须是数字!';
 				else
@@ -641,6 +680,8 @@
 			if(numKv <= 0){
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须大于0!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须大于0!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须大于0!';
 				else
@@ -652,6 +693,8 @@
 			if(numSelectedKv < numKv){
 				if(whichCalculation == 'maxKv')
 					msg = '选用Kv必须大于等于计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '选用Kv必须大于等于计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '选用Kv必须大于等于计算Kvmin!';
 				else
@@ -681,6 +724,8 @@
 			if(Kv == ''){
 				if(whichCalculation == 'maxKv')
 					msg = '请输入计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '请输入计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '请输入计算Kvmin!';
 				else
@@ -701,6 +746,8 @@
 			if(!$.isNumeric(Kv)){
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须是数字!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须是数字!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须是数字!';
 				else
@@ -725,6 +772,8 @@
 			if(numKv <= 0){
 				if(whichCalculation == 'maxKv')
 					msg = '计算Kvmax必须大于0!';
+				else if(whichCalculation == 'norKv')
+					msg = '计算Kvnor必须大于0!';
 				else if(whichCalculation == 'minKv')
 					msg = '计算Kvmin必须大于0!';
 				else
@@ -736,6 +785,8 @@
 			if(numSelectedKv < numKv){
 				if(whichCalculation == 'maxKv')
 					msg = '选用Kv必须大于等于计算Kvmax!';
+				else if(whichCalculation == 'norKv')
+					msg = '选用Kv必须大于等于计算Kvnor!';
 				else if(whichCalculation == 'minKv')
 					msg = '选用Kv必须大于等于计算Kvmin!';
 				else

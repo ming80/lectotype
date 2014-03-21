@@ -2,11 +2,13 @@ package com.daCheng.lectotype.domain;
 
 public class Calculation {
 	private String Kvmax;	//计算Kvmax
+	private String Kvnor;
 	private String Kvmin;//计算Kvmin
 	private String selectedKv;//选用Kv
 	private String adjustableRatio;//可调比
 	private String flowCharacteristic;//流量特性
 	private String Kmax;//阀开度Kmax
+	private String Knor;
 	private String Kmin;//阀开度Kmin
 	private String nominalPressure;//公称压力
 	private String noiseLevel;//噪声估算
@@ -18,6 +20,14 @@ public class Calculation {
 	
 	public void setKvmax(String kvmax) {
 		Kvmax = kvmax;
+	}
+	
+	public String getKvnor() {
+		return Kvnor;
+	}
+
+	public void setKvnor(String kvnor) {
+		Kvnor = kvnor;
 	}
 	
 	public String getKvmin() {
@@ -60,6 +70,14 @@ public class Calculation {
 		Kmax = kmax;
 	}
 	
+	public String getKnor() {
+		return Knor;
+	}
+
+	public void setKnor(String knor) {
+		Knor = knor;
+	}	
+	
 	public String getKmin() {
 		return Kmin;
 	}
@@ -90,5 +108,5 @@ public class Calculation {
 	
 	public void setCloseOpen(String closeOpen) {
 		this.closeOpen = closeOpen;
-	}	
+	}
 }
